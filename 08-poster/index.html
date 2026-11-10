@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jazz Night — The Cellar Room, Friday 27 November</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0b0e2a;
+    --blue: #1a2690;
+    --tomato: #ef4a2b;
+    --orange: #f6891f;
+    --saffron: #f9bd3b;
+    --cream: #f6ecd7;
+    --muted: rgba(246, 236, 215, .66);
+    --line: rgba(246, 236, 215, .30);
+    --line-soft: rgba(246, 236, 215, .15);
+    --serif: 'Bodoni Moda', 'Bodoni 72', 'Didot', 'Playfair Display', Georgia, serif;
+    --sans: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: #05060f;
+  }
+
+  /* ---------- the sheet: fixed 1080 × 1350, scaled to fit any other viewport ---------- */
+  .poster {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1080px;
+    height: 1350px;
+    margin: -675px 0 0 -540px;
+    overflow: hidden;
+    color: var(--cream);
+    font-family: var(--sans);
+    background:
+      radial-gradient(circle at 700px 453px, #181e58 0, #0f1337 520px, #0a0c27 900px, #07091d 1300px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+  }
+
+  .art, .grain, .layer { position: absolute; inset: 0; }
+  .art, .grain { display: block; pointer-events: none; }
+
+  .grain { mix-blend-mode: overlay; opacity: .3; }
+
+  .sr {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+
+  /* ---------- top matter ---------- */
+  .head {
+    position: absolute; left: 60px; right: 60px; top: 54px;
+    display: flex; justify-content: space-between;
+    font: 600 14px/20px var(--sans);
+    font-stretch: 110%;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .tag {
+    position: absolute; left: 60px; top: 118px;
+    font: italic 500 31px/37px var(--serif);
+    white-space: nowrap;
+  }
+  .tag::before {
+    content: ""; display: block;
+    width: 46px; height: 3px; margin-bottom: 18px;
+    background: var(--saffron);
+  }
+
+  /* ---------- title ---------- */
+  /* "Jazz" is drawn twice: cream outside the moon, ink inside it. */
+  .layer.out {
+    color: var(--cream);
+    clip-path: path(evenodd, "M0 0H1080V1350H0Z M380 453a320 320 0 1 0 640 0a320 320 0 1 0-640 0Z");
+  }
+  .layer.in {
+    color: var(--ink);
+    clip-path: circle(320px at 700px 453px);
+  }
+
+  .jazz {
+    position: absolute;
+    left: 60px; top: 400px;            /* refined by script once the face has loaded */
+    font: italic 900 452px/1 var(--serif);
+    white-space: nowrap;
+  }
+  .bl { display: inline-block; width: 0; height: 0; vertical-align: baseline; }
+
+  .night {
+    position: absolute;
+    left: 300px; right: 60px; top: 800px; height: 84px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font: 800 108px/84px var(--sans);
+    font-stretch: 125%;
+  }
+
+  /* ---------- information ---------- */
+  .info { position: absolute; left: 60px; right: 60px; bottom: 56px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 292px;
+    height: 313px;
+    padding: 26px 0 24px;
+    border-top: 1px solid var(--line);
+  }
+  .col { display: flex; flex-direction: column; min-width: 0; }
+  .col + .col { border-left: 1px solid var(--line); padding-left: 28px; }
+  .col:not(:last-child) { padding-right: 28px; }
+
+  .label {
+    font: 600 13px/16px var(--sans);
+    font-stretch: 110%;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 14px;
+    white-space: nowrap;
+  }
+
+  .day {
+    height: 170px;
+    margin-left: -6px;
+    font: italic 900 196px/170px var(--serif);
+    color: var(--tomato);
+    white-space: nowrap;
+  }
+  .when { margin-top: auto; }
+  .month {
+    font: 800 23px/26px var(--sans);
+    font-stretch: 125%;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .year {
+    margin-top: 5px;
+    font: 500 13px/18px var(--sans);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .band {
+    font: italic 700 46px/46px var(--serif);
+    white-space: nowrap;
+  }
+  .venue {
+    font: italic 700 33px/36px var(--serif);
+    white-space: nowrap;
+  }
+  .addr {
+    font: 400 17px/24px var(--sans);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .rows { list-style: none; margin-top: auto; }
+  .rows li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    height: 31px;
+    line-height: 30px;
+    border-top: 1px solid var(--line-soft);
+    white-space: nowrap;
+  }
+  .v {
+    font-size: 19px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .k {
+    font-size: 12.5px; font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .foot {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 39px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font: 500 13px/22px var(--sans);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  /* the ride-cymbal pattern: ding, ding-a, ding, ding-a */
+  .swing { display: flex; align-items: center; gap: 5px; }
+  .swing i { display: block; width: 20px; height: 3px; background: var(--saffron); }
+  .swing i.s { width: 6px; margin-right: 6px; }
+</style>
+</head>
+
+<body>
+<main class="poster" id="poster">
+
+  <!-- moon / horn bell / sound, all at once -->
+  <svg class="art" viewBox="0 0 1080 1350" width="1080" height="1350" aria-hidden="true">
+    <defs>
+      <linearGradient id="fadeGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1350">
+        <stop offset="0" stop-color="#fff"/>
+        <stop offset=".58" stop-color="#fff"/>
+        <stop offset=".69" stop-color="#000"/>
+        <stop offset="1" stop-color="#000"/>
+      </linearGradient>
+      <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1350">
+        <rect width="1080" height="1350" fill="url(#fadeGrad)"/>
+      </mask>
+    </defs>
+
+    <g mask="url(#fade)" fill="none" stroke="#f6ecd7" stroke-width="1.25">
+      <circle cx="700" cy="453" r="420" opacity=".24"/>
+      <circle cx="700" cy="453" r="500" opacity=".18"/>
+      <circle cx="700" cy="453" r="600" opacity=".14"/>
+      <circle cx="700" cy="453" r="720" opacity=".10"/>
+      <circle cx="700" cy="453" r="860" opacity=".07"/>
+    </g>
+
+    <circle cx="700" cy="453" r="360" fill="#1a2690"/>
+    <circle cx="700" cy="453" r="320" fill="#ef4a2b"/>
+    <circle cx="719" cy="400" r="250" fill="#f6891f"/>
+    <circle cx="743" cy="334" r="168" fill="#f9bd3b"/>
+    <circle cx="766" cy="272" r="92"  fill="#f6ecd7"/>
+  </svg>
+
+  <h1 class="sr">Jazz Night</h1>
+
+  <header class="head">
+    <span>The Cellar Room presents</span>
+    <span>Friday Sessions · No. 12</span>
+  </header>
+
+  <p class="tag">Standards, originals<br>&amp; slow burners,<br>played after dark.</p>
+
+  <div class="layer out" aria-hidden="true"><div class="jazz">Jazz<i class="bl"></i></div></div>
+  <div class="layer in" aria-hidden="true"><div class="jazz">Jazz<i class="bl"></i></div></div>
+
+  <div class="night" id="night" aria-hidden="true">
+    <span>N</span><span>I</span><span>G</span><span>H</span><span>T</span>
+  </div>
+
+  <section class="info">
+    <div class="grid">
+
+      <div class="col">
+        <p class="label">Friday</p>
+        <p class="day">27</p>
+        <div class="when">
+          <p class="month">November</p>
+          <p class="year">2026 · Eight till late</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <p class="label">On the bandstand</p>
+        <p class="band">Odette Vance<br>Quartet</p>
+        <ul class="rows">
+          <li><span class="v">Odette Vance</span><span class="k">Tenor saxophone</span></li>
+          <li><span class="v">Malik Ferreira</span><span class="k">Piano</span></li>
+          <li><span class="v">June Okafor</span><span class="k">Double bass</span></li>
+          <li><span class="v">Theo Lindqvist</span><span class="k">Drums</span></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <p class="label">Downstairs at</p>
+        <p class="venue">The Cellar Room</p>
+        <p class="addr">14 Mercer Lane</p>
+        <ul class="rows">
+          <li><span class="k">Doors</span><span class="v">8:00 pm</span></li>
+          <li><span class="k">First set</span><span class="v">9:00</span></li>
+          <li><span class="k">Second set</span><span class="v">10:30</span></li>
+          <li><span class="k">Tickets</span><span class="v">15 adv · 20 door</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <footer class="foot">
+      <span>Two sets · Tables &amp; standing room · 18+</span>
+      <span class="swing" aria-hidden="true"><i></i><i></i><i class="s"></i><i></i><i></i><i class="s"></i></span>
+      <span>Bar pours till two</span>
+    </footer>
+  </section>
+
+  <!-- print grain -->
+  <svg class="grain" width="1080" height="1350" aria-hidden="true">
+    <filter id="noise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values=".33 .33 .33 0 0  .33 .33 .33 0 0  .33 .33 .33 0 0  0 0 0 0 1"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noise)"/>
+  </svg>
+
+</main>
+
+<script>
+(function () {
+  var poster = document.getElementById('poster');
+  var night = document.getElementById('night');
+  var jazz = document.querySelectorAll('.jazz');
+
+  /* Sheet is 1080 × 1350; at that viewport it sits 1:1, otherwise it scales to fit. */
+  function fit() {
+    var s = Math.min(window.innerWidth / 1080, window.innerHeight / 1350);
+    poster.style.transform = Math.abs(s - 1) < 0.002 ? 'none' : 'scale(' + s + ')';
+  }
+
+  /* Set "Jazz" so its ink runs exactly margin to margin (60 → 1020) with its
+     baseline resting on the bottom of the moon, then hang NIGHT under "azz". */
+  var X0 = 60, X1 = 1020, BASE = 773, LOCKUP_BOTTOM = 878;
+
+  function layout() {
+    if (!jazz.length) return;
+    var cs = getComputedStyle(jazz[0]);
+    var size, originX, nightLeft, desc = 0;
+
+    try {
+      var T = 400;
+      var ctx = document.createElement('canvas').getContext('2d');
+      ctx.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + T + 'px ' + cs.fontFamily;
+      var m = ctx.measureText('Jazz');
+      var ink = m.actualBoundingBoxLeft + m.actualBoundingBoxRight;
+      if (!(ink > 0)) throw new Error('no metrics');
+      var k = (X1 - X0) / ink;
+      size = T * k;
+      originX = X0 + m.actualBoundingBoxLeft * k;
+      desc = Math.max(0, m.actualBoundingBoxDescent * k);
+      var a = ctx.measureText('a');
+      var aInk = ctx.measureText('Ja').width - a.width - a.actualBoundingBoxLeft;
+      nightLeft = originX + aInk * k;
+    } catch (e) {
+      size = 452; originX = X0; nightLeft = 300;
+    }
+
+    if (!(size > 300 && size < 640)) size = 452;
+    if (!(nightLeft > 200 && nightLeft < 440)) nightLeft = 300;
+
+    var base = Math.min(BASE, LOCKUP_BOTTOM - desc);
+
+    for (var i = 0; i < jazz.length; i++) {
+      var el = jazz[i];
+      el.style.fontSize = size + 'px';
+      el.style.left = originX + 'px';
+      el.style.top = '0px';
+      var mark = el.querySelector('.bl');
+      el.style.top = (base - mark.offsetTop) + 'px';
+    }
+
+    night.style.left = Math.round(nightLeft - 7) + 'px';
+    night.style.top = (base + 27) + 'px';
+  }
+
+  fit();
+  layout();
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', layout);
+  if (document.fonts) {
+    if (document.fonts.ready) document.fonts.ready.then(layout);
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', layout);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spokes — Brand sheet</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-51.5 -51.5 103 103'%3E%3Crect x='-51.5' y='-51.5' width='103' height='103' rx='22' fill='%23EFEDE6'/%3E%3Cg transform='scale(.76)'%3E%3Cpath d='M0 0L31.6-21.1' stroke='%23FF4B1E' stroke-width='9'/%3E%3Ccircle r='8' fill='%2316181A'/%3E%3Ccircle r='42.5' fill='none' stroke='%2316181A' stroke-width='18'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Chivo+Mono:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tyre: #16181A;
+    --talc: #EFEDE6;
+    --gumwall: #C9A268;
+    --reflector: #FF4B1E;
+    --spoke: var(--reflector);
+    --hair: rgba(22, 24, 26, .2);
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "Chivo Mono", ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--tyre);
+    color: var(--tyre);
+    font-family: var(--sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ul { list-style: none; }
+  svg { display: block; }
+
+  /* The sheet is drawn at 1440 × 900 and scaled to fit any other window. */
+  .sheet {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 1440px; height: 900px;
+    margin: -450px 0 0 -720px;
+    display: grid;
+    grid-template-columns: 300px 340px 240px 560px;
+    grid-template-rows: 500px 400px;
+    background: var(--talc);
+  }
+  .sheet > section { position: relative; overflow: hidden; }
+
+  .label {
+    font: 500 10.5px/1.35 var(--mono);
+    letter-spacing: .09em;
+    text-transform: uppercase;
+  }
+  .wide { font-stretch: 125%; font-weight: 800; }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero { grid-column: 1 / 4; }
+  .hero .meta {
+    position: absolute; left: 28px; right: 28px; top: 26px;
+    display: flex; justify-content: space-between;
+  }
+  .hero-mark { position: absolute; left: 110px; top: 112px; }
+  .hero .spec {
+    position: absolute; left: 28px; right: 28px; top: 318px;
+    display: flex; justify-content: space-between;
+  }
+  .hero .spec span:last-child { opacity: .64; }
+  .spoke-rule { position: absolute; left: 28px; top: 348px; }
+  .variants {
+    position: absolute; left: 28px; top: 378px;
+    display: grid; grid-template-columns: repeat(4, 194px); gap: 16px;
+  }
+  .chip {
+    height: 76px; display: grid; place-items: center;
+    margin-bottom: 9px;
+  }
+  .chip.on-talc { box-shadow: inset 0 0 0 1px var(--hair); }
+  .chip.on-tyre { background: var(--tyre); color: var(--talc); }
+  .chip.on-gumwall { background: var(--gumwall); }
+  .one-colour { --spoke: currentColor; }
+  .chip text { font: 500 9.5px var(--mono); fill: currentColor; }
+
+  /* ── Symbol ───────────────────────────────────────── */
+  .symbol { background: var(--tyre); color: var(--talc); }
+  .big-wheel { position: absolute; left: -160px; top: 120px; }
+  .symbol-note { position: absolute; right: 28px; top: 26px; width: 184px; }
+  .symbol-note p {
+    font-size: 13px; line-height: 1.46; margin-top: 12px;
+    color: rgba(239, 237, 230, .8);
+  }
+  .symbol-note b { font-weight: 600; color: var(--reflector); }
+  .cuts {
+    position: absolute; right: 28px; bottom: 26px;
+    display: grid; justify-items: end; gap: 18px; text-align: right;
+  }
+  .cuts li { display: grid; justify-items: end; gap: 8px; }
+  .cuts .label span { opacity: .62; }
+
+  /* ── Colour ───────────────────────────────────────── */
+  .colour { display: grid; grid-template-rows: 130px 104px 96px 70px; }
+  .band {
+    position: relative; padding: 0 28px 15px;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 3px;
+  }
+  .band > .label { position: absolute; left: 28px; top: 24px; }
+  .band div { display: flex; justify-content: space-between; align-items: baseline; }
+  .band strong { font-size: 19px; letter-spacing: -.005em; }
+  .band code { font: 500 10.5px var(--mono); letter-spacing: .04em; white-space: nowrap; }
+  .band span { font-size: 12.5px; white-space: nowrap; }
+  .band div + div { opacity: .74; }
+  .b-tyre { background: var(--tyre); color: var(--talc); }
+  .b-talc { background: var(--talc); box-shadow: inset 0 -1px 0 var(--hair); }
+  .b-gumwall { background: var(--gumwall); }
+  .b-gumwall div + div, .b-reflector div + div { opacity: .86; }
+  .b-reflector { background: var(--reflector); padding-bottom: 13px; }
+
+  /* ── Type ─────────────────────────────────────────── */
+  .type, .space { border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); }
+  .type { padding: 25px 28px 0; }
+  .t-head { font-size: 27px; line-height: 1.02; letter-spacing: -.012em; margin-top: 22px; white-space: nowrap; }
+  .t-body { font-size: 14px; line-height: 1.5; margin-top: 22px; }
+  .t-mono { font: 500 12.5px/1.55 var(--mono); letter-spacing: .02em; text-transform: uppercase; margin-top: 22px; }
+  .t-meta { margin-top: 9px; opacity: .64; }
+
+  /* ── Clear space ──────────────────────────────────── */
+  .space { padding: 25px 23px 0; }
+  .space p { font-size: 12.5px; line-height: 1.45; }
+  .space .label + p { margin-top: 8px; }
+  .cs { margin: 14px 0 10px; }
+  .cs text { font: 500 7.5px var(--mono); fill: currentColor; }
+  .space h2:not(:first-child) { margin-top: 22px; }
+  .min { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+  .min .label { opacity: .64; }
+
+  /* ── In use ───────────────────────────────────────── */
+  .use { background: var(--gumwall); }
+  .use > .label { position: absolute; left: 28px; top: 26px; }
+  .use figcaption { position: absolute; top: 366px; }
+
+  .tag-wrap {
+    position: absolute; left: 46px; top: 58px; width: 172px;
+    transform: rotate(-4deg);
+    filter: drop-shadow(0 5px 9px rgba(22, 24, 26, .2));
+  }
+  .tag {
+    height: 286px; padding: 36px 15px 0;
+    background: var(--talc);
+    clip-path: polygon(22px 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%, 0 22px);
+  }
+  .tag .hole {
+    position: absolute; left: 50%; top: 9px; width: 11px; height: 11px;
+    margin-left: -5.5px; border-radius: 50%;
+    background: var(--gumwall); box-shadow: 0 0 0 4px #B58E55;
+  }
+  .string { position: absolute; left: 0; top: -130px; overflow: visible; }
+  .tag svg { margin: 0 auto; }
+  .tag .desc { text-align: center; font: 500 7.6px var(--mono); letter-spacing: .34em; margin: 7px 0 11px; padding-left: .34em; }
+  .tag .no {
+    display: flex; justify-content: space-between;
+    font: 500 8.5px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+    border-top: 1.5px solid var(--tyre); padding-top: 7px;
+  }
+  .tag .field {
+    font: 500 7.5px var(--mono); letter-spacing: .1em; text-transform: uppercase;
+    height: 25px; display: flex; align-items: flex-end; padding-bottom: 4px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .tag .jobs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 9px 6px; margin-top: 14px;
+    font: 500 7.6px var(--mono); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+  }
+  .tag .jobs li { display: flex; align-items: center; gap: 6px; }
+  .tag .jobs li::before { content: ""; width: 8px; height: 8px; border: 1px solid var(--tyre); flex: none; }
+
+  .sticker {
+    position: absolute; left: 262px; top: 62px; width: 270px; height: 54px;
+    border-radius: 27px; background: var(--tyre); color: var(--talc);
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .sticker span { font: 500 8.5px/1.35 var(--mono); letter-spacing: .14em; text-transform: uppercase; text-align: right; }
+  .sticker + figcaption { left: 262px; top: 126px; }
+
+  .card {
+    position: absolute; left: 262px; top: 164px; width: 166px; height: 186px;
+    background: var(--talc); padding: 15px 15px 0;
+    font-size: 17.5px; line-height: 1.04; letter-spacing: -.01em;
+  }
+  .card svg { position: absolute; left: 15px; bottom: 15px; }
+  .card + figcaption { left: 262px; }
+
+  .avatar {
+    position: absolute; left: 444px; width: 88px; height: 88px;
+    border-radius: 21px; display: grid; place-items: center;
+  }
+  .avatar.a1 { top: 164px; background: var(--tyre); color: var(--talc); }
+  .avatar.a2 { top: 262px; background: var(--talc); }
+  .avatar + figcaption { left: 444px; }
+</style>
+</head>
+<body>
+
+<!-- ── Logo masters ─────────────────────────────────────────────
+     Everything on the sheet is drawn from these four symbols.
+     Cap height 100, stroke 18. The wheel is 16 spokes laced as 8
+     chords tangent to the hub, 22.5° apart where they meet the rim. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="k-clip"><rect width="69" height="100"/></clipPath>
+
+    <g id="letters" fill="none" stroke="currentColor" stroke-width="18">
+      <path id="s" d="M70 9H29.5A20.5 20.5 0 0 0 29.5 50H40.5A20.5 20.5 0 0 1 40.5 91H0"/>
+      <path transform="translate(84)" d="M9 100V9H38.5A20.5 20.5 0 0 1 38.5 50H9"/>
+      <g transform="translate(271)" clip-path="url(#k-clip)"><path d="M9 0V100M76-20L6 50L76 120"/></g>
+      <path transform="translate(347)" d="M62 9H9V91H62M9 50H57"/>
+      <use href="#s" x="419"/>
+    </g>
+
+    <symbol id="wheel" viewBox="-51.5 -51.5 103 103">
+      <g fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M6.54-40V40M-6.54-40V40"/>
+        <path d="M6.54-40V40M-6.54-40V40" transform="rotate(90)"/>
+        <path d="M6.54-40V40M-6.54-40V40" transform="rotate(135)"/>
+        <path d="M-6.54-40V40M6.54 0V40" transform="rotate(45)"/>
+        <path d="M6.54 0V-40" transform="rotate(45)" style="stroke:var(--spoke,#FF4B1E)"/>
+        <circle r="5.6" stroke-width="4.9"/>
+        <circle r="42.5" stroke-width="18"/>
+      </g>
+    </symbol>
+
+    <symbol id="wheel-micro" viewBox="-51.5 -51.5 103 103">
+      <path d="M0 0L31.6-21.1" fill="none" stroke-width="9" style="stroke:var(--spoke,#FF4B1E)"/>
+      <circle r="8.5" fill="currentColor"/>
+      <circle r="42.5" fill="none" stroke="currentColor" stroke-width="18"/>
+    </symbol>
+
+    <symbol id="wordmark" viewBox="0 -1.5 489 103">
+      <use href="#letters"/>
+      <use href="#wheel" x="158" y="-1.5" width="103" height="103"/>
+    </symbol>
+
+    <symbol id="wordmark-micro" viewBox="0 -1.5 489 103">
+      <use href="#letters"/>
+      <use href="#wheel-micro" x="158" y="-1.5" width="103" height="103"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="sheet">
+
+  <!-- Primary wordmark -->
+  <section class="hero">
+    <div class="meta label">
+      <span>Spokes · Bicycle repair</span>
+      <span>Brand sheet · v1.0 · Nov 2026</span>
+    </div>
+
+    <svg class="hero-mark" width="660" height="139.02" role="img" aria-label="Spokes"><use href="#wordmark"/></svg>
+
+    <div class="spec label">
+      <span>Primary wordmark</span>
+      <span>Cap 100 · Stroke 18 · Wheel 103</span>
+    </div>
+
+    <!-- A rule drawn as a spoke: J-bend at one end, thread and nipple at the other -->
+    <svg class="spoke-rule" width="824" height="14" viewBox="0 0 824 14" fill="none" stroke="currentColor" aria-hidden="true">
+      <path d="M3 13V8a5 5 0 0 1 5-5H792" stroke-width="1.5"/>
+      <path d="M0 13.2H6" stroke-width="1.6"/>
+      <path d="M772 .5v5M776 .5v5M780 .5v5M784 .5v5" stroke-width="1"/>
+      <rect x="789" width="22" height="6" fill="currentColor" stroke="none"/>
+      <rect x="811" y="1" width="9" height="4" fill="currentColor" stroke="none"/>
+    </svg>
+
+    <ul class="variants">
+      <li>
+        <div class="chip on-talc">
+          <svg width="132" height="44" viewBox="0 0 132 44" aria-hidden="true">
+            <use href="#wordmark-micro" width="132" height="27.8"/>
+            <text y="42.5" textLength="132" lengthAdjust="spacing">BICYCLE REPAIR</text>
+          </svg>
+        </div>
+        <span class="label">With descriptor</span>
+      </li>
+      <li>
+        <div class="chip on-tyre"><svg width="140" height="29.49" aria-hidden="true"><use href="#wordmark-micro"/></svg></div>
+        <span class="label">On Tyre</span>
+      </li>
+      <li>
+        <div class="chip on-gumwall"><svg width="140" height="29.49" aria-hidden="true"><use href="#wordmark-micro"/></svg></div>
+        <span class="label">On Gumwall</span>
+      </li>
+      <li>
+        <div class="chip on-talc one-colour"><svg width="140" height="29.49" aria-hidden="true"><use href="#wordmark-micro"/></svg></div>
+        <span class="label">One colour · stamps</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Symbol -->
+  <section class="symbol">
+    <svg class="big-wheel" width="560" height="560" aria-hidden="true"><use href="#wheel"/></svg>
+
+    <div class="symbol-note">
+      <h2 class="label">Symbol</h2>
+      <p>Sixteen spokes, laced as eight chords tangent to the hub. It's how a real wheel is built.</p>
+      <p>One spoke is always <b>Reflector</b>. It's the one we just replaced.</p>
+    </div>
+
+    <ul class="cuts">
+      <li>
+        <svg width="64" height="64" aria-hidden="true"><use href="#wheel"/></svg>
+        <span class="label">Standard<br><span>48 px and up</span></span>
+      </li>
+      <li>
+        <svg width="24" height="24" aria-hidden="true"><use href="#wheel-micro"/></svg>
+        <span class="label">Micro<br><span>Under 48 px</span></span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Colour -->
+  <section class="colour">
+    <div class="band b-tyre">
+      <h2 class="label">Colour</h2>
+      <div><strong class="wide">Tyre</strong><code>#16181A</code></div>
+      <div><span>Ink, rubber, most things</span><code>22 24 26</code></div>
+    </div>
+    <div class="band b-talc">
+      <div><strong class="wide">Talc</strong><code>#EFEDE6</code></div>
+      <div><span>Paper and breathing room</span><code>239 237 230</code></div>
+    </div>
+    <div class="band b-gumwall">
+      <div><strong class="wide">Gumwall</strong><code>#C9A268</code></div>
+      <div><span>Tags, kraft, shop aprons</span><code>201 162 104</code></div>
+    </div>
+    <div class="band b-reflector">
+      <div><strong class="wide">Reflector</strong><code>#FF4B1E</code></div>
+      <div><span>One spoke's worth, no more</span><code>255 75 30</code></div>
+    </div>
+  </section>
+
+  <!-- Type -->
+  <section class="type">
+    <h2 class="label">Type</h2>
+    <p class="t-head wide">True wheels.<br>Straight talk.</p>
+    <p class="t-meta label">Archivo Expanded 800 · Headlines</p>
+    <p class="t-body">We fix what's broken and tell you what isn't. You get the old parts back in a bag, so you can see for yourself.</p>
+    <p class="t-meta label">Archivo 400 · Text</p>
+    <p class="t-mono">Job 0412 · Rear wheel trued<br>Ready Thu 4 pm</p>
+    <p class="t-meta label">Chivo Mono 500 · Tags, tickets</p>
+  </section>
+
+  <!-- Clear space, sizes, rules -->
+  <section class="space">
+    <h2 class="label">Clear space</h2>
+    <svg class="cs" width="192" height="84" viewBox="0 0 192 84" aria-hidden="true">
+      <g fill="currentColor" fill-opacity=".1">
+        <rect x="16.1" y="14.1" width="13.9" height="13.9"/>
+        <rect x="162" y="14.1" width="13.9" height="13.9"/>
+        <rect x="16.1" y="55.8" width="13.9" height="13.9"/>
+        <rect x="162" y="55.8" width="13.9" height="13.9"/>
+      </g>
+      <rect x="16.1" y="14.1" width="159.8" height="55.6" fill="none" stroke="currentColor" stroke-width=".75" stroke-dasharray="3 3"/>
+      <use href="#wordmark-micro" x="30" y="28" width="132" height="27.8"/>
+      <text x="23.05" y="23.6" text-anchor="middle">x</text>
+      <text x="168.95" y="65.3" text-anchor="middle">x</text>
+    </svg>
+    <p>x is half the wheel. Keep that much clear on every side.</p>
+
+    <h2 class="label">Minimum size</h2>
+    <div class="min">
+      <svg width="96" height="20.22" aria-hidden="true"><use href="#wordmark-micro"/></svg>
+      <span class="label">96 px wide</span>
+    </div>
+    <div class="min">
+      <svg width="16" height="16" aria-hidden="true"><use href="#wheel-micro"/></svg>
+      <span class="label">16 px</span>
+    </div>
+
+    <h2 class="label">Never</h2>
+    <p>A second red spoke. A tilt, an outline, a stretch. The name typed in a font.</p>
+  </section>
+
+  <!-- In use -->
+  <section class="use">
+    <h2 class="label">In use</h2>
+
+    <figure>
+      <div class="tag-wrap">
+        <div class="tag">
+          <span class="hole"></span>
+          <svg width="138" height="29.07" aria-hidden="true"><use href="#wordmark-micro"/></svg>
+          <p class="desc">BICYCLE REPAIR</p>
+          <p class="no"><span>Repair tag</span><span>No. 0412</span></p>
+          <p class="field">Name</p>
+          <p class="field">Bike</p>
+          <p class="field">Ready by</p>
+          <ul class="jobs">
+            <li>True wheel</li><li>Brakes</li>
+            <li>Gears</li><li>Puncture</li>
+            <li>Service</li><li>Other</li>
+          </ul>
+        </div>
+        <svg class="string" width="172" height="150" viewBox="0 0 172 150" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <path d="M86 144C78 104 104 70 96 0M86 144C94 108 118 72 114 0"/>
+        </svg>
+      </div>
+      <figcaption class="label" style="left:46px">Repair tag</figcaption>
+    </figure>
+
+    <figure>
+      <div class="sticker">
+        <span>Serviced<br>by</span>
+        <svg width="150" height="31.6" aria-hidden="true"><use href="#wordmark-micro"/></svg>
+      </div>
+      <figcaption class="label">Frame sticker · 60 × 12 mm</figcaption>
+    </figure>
+
+    <figure>
+      <div class="card wide">
+        Punctures fixed while you wait.
+        <svg width="56" height="56" aria-hidden="true"><use href="#wheel"/></svg>
+      </div>
+      <figcaption class="label">Window card</figcaption>
+    </figure>
+
+    <figure>
+      <div class="avatar a1"><svg width="58" height="58" aria-hidden="true"><use href="#wheel"/></svg></div>
+      <div class="avatar a2"><svg width="58" height="58" aria-hidden="true"><use href="#wheel"/></svg></div>
+      <figcaption class="label">Avatar</figcaption>
+    </figure>
+  </section>
+
+</main>
+
+<script>
+  // Fit the 1440 × 900 sheet to whatever window it's opened in.
+  (function () {
+    var sheet = document.querySelector('.sheet');
+    function fit() {
+      var k = Math.min(innerWidth / 1440, innerHeight / 900);
+      sheet.style.transform = k === 1 ? '' : 'scale(' + k + ')';
+    }
+    addEventListener('resize', fit);
+    fit();
+  })();
+</script>
+</body>
+</html>

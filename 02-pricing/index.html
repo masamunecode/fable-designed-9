@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en" data-billing="yearly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — Dogear</title>
+<meta name="description" content="Dogear is free for as long as you like. Pay when you want your notes on every device, with every version kept.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 2h10l6 6v14H4z' fill='%23fefefc' stroke='%2317181c' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M14 2l6 6h-6z' fill='%23ffe35a' stroke='%2317181c' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F3EE;
+  --sheet:#FEFEFC;
+  --ink:#17181C;
+  --ink-2:#474953;
+  --ink-3:#6A6C77;
+  --line:rgba(23,24,28,.11);
+  --line-2:rgba(23,24,28,.2);
+  --blue:#2743D6;
+  --hi:#FFE35A;
+  --hi-soft:rgba(255,227,90,.3);
+  --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --hand:"Caveat","Bradley Hand","Segoe Print",cursive;
+  --dots:radial-gradient(circle at 1px 1px,rgba(23,24,28,.17) 1px,transparent 1.5px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper) var(--dots) 0 0/24px 24px;
+  color:var(--ink);
+  font:400 16px/1.55 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:var(--hi);color:var(--ink)}
+h1,h2,h3,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:16px;top:-48px;z-index:10;padding:8px 14px;background:var(--ink);color:var(--sheet);border-radius:8px;font-weight:500;font-size:14px}
+.skip:focus{top:16px}
+
+/* ───────── buttons ───────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:46px;padding:0 20px;border-radius:8px;border:1px solid var(--ink);
+  font:500 15px/1 var(--sans);white-space:nowrap;cursor:pointer;
+  transition:background-color .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease);
+}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--ink);color:var(--sheet)}
+.btn--primary:hover{background:var(--blue);border-color:var(--blue)}
+.btn--ghost{background:transparent;color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:var(--sheet)}
+.btn--sm{height:36px;padding:0 14px;font-size:14px}
+.btn--block{width:100%}
+.btn .arr{transition:transform .18s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* ───────── nav ───────── */
+.nav{height:68px;display:flex;align-items:center;gap:44px}
+.logo{display:inline-flex;align-items:center;gap:9px;font:500 23px/1 var(--serif);letter-spacing:-.01em}
+.logo svg{width:22px;height:22px;flex:none;transform:translateY(-1px)}
+.nav__links{display:flex;gap:28px;font-size:15px;color:var(--ink-2)}
+.nav__links a{padding:6px 0;transition:color .15s}
+.nav__links a:hover{color:var(--ink)}
+.nav__links a[aria-current]{color:var(--ink);font-weight:500;box-shadow:0 1.5px 0 var(--ink)}
+.nav__end{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:15px}
+.nav__end > a:not(.btn){color:var(--ink-2)}
+.nav__end > a:not(.btn):hover{color:var(--ink)}
+
+/* ───────── hero ───────── */
+.hero{display:grid;grid-template-columns:1fr 384px;gap:24px;align-items:end;padding-top:32px}
+h1{
+  font:400 72px/1.02 var(--serif);letter-spacing:-.028em;
+  font-variant-numeric:lining-nums;
+}
+h1 em{font-style:italic;letter-spacing:-.02em}
+.hero__side p{font-size:16.5px;line-height:1.55;color:var(--ink-2);text-wrap:pretty}
+
+.billing{
+  margin:18px 0 0;padding:4px;border:1px solid var(--ink);border-radius:11px;
+  display:inline-flex;gap:2px;background:var(--sheet);min-width:0;
+}
+.billing input{position:absolute;opacity:0;pointer-events:none}
+.billing label{
+  display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:7px;
+  font-size:14px;font-weight:500;color:var(--ink-2);cursor:pointer;user-select:none;
+  transition:background-color .2s var(--ease),color .2s var(--ease);
+}
+.billing label:hover{color:var(--ink)}
+.billing input:checked + label{background:var(--ink);color:var(--sheet)}
+.billing input:focus-visible + label{outline:2px solid var(--blue);outline-offset:3px}
+.chip{
+  display:inline-block;padding:3px 7px 3px;border-radius:5px;background:var(--hi);color:var(--ink);
+  font-size:12px;font-weight:600;line-height:1.15;letter-spacing:.01em;
+}
+
+/* ───────── plans ───────── */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px;align-items:stretch}
+.plan{position:relative;display:flex}
+.sheet{background:var(--sheet);border:1px solid var(--line-2);border-radius:6px}
+.plan__sheet{
+  flex:1;display:flex;flex-direction:column;padding:28px;
+  box-shadow:0 1px 0 rgba(23,24,28,.04),0 10px 20px -14px rgba(23,24,28,.18);
+}
+.plan--featured{margin-top:-16px}
+.folded{position:relative;flex:1;display:flex;--fold:44px;
+  filter:drop-shadow(0 1px 0 rgba(23,24,28,.05)) drop-shadow(0 22px 26px rgba(23,24,28,.13));}
+.folded > .sheet{
+  border:1.5px solid var(--ink);box-shadow:none;
+  clip-path:polygon(0 0,calc(100% - var(--fold)) 0,100% var(--fold),100% 100%,0 100%);
+}
+.plan--featured .plan__sheet{padding-top:44px}
+.fold{position:absolute;top:0;right:0;width:var(--fold);height:var(--fold);overflow:visible;pointer-events:none}
+
+.plan__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.plan__name{font:500 26px/32px var(--serif);letter-spacing:-.012em}
+.plan__tag{font-size:11.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.plan__for{margin-top:6px;min-height:44px;font-size:15px;line-height:22px;color:var(--ink-2);text-wrap:pretty}
+
+.price{display:flex;align-items:baseline;gap:10px;margin-top:20px;height:60px}
+.price__num{position:relative;z-index:0;font:400 60px/1 var(--serif);letter-spacing:-.03em;font-variant-numeric:lining-nums}
+.price__cur{font-size:.46em;line-height:0;vertical-align:.74em;margin-right:.08em;letter-spacing:0}
+[data-tick]{display:inline-block}
+.price__per{font-size:14px;color:var(--ink-3)}
+.price__num--hi::before{
+  content:"";position:absolute;z-index:-1;left:-9px;right:-12px;top:40%;bottom:18%;
+  background:var(--hi);border-radius:5px 11px 6px 13px / 9px 5px 11px 6px;transform:rotate(-1.6deg);
+}
+.price__note{margin-top:6px;font-size:13.5px;line-height:20px;color:var(--ink-3)}
+.plan .btn{margin-top:20px}
+
+.plan__list-title{margin-top:26px;font:500 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.checks{margin-top:10px}
+.checks li{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;padding:5px 0;font-size:15px;line-height:20px}
+.ck{width:18px;height:18px;color:var(--blue);flex:none;margin-top:1px}
+
+.scribble{font:500 26px/1 var(--hand);color:var(--blue);white-space:nowrap}
+.plan .scribble{position:absolute;z-index:2;top:-80px;left:150px;font-size:25px;transform:rotate(-4deg);transform-origin:left bottom}
+.plan .scribble svg{position:absolute;left:-66px;top:25px;width:60px;height:46px;overflow:visible}
+
+.assure{margin-top:22px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 0;font-size:14px;line-height:20px;color:var(--ink-2)}
+.assure span + span::before{content:"·";margin:0 14px;color:var(--ink-3)}
+
+/* ───────── section heads ───────── */
+section{scroll-margin-top:24px}
+.sec{margin-top:128px}
+.sec__head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:32px}
+h2{font:400 48px/1.06 var(--serif);letter-spacing:-.024em;text-wrap:balance}
+.sec__head p{max-width:384px;font-size:16px;color:var(--ink-2);text-wrap:pretty}
+.mark{background:linear-gradient(transparent 12%,var(--hi) 12% 90%,transparent 90%);padding:0 3px;margin:0 -3px;border-radius:3px;color:var(--ink)}
+
+/* ───────── compare ───────── */
+.table-sheet{padding:0 32px}
+.compare{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;line-height:20px;font-variant-numeric:tabular-nums}
+.compare th,.compare td{text-align:left;vertical-align:middle}
+.compare thead th{
+  position:sticky;top:0;z-index:3;padding:24px 20px 16px;background:var(--sheet);
+  border-bottom:1.5px solid var(--ink);font-weight:400;vertical-align:bottom;
+}
+.compare thead th:first-child{padding-left:0;font-size:13.5px;color:var(--ink-3)}
+.th-name{display:block;font:500 22px/26px var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.th-price{display:block;margin-top:2px;font-size:13.5px;color:var(--ink-3)}
+.compare tbody th{padding:13px 20px 13px 0;font-weight:400;border-bottom:1px solid var(--line)}
+.compare tbody td{padding:13px 20px;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.compare .group th{padding:30px 0 10px;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border-bottom-color:var(--line-2)}
+.compare .group td{padding:0;border-bottom-color:var(--line-2)}
+.compare tbody tr:not(.group):hover th,
+.compare tbody tr:not(.group):hover td{color:var(--ink);box-shadow:inset 0 0 0 999px rgba(23,24,28,.035)}
+.compare thead th:nth-child(3){background:linear-gradient(var(--hi-soft),var(--hi-soft)),var(--sheet)}
+.compare tbody td:nth-child(3),.compare tfoot td:nth-child(3){background:var(--hi-soft);color:var(--ink)}
+.compare tfoot td{padding:22px 20px 28px}
+.compare .ck{display:block;margin:1px 0}
+.no{display:block;width:12px;height:1.5px;margin:9px 3px;background:rgba(23,24,28,.28);border-radius:2px}
+
+/* ───────── fine print ───────── */
+.fine{
+  margin-top:128px;padding:104px 0 112px;color:var(--paper);
+  background:var(--ink) radial-gradient(circle at 1px 1px,rgba(244,243,238,.13) 1px,transparent 1.5px) 0 0/24px 24px;
+}
+.fine__head{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap}
+.fine .scribble{color:var(--hi);font-size:28px;transform:rotate(-3deg) translateY(-12px);transform-origin:left bottom}
+.fine__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.fine__item{padding:26px 28px 0 0;border-top:1px solid rgba(244,243,238,.26)}
+.fine__sym{display:block;height:40px;font:400 46px/1 var(--serif);color:var(--hi)}
+.fine__item h3{margin-top:14px;font:400 27px/1.18 var(--serif);letter-spacing:-.015em;text-wrap:balance}
+.fine__item p{margin-top:12px;font-size:15.5px;line-height:1.6;color:#B5B7C1;text-wrap:pretty}
+
+/* ───────── faq ───────── */
+.faq{display:grid;grid-template-columns:384px 1fr;gap:24px;align-items:start}
+.faq__side p{margin-top:18px;max-width:300px;color:var(--ink-2)}
+.faq__side a{color:var(--blue);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.faq__side a:hover{text-decoration-thickness:2px}
+.faq__list{border-top:1.5px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line-2)}
+.faq summary{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 4px 22px 0;
+  font-size:18px;font-weight:500;line-height:1.35;letter-spacing:-.005em;cursor:pointer;list-style:none;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--blue)}
+.plus{position:relative;flex:none;width:16px;height:16px}
+.plus::before,.plus::after{content:"";position:absolute;left:0;right:0;top:7.25px;height:1.5px;background:currentColor;border-radius:2px;transition:transform .25s var(--ease)}
+.plus::after{transform:rotate(90deg)}
+details[open] .plus::after{transform:rotate(0)}
+.faq details p{max-width:640px;padding:0 0 26px;margin-top:-4px;font-size:16px;line-height:1.65;color:var(--ink-2);text-wrap:pretty}
+
+/* ───────── closing ───────── */
+.close{--fold:68px}
+.close .sheet{flex:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:72px 64px 68px}
+.close h2{font-size:60px;letter-spacing:-.03em;text-wrap:wrap}
+.close p{margin-top:16px;font-size:17px;color:var(--ink-2)}
+.close__actions{display:flex;gap:12px}
+.caret{display:inline-block;width:3px;height:.82em;margin-left:8px;background:var(--blue);vertical-align:-.06em;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ───────── footer ───────── */
+.foot{margin-top:96px;padding:28px 0 48px;border-top:1px solid var(--line-2);display:flex;align-items:center;gap:40px;font-size:14px;color:var(--ink-3)}
+.foot .logo{font-size:19px;color:var(--ink)}
+.foot .logo svg{width:18px;height:18px}
+.foot nav{display:flex;gap:24px}
+.foot nav a:hover{color:var(--ink)}
+.foot small{margin-left:auto;font-size:14px}
+
+/* ───────── smaller screens ───────── */
+@media (max-width:1040px){
+  .nav__links{display:none}
+  .hero{grid-template-columns:1fr;gap:20px}
+  h1{font-size:clamp(44px,9vw,72px)}
+  .plans{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+  .plan--featured{margin-top:56px}
+  .plan .scribble{left:96px}
+  .sec,.fine{margin-top:88px}
+  .sec__head{flex-direction:column;align-items:flex-start;gap:14px}
+  h2{font-size:38px}
+  .table-sheet{padding:0 20px;overflow-x:auto}
+  .compare{min-width:720px}
+  .compare thead th{position:static}
+  .fine{padding:72px 0}
+  .fine__grid,.faq{grid-template-columns:1fr}
+  .close .sheet{grid-template-columns:1fr;padding:48px 28px}
+  .close h2{font-size:44px}
+  .close__actions{flex-wrap:wrap}
+  .foot{flex-wrap:wrap;gap:16px 28px}
+  .foot small{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#plans">Skip to plans</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-fold" x1="1" y1="0" x2="0" y2="1">
+      <stop offset=".5" stop-color="#E4BF27"/>
+      <stop offset=".72" stop-color="#FFE35A"/>
+      <stop offset="1" stop-color="#FFEA7A"/>
+    </linearGradient>
+    <symbol id="i-check" viewBox="0 0 18 18">
+      <path d="M3 9.8c1.5 1.3 2.7 2.7 3.7 4.2C8.9 9.6 11.6 6 15.2 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-fold" viewBox="0 0 44 44" overflow="visible">
+      <path d="M.75.75 43.25 43.25H.75Z" fill="url(#g-fold)" stroke="#17181C" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    </symbol>
+    <symbol id="i-logo" viewBox="0 0 24 24">
+      <path d="M4 2h10l6 6v14H4z" fill="#FEFEFC" stroke="#17181C" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M14 2l6 6h-6z" fill="#FFE35A" stroke="#17181C" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="wrap nav">
+  <a class="logo" href="#" aria-label="Dogear home"><svg aria-hidden="true"><use href="#i-logo"/></svg>Dogear</a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="#">Product</a>
+    <a href="#">Templates</a>
+    <a href="#" aria-current="page">Pricing</a>
+    <a href="#">Changelog</a>
+  </nav>
+  <div class="nav__end">
+    <a href="#">Log in</a>
+    <a class="btn btn--primary btn--sm" href="#">Start writing</a>
+  </div>
+</header>
+
+<main>
+  <!-- ═════ Hero + plans ═════ -->
+  <section class="wrap" id="plans" aria-labelledby="h-pricing">
+    <div class="hero">
+      <h1 id="h-pricing">Priced like<br>a <em>good notebook.</em></h1>
+      <div class="hero__side">
+        <p>Free for as long as you like. Pay when you want your notes on every device, with every version kept.</p>
+        <fieldset class="billing">
+          <legend class="vh">Billing period</legend>
+          <input type="radio" name="billing" id="b-monthly" value="monthly">
+          <label for="b-monthly">Monthly</label>
+          <input type="radio" name="billing" id="b-yearly" value="yearly" checked>
+          <label for="b-yearly">Yearly <span class="chip">Save 20%</span></label>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="plans">
+      <!-- Pocket -->
+      <article class="plan" aria-labelledby="p-pocket">
+        <div class="sheet plan__sheet">
+          <div class="plan__head">
+            <h2 class="plan__name" id="p-pocket">Pocket</h2>
+            <span class="plan__tag">Free</span>
+          </div>
+          <p class="plan__for">For catching thoughts before they get away.</p>
+          <p class="price">
+            <span class="price__num"><span class="price__cur">$</span>0</span>
+            <span class="price__per">forever</span>
+          </p>
+          <p class="price__note">No card. No trial clock.</p>
+          <a class="btn btn--ghost btn--block" href="#">Start writing</a>
+          <h3 class="plan__list-title">The essentials</h3>
+          <ul class="checks">
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Unlimited notes and notebooks</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Sync between 2 devices</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Markdown, tables and checklists</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>7 days of version history</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>100 MB for attachments</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Export to Markdown, always</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Desk -->
+      <article class="plan plan--featured" aria-labelledby="p-desk">
+        <p class="scribble">most people end up here
+          <svg viewBox="0 0 60 46" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M56 5C36 4 17 14 10 40"/>
+            <path d="M2 29l8 12 11-9"/>
+          </svg>
+        </p>
+        <div class="folded">
+          <div class="sheet plan__sheet">
+            <div class="plan__head">
+              <h2 class="plan__name" id="p-desk">Desk</h2>
+              <span class="plan__tag">Personal</span>
+            </div>
+            <p class="plan__for">For people whose notes are where the work actually happens.</p>
+            <p class="price">
+              <span class="price__num price__num--hi"><span class="price__cur">$</span><span data-tick data-monthly="10" data-yearly="8">8</span></span>
+              <span class="price__per">per month</span>
+            </p>
+            <p class="price__note" data-monthly="Billed monthly. Cancel anytime." data-yearly="Billed yearly at $96.">Billed yearly at $96.</p>
+            <a class="btn btn--primary btn--block" href="#">Try Desk free for 14 days <span class="arr" aria-hidden="true">→</span></a>
+            <h3 class="plan__list-title">Everything in Pocket, and</h3>
+            <ul class="checks">
+              <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Every device you own</li>
+              <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Version history, kept forever</li>
+              <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Backlinks and the graph view</li>
+              <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Search inside PDFs and images</li>
+              <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>End-to-end encrypted notebooks</li>
+              <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>20 GB for attachments</li>
+            </ul>
+          </div>
+          <svg class="fold" aria-hidden="true"><use href="#i-fold"/></svg>
+        </div>
+      </article>
+
+      <!-- Library -->
+      <article class="plan" aria-labelledby="p-library">
+        <div class="sheet plan__sheet">
+          <div class="plan__head">
+            <h2 class="plan__name" id="p-library">Library</h2>
+            <span class="plan__tag">Teams</span>
+          </div>
+          <p class="plan__for">For teams that want one shared memory instead of twelve.</p>
+          <p class="price">
+            <span class="price__num"><span class="price__cur">$</span><span data-tick data-monthly="15" data-yearly="12">12</span></span>
+            <span class="price__per">per person, per month</span>
+          </p>
+          <p class="price__note" data-monthly="Billed monthly. Cancel anytime." data-yearly="Billed yearly at $144 per person.">Billed yearly at $144 per person.</p>
+          <a class="btn btn--ghost btn--block" href="#">Start a team library</a>
+          <h3 class="plan__list-title">Everything in Desk, and</h3>
+          <ul class="checks">
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Shared notebooks, no guest limit</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Roles and permissions</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>SSO and audit log</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>100 GB per person</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Custom domain for published notes</li>
+            <li><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg>Priority support, 4-hour replies</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <p class="assure">
+      <span>Every plan exports to plain Markdown</span>
+      <span>Cancel in two clicks</span>
+      <span>Prices in USD; tax is added at checkout where it applies</span>
+    </p>
+  </section>
+
+  <!-- ═════ Compare ═════ -->
+  <section class="wrap sec" aria-labelledby="h-compare">
+    <div class="sec__head">
+      <h2 id="h-compare">Line by line.</h2>
+      <p>Everything each plan includes. The <span class="mark">highlighted</span> column is the one most people choose.</p>
+    </div>
+    <div class="sheet table-sheet">
+      <table class="compare">
+        <colgroup><col style="width:37%"><col style="width:21%"><col style="width:21%"><col style="width:21%"></colgroup>
+        <thead>
+          <tr>
+            <th scope="col"><span class="vh">Feature</span></th>
+            <th scope="col"><span class="th-name">Pocket</span><span class="th-price">Free</span></th>
+            <th scope="col"><span class="th-name">Desk</span><span class="th-price">$<span data-monthly="10" data-yearly="8">8</span> per month</span></th>
+            <th scope="col"><span class="th-name">Library</span><span class="th-price">$<span data-monthly="15" data-yearly="12">12</span> per person</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="group"><th scope="rowgroup">Writing</th><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Notes and notebooks</th><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Markdown, tables and checklists</th>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">Templates</th><td>5</td><td>Unlimited</td><td>Unlimited, shared</td></tr>
+          <tr><th scope="row">Web clipper</th>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+        </tbody>
+
+        <tbody>
+          <tr class="group"><th scope="rowgroup">Sync and storage</th><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Devices</th><td>2</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Version history</th><td>7 days</td><td>Forever</td><td>Forever</td></tr>
+          <tr><th scope="row">Attachments</th><td>100 MB</td><td>20 GB</td><td>100 GB per person</td></tr>
+          <tr><th scope="row">Export to Markdown</th>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+        </tbody>
+
+        <tbody>
+          <tr class="group"><th scope="rowgroup">Finding things</th><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Full-text search</th>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">Search inside PDFs and images</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">Backlinks and graph view</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+        </tbody>
+
+        <tbody>
+          <tr class="group"><th scope="rowgroup">Sharing</th><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Notes published to the web</th><td>3</td><td>Unlimited</td><td>Unlimited, custom domain</td></tr>
+          <tr><th scope="row">Shared notebooks</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td>Up to 3 guests</td><td>No guest limit</td></tr>
+          <tr><th scope="row">Margin comments and mentions</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">Roles and permissions</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+        </tbody>
+
+        <tbody>
+          <tr class="group"><th scope="rowgroup">Security and support</th><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Encryption in transit and at rest</th>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">End-to-end encrypted notebooks</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">SSO and audit log</th>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><span class="no" aria-hidden="true"></span><span class="vh">Not included</span></td>
+            <td><svg class="ck" aria-hidden="true"><use href="#i-check"/></svg><span class="vh">Included</span></td></tr>
+          <tr><th scope="row">Support</th><td>Community forum</td><td>Email, 1 business day</td><td>Priority, 4-hour replies</td></tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td></td>
+            <td><a class="btn btn--ghost btn--sm" href="#">Start writing</a></td>
+            <td><a class="btn btn--primary btn--sm" href="#">Try Desk free</a></td>
+            <td><a class="btn btn--ghost btn--sm" href="#">Start a team library</a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═════ Fine print ═════ -->
+  <section class="fine" aria-labelledby="h-fine">
+    <div class="wrap">
+      <div class="fine__head">
+        <h2 id="h-fine">The fine print, in large print.</h2>
+        <p class="scribble">no magnifying glass needed</p>
+      </div>
+      <div class="fine__grid">
+        <div class="fine__item">
+          <span class="fine__sym" aria-hidden="true">*</span>
+          <h3>Your notes leave whenever you do.</h3>
+          <p>Export everything as plain Markdown files, on any plan, at any time. That includes the day after you cancel.</p>
+        </div>
+        <div class="fine__item">
+          <span class="fine__sym" aria-hidden="true">†</span>
+          <h3>Nothing is deleted when you downgrade.</h3>
+          <p>Stop paying and your notes stay put. Extra devices go read-only, and older versions are held for a year in case you come back.</p>
+        </div>
+        <div class="fine__item">
+          <span class="fine__sym" aria-hidden="true">‡</span>
+          <h3>Half price if you’re learning or teaching.</h3>
+          <p>Students, teachers and registered nonprofits get 50% off Desk and Library. Send us proof and we’ll sort it within a day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ FAQ ═════ -->
+  <section class="wrap sec faq" aria-labelledby="h-faq">
+    <div class="faq__side">
+      <h2 id="h-faq">Questions, answered plainly.</h2>
+      <p>Something we missed? Write to <a href="mailto:hello@dogear.app">hello@dogear.app</a> and a person will reply.</p>
+    </div>
+    <div class="faq__list">
+      <details open>
+        <summary>Is Pocket really free forever? <span class="plus" aria-hidden="true"></span></summary>
+        <p>Yes. It isn’t a trial and there’s no cap on notes. We make money when people outgrow two devices, not by holding their writing hostage.</p>
+      </details>
+      <details>
+        <summary>Can I try Desk before paying? <span class="plus" aria-hidden="true"></span></summary>
+        <p>You get 14 days with no card on file. When the trial ends you choose: pay, or drop back to Pocket with every note intact.</p>
+      </details>
+      <details>
+        <summary>Who counts as a person on Library? <span class="plus" aria-hidden="true"></span></summary>
+        <p>Anyone who can edit. People you invite only to read or comment are guests, and guests are free. Add someone mid-cycle and you’re charged only for the days that are left.</p>
+      </details>
+      <details>
+        <summary>Can you read my notes? <span class="plus" aria-hidden="true"></span></summary>
+        <p>Notes are encrypted in transit and at rest on every plan. On Desk and Library you can turn on end-to-end encryption per notebook. We can’t read those, and we can’t recover them if you lose your key.</p>
+      </details>
+      <details>
+        <summary>Can I bring my notes from another app? <span class="plus" aria-hidden="true"></span></summary>
+        <p>There are importers for Evernote, Notion, Apple Notes, Bear and any folder of Markdown files. Tags, attachments and links between notes come across with them.</p>
+      </details>
+      <details>
+        <summary>How do refunds work? <span class="plus" aria-hidden="true"></span></summary>
+        <p>Monthly plans can be refunded within 14 days of a charge, yearly plans within 30. Email us and it’s done. There’s no form to fill in.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═════ Closing ═════ -->
+  <section class="wrap sec" aria-labelledby="h-close">
+    <div class="folded close">
+      <div class="sheet">
+        <div>
+          <h2 id="h-close">The first page is free.<span class="caret" aria-hidden="true"></span></h2>
+          <p>No card, no trial clock. Open a blank note and see if it sticks.</p>
+        </div>
+        <div class="close__actions">
+          <a class="btn btn--primary" href="#">Start writing <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#">Talk to us about Library</a>
+        </div>
+      </div>
+      <svg class="fold" aria-hidden="true"><use href="#i-fold"/></svg>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <a class="logo" href="#" aria-label="Dogear home"><svg aria-hidden="true"><use href="#i-logo"/></svg>Dogear</a>
+  <nav aria-label="Footer">
+    <a href="#">Product</a>
+    <a href="#">Templates</a>
+    <a href="#">Changelog</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Status</a>
+  </nav>
+  <small>© 2026 Dogear Labs</small>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nodes = document.querySelectorAll('[data-yearly]');
+
+  function setBilling(cycle) {
+    root.setAttribute('data-billing', cycle);
+    nodes.forEach(function (el) {
+      var next = el.getAttribute('data-' + cycle);
+      if (el.textContent === next) return;
+      el.textContent = next;
+      if (!reduce && el.animate && el.hasAttribute('data-tick')) {
+        el.animate(
+          [{ transform: 'translateY(.16em)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+          { duration: 280, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
+      }
+    });
+  }
+
+  document.querySelectorAll('input[name="billing"]').forEach(function (radio) {
+    radio.addEventListener('change', function () { if (radio.checked) setBilling(radio.value); });
+    if (radio.checked) setBilling(radio.value);
+  });
+})();
+</script>
+</body>
+</html>

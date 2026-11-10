@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drumlin Coffee Roasters — roasted Tuesday, yours by Friday</title>
+<meta name="description" content="Drumlin is a two-person, small-batch coffee roaster in Geneva, New York. Twelve batches every Tuesday, posted on Wednesday, gone when they're gone.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232341C7'/%3E%3Cpath d='M4 23C5.5 14 10 8 15.5 8 22.5 8 26 16 28 23Z' fill='%23F2EDE2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bone:#F2EDE2;
+  --paper:#FBF8F1;
+  --ink:#1B1512;
+  --ink-soft:#5A4F47;
+  --rule:rgba(27,21,18,.16);
+  --cobalt:#2341C7;
+  --cobalt-deep:#1B33A3;
+  --straw:#E8B94A;
+  --cherry:#DE5738;
+  --sage:#A9B58D;
+  --cream-70:rgba(242,237,226,.72);
+  --cream-25:rgba(242,237,226,.28);
+  --cream-14:rgba(242,237,226,.14);
+  --display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  /* enamel speckle: two hand-placed tiles with different periods so the repeat never lines up */
+  --speck-a:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cg fill='%23F2EDE2'%3E%3Ccircle cx='23' cy='41' r='1.6' opacity='.5'/%3E%3Ccircle cx='88' cy='112' r='1' opacity='.4'/%3E%3Ccircle cx='142' cy='27' r='2' opacity='.45'/%3E%3Ccircle cx='201' cy='93' r='1.2' opacity='.35'/%3E%3Ccircle cx='267' cy='48' r='1.7' opacity='.5'/%3E%3Ccircle cx='331' cy='131' r='.9' opacity='.4'/%3E%3Ccircle cx='402' cy='22' r='1.4' opacity='.45'/%3E%3Ccircle cx='455' cy='97' r='2.1' opacity='.4'/%3E%3Ccircle cx='61' cy='203' r='1.3' opacity='.45'/%3E%3Ccircle cx='118' cy='251' r='2.2' opacity='.35'/%3E%3Ccircle cx='176' cy='188' r='.9' opacity='.5'/%3E%3Ccircle cx='239' cy='229' r='1.5' opacity='.4'/%3E%3Ccircle cx='298' cy='201' r='1.1' opacity='.45'/%3E%3Ccircle cx='364' cy='262' r='1.9' opacity='.4'/%3E%3Ccircle cx='431' cy='214' r='1.2' opacity='.5'/%3E%3Ccircle cx='37' cy='318' r='2' opacity='.4'/%3E%3Ccircle cx='97' cy='371' r='1.1' opacity='.45'/%3E%3Ccircle cx='159' cy='333' r='1.6' opacity='.4'/%3E%3Ccircle cx='221' cy='389' r='.9' opacity='.5'/%3E%3Ccircle cx='283' cy='322' r='2.1' opacity='.35'/%3E%3Ccircle cx='347' cy='377' r='1.3' opacity='.45'/%3E%3Ccircle cx='409' cy='341' r='1' opacity='.4'/%3E%3Ccircle cx='464' cy='402' r='1.7' opacity='.45'/%3E%3Ccircle cx='73' cy='447' r='1.4' opacity='.4'/%3E%3Ccircle cx='191' cy='458' r='1.9' opacity='.4'/%3E%3Ccircle cx='312' cy='443' r='1.1' opacity='.5'/%3E%3Ccircle cx='391' cy='468' r='1.5' opacity='.35'/%3E%3Ccircle cx='13' cy='152' r='1' opacity='.4'/%3E%3Ccircle cx='251' cy='141' r='1' opacity='.3'/%3E%3Ccircle cx='447' cy='300' r='.9' opacity='.4'/%3E%3C/g%3E%3C/svg%3E");
+  --speck-b:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='620' height='540'%3E%3Cg fill='%23F2EDE2'%3E%3Ccircle cx='52' cy='77' r='2.8' opacity='.3'/%3E%3Ccircle cx='211' cy='163' r='3.2' opacity='.26'/%3E%3Ccircle cx='389' cy='58' r='2.5' opacity='.32'/%3E%3Ccircle cx='547' cy='201' r='3' opacity='.28'/%3E%3Ccircle cx='118' cy='342' r='2.6' opacity='.3'/%3E%3Ccircle cx='302' cy='415' r='3.4' opacity='.25'/%3E%3Ccircle cx='476' cy='372' r='2.4' opacity='.32'/%3E%3Ccircle cx='590' cy='489' r='2.9' opacity='.28'/%3E%3Ccircle cx='27' cy='498' r='2.5' opacity='.28'/%3E%3C/g%3E%3Cg fill='%230E1C6E' opacity='.55'%3E%3Ccircle cx='160' cy='60' r='1.8'/%3E%3Ccircle cx='330' cy='250' r='2.2'/%3E%3Ccircle cx='505' cy='120' r='1.6'/%3E%3Ccircle cx='75' cy='215' r='2'/%3E%3Ccircle cx='420' cy='480' r='1.9'/%3E%3Ccircle cx='250' cy='330' r='1.5'/%3E%3Ccircle cx='585' cy='330' r='1.7'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bone);color:var(--ink);
+  font:400 18px/1.55 var(--serif);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+ul,ol{list-style:none;padding:0}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--straw);outline-offset:3px;border-radius:4px}
+[id]{scroll-margin-top:24px}
+
+.wrap{width:min(1280px,100% - 160px);margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:16px;top:-60px;z-index:20;background:var(--straw);color:var(--ink);padding:10px 16px;border-radius:8px;font:600 15px var(--display);text-decoration:none}
+.skip:focus{top:8px}
+
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font:500 12.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+}
+.eyebrow::before{content:"";width:24px;height:1.5px;background:currentColor}
+h2{font:700 60px/1 var(--display);letter-spacing:-.035em;text-wrap:balance;margin-top:22px}
+
+/* ───────── buttons ───────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  height:56px;padding:0 28px;border-radius:999px;border:1.5px solid transparent;
+  font:700 17px/1 var(--display);letter-spacing:-.01em;text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:background-color .2s,border-color .2s,color .2s,transform .2s;
+}
+.btn .arr{transition:transform .2s}
+.btn:hover .arr{transform:translateX(4px)}
+.btn:active{transform:translateY(1px)}
+.btn--straw{background:var(--straw);color:var(--ink)}
+.btn--straw:hover{background:#F4CB63}
+.btn--ghost{border-color:var(--cream-25);color:var(--bone)}
+.btn--ghost:hover{border-color:var(--bone)}
+.btn--ink{background:var(--ink);color:var(--bone)}
+.btn--ink:hover{background:var(--cobalt)}
+.btn--line{height:44px;padding:0 20px;font-weight:600;font-size:15px;border-color:var(--ink);background:transparent;color:var(--ink)}
+.btn--line:hover{background:var(--ink);color:var(--bone)}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(232,185,74,.55)}
+  70%,100%{box-shadow:0 0 0 9px rgba(232,185,74,0)}
+}
+.live{display:inline-block;flex:none;width:8px;height:8px;border-radius:50%;background:var(--straw);animation:pulse 2.2s infinite}
+
+/* ───────── announcement ───────── */
+.announce{background:var(--ink);color:var(--bone);font:400 12.5px/1 var(--mono);letter-spacing:.02em}
+.announce .wrap{height:40px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.announce p{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.announce b{font-weight:500;color:var(--straw)}
+.announce__aside{color:var(--cream-70)}
+
+/* ───────── hero ───────── */
+.hero{
+  position:relative;display:flex;flex-direction:column;
+  min-height:clamp(780px,calc(100vh - 40px),960px);
+  background-color:var(--cobalt);
+  background-image:var(--speck-a),var(--speck-b);
+  background-size:480px 480px,620px 540px;
+  color:var(--bone);
+}
+.hero > .wrap{flex:1;display:flex;flex-direction:column}
+
+.nav{height:84px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:10px;justify-self:start;font:800 28px/1 var(--display);letter-spacing:-.035em;text-decoration:none}
+.brand svg{width:36px;height:24px}
+.nav__links{display:flex;gap:38px}
+.nav__links a,.nav__aside a{font:500 16px/1 var(--display);text-decoration:none;padding:6px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;transition:background-size .25s}
+.nav__links a:hover,.nav__aside a:hover{background-size:100% 1.5px}
+.nav__aside{justify-self:end;display:flex;align-items:center;gap:26px}
+.bag-btn{
+  display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 8px 0 18px;
+  border:1.5px solid var(--cream-25);border-radius:999px;background:none;cursor:pointer;
+  font:600 15px/1 var(--display);transition:border-color .2s;
+}
+.bag-btn:hover{border-color:var(--bone)}
+.bag-btn span{display:grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:13px;background:var(--straw);color:var(--ink);font:500 12.5px/1 var(--mono)}
+@keyframes bump{40%{transform:scale(1.35)}}
+.bag-btn span.bump{animation:bump .35s}
+
+.hero__main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:32px}
+.hero__copy{align-self:center;padding:0 0 36px}
+.chip{
+  display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 15px 0 13px;
+  border:1px solid var(--cream-25);border-radius:999px;
+  font:500 12px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;
+}
+h1{font:800 92px/.93 var(--display);letter-spacing:-.045em;margin:26px 0 28px}
+h1 .line{display:block;width:max-content;white-space:nowrap}
+h1 .line + .line{color:var(--straw)}
+.hero__lede{font-size:21px;line-height:1.45;max-width:27.5em;color:rgba(242,237,226,.9);text-wrap:pretty}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+
+.hero__art{position:relative;align-self:end;height:580px}
+.hero__art::after{
+  content:"";position:absolute;left:-3%;right:-3%;bottom:-17px;height:38px;z-index:0;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(6,12,60,.55),rgba(6,12,60,0) 72%);
+}
+@keyframes settle{from{transform:translateY(22px)}to{transform:none}}
+.bag{position:absolute;bottom:0;height:auto;aspect-ratio:380/540;filter:drop-shadow(0 16px 20px rgba(6,12,60,.32));animation:settle .9s cubic-bezier(.2,.8,.2,1) both}
+.bag--front{right:0;width:396px;z-index:2;--bagc:#EFE7D6;--label:var(--straw)}
+.bag--back{left:6px;width:300px;z-index:1;--bagc:#E9E0CD;--label:var(--cherry);animation-delay:.08s}
+.bag__body{fill:var(--bagc)}
+.bag__tie{fill:var(--ink)}
+.bag__label{fill:var(--label)}
+.bag text{fill:var(--ink)}
+.l-brand{font:800 14px var(--display);letter-spacing:2px}
+.l-mono{font:500 11px var(--mono);letter-spacing:.8px}
+.l-name{font:800 60px var(--display);letter-spacing:-2.6px}
+.l-notes{font:italic 400 17.5px var(--serif)}
+.bag .l-stamp{font:500 11px var(--mono);letter-spacing:.9px;fill:var(--cobalt)}
+
+.stock-card{
+  position:absolute;left:-44px;bottom:66px;z-index:3;width:232px;padding:16px 18px 14px;
+  background:var(--paper);color:var(--ink);border-radius:8px;
+  box-shadow:0 16px 32px rgba(6,12,60,.36);
+  transform:rotate(-3deg);
+}
+.stock-card__k{font:500 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.stock-card__n{display:flex;align-items:baseline;gap:8px;margin-top:10px;font:800 46px/.9 var(--display);letter-spacing:-.045em}
+.stock-card__n small{font:500 15px/1 var(--display);letter-spacing:0;color:var(--ink-soft)}
+.stock-card__bar{height:6px;margin-top:13px;border-radius:3px;background:var(--rule);overflow:hidden}
+.stock-card__bar i{display:block;height:100%;width:58.8%;border-radius:3px;background:var(--cobalt);transition:width .4s}
+.stock-card__note{margin-top:11px;font:400 11px/1.3 var(--mono);color:var(--ink-soft)}
+
+.week{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--bone)}
+.week li{padding:18px 28px 26px 0}
+.week__day{display:flex;align-items:center;gap:9px;font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cream-70)}
+.week__day::before{content:"";width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor}
+.week__what{display:block;margin-top:9px;font:500 17px/1.25 var(--display);letter-spacing:-.01em}
+.week .is-quiet .week__what{color:var(--cream-70)}
+.week .is-today .week__day{color:var(--straw)}
+.week .is-today .week__day::before{background:var(--straw);border-color:var(--straw);animation:pulse 2.2s infinite}
+.week .is-today .week__day::after{content:"· today"}
+
+/* ───────── this week's coffees ───────── */
+.section{padding:120px 0}
+.head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:88px;align-items:end;margin-bottom:56px}
+.head p{font-size:19px;color:var(--ink-soft);text-wrap:pretty}
+
+.coffees{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.coffee{
+  display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--rule);border-radius:10px;overflow:hidden;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;
+}
+.coffee:hover{transform:translateY(-4px);box-shadow:0 22px 40px -22px rgba(27,21,18,.45)}
+.coffee__label{
+  display:flex;flex-direction:column;justify-content:space-between;height:218px;padding:18px 20px 20px;
+  background:var(--c);color:var(--on,var(--ink));
+}
+.coffee__meta{display:flex;justify-content:space-between;padding-bottom:11px;border-bottom:1.5px solid currentColor;font:500 11.5px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.coffee__name{font:800 46px/.92 var(--display);letter-spacing:-.045em}
+.coffee__origin{margin-top:11px;font:500 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.88}
+.coffee__body{flex:1;display:flex;flex-direction:column;gap:18px;padding:20px}
+.coffee__notes{min-height:53px;font:italic 400 21px/1.25 var(--serif);text-wrap:balance}
+.spec > div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-top:1px solid var(--rule)}
+.spec > div:last-child{border-bottom:1px solid var(--rule)}
+.spec dt{font:400 11.5px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+.spec dd{font:500 15px/1.2 var(--display);text-align:right}
+.roast{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;font:400 11.5px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+.roast__track{position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,#E6C777,#C08A45 34%,#8A5230 66%,#2E1A12)}
+.roast__track i{position:absolute;left:var(--at);top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
+.roast b{font-weight:500;color:var(--ink)}
+.stock__text{display:flex;justify-content:space-between;gap:12px;font:500 14px/1 var(--display)}
+.stock__text span + span{font:400 11.5px/1.2 var(--mono);color:var(--ink-soft)}
+.stock__bar{height:4px;margin-top:9px;border-radius:2px;background:var(--rule)}
+.stock__bar i{display:block;height:100%;border-radius:2px;background:var(--ink);transition:width .35s}
+.stock.is-low .stock__n{color:#B33A1D}
+.stock.is-low .stock__bar i{background:var(--cherry)}
+.coffee__buy{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:2px}
+.price{font:700 30px/1 var(--display);letter-spacing:-.03em}
+.price small{margin-left:6px;font:400 12px/1 var(--mono);letter-spacing:0;color:var(--ink-soft)}
+.add{height:44px;min-width:118px;padding:0 20px;border:0;border-radius:999px;background:var(--ink);color:var(--bone);font:600 15px/1 var(--display);cursor:pointer;transition:background-color .2s,transform .15s}
+.add:hover{background:var(--cobalt)}
+.add:active{transform:scale(.97)}
+.add:disabled{background:var(--rule);color:var(--ink-soft);cursor:default}
+.coffee .add:focus-visible,.btn--line:focus-visible,.btn--ink:focus-visible{outline-color:var(--cobalt)}
+
+.decaf{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:24px;padding:18px 20px 18px 24px;border:1.5px dashed rgba(27,21,18,.32);border-radius:10px}
+.decaf__what{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px}
+.tag{padding:7px 11px;border-radius:999px;background:var(--ink);color:var(--bone);font:500 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.decaf strong{font:700 21px/1 var(--display);letter-spacing:-.02em}
+.decaf__what > span:last-child{font-size:17px;color:var(--ink-soft)}
+.decaf__when{display:flex;align-items:center;gap:20px;flex:none;font:400 12.5px/1 var(--mono);color:var(--ink-soft)}
+
+/* ───────── how we roast ───────── */
+.roasting{background:var(--ink);color:var(--bone)}
+.roasting .eyebrow{color:var(--cream-70)}
+.roasting__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center}
+.roasting__copy > p{margin-top:26px;max-width:26em;font-size:19px;color:rgba(242,237,226,.82);text-wrap:pretty}
+.facts{margin-top:40px;border-top:1px solid var(--cream-25)}
+.facts > div{display:grid;grid-template-columns:128px 1fr;align-items:baseline;gap:16px;padding:17px 0;border-bottom:1px solid var(--cream-14)}
+.facts dt{font:800 32px/1 var(--display);letter-spacing:-.035em}
+.facts dd{font-size:17px;line-height:1.4;color:var(--cream-70)}
+
+.log{background:#241D19;border:1px solid var(--cream-14);border-radius:12px;padding:24px 28px 26px}
+.log__head{display:flex;justify-content:space-between;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--cream-14);font:400 12px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--cream-70)}
+.log__title{margin-top:20px;font:600 20px/1.1 var(--display);letter-spacing:-.015em}
+.log__sub{margin-top:6px;font:400 12px/1.3 var(--mono);color:var(--cream-70)}
+.chart{position:relative;margin-top:6px}
+.chart svg{width:100%;height:auto;overflow:visible;touch-action:pan-y}
+.chart .ax{font:400 12px var(--mono);fill:rgba(242,237,226,.58)}
+.chart .ev{font:500 12px var(--mono);fill:var(--bone)}
+.chart .ph{font:500 11.5px var(--mono);fill:rgba(242,237,226,.78);text-transform:uppercase}
+.tip{
+  position:absolute;z-index:2;display:flex;gap:10px;align-items:baseline;padding:8px 11px;border-radius:6px;
+  background:var(--bone);color:var(--ink);font:500 12px/1 var(--mono);white-space:nowrap;pointer-events:none;
+  transform:translate(14px,calc(-100% - 12px));box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+.tip.is-flipped{transform:translate(calc(-100% - 14px),calc(-100% - 12px))}
+.tip[hidden]{display:none}
+.tip b{font:700 15px/1 var(--display)}
+.tip em{font-style:normal;color:var(--ink-soft)}
+.log__stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;border-top:1px solid var(--cream-14)}
+.log__stats > div{padding:16px 0 0 18px;border-left:1px solid var(--cream-14)}
+.log__stats > div:first-child{padding-left:0;border-left:0}
+.log__stats dt{font:400 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cream-70)}
+.log__stats dd{margin-top:9px;font:700 24px/1 var(--display);letter-spacing:-.025em}
+.log__stats dd small{font:400 12px/1 var(--mono);letter-spacing:0;color:var(--cream-70);margin-left:4px}
+
+/* ───────── subscription ───────── */
+.sub{background:var(--straw)}
+.sub .eyebrow{color:#4A3A1C}
+.sub__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:88px;align-items:center}
+.sub__copy > p{margin-top:26px;max-width:25em;font-size:20px;line-height:1.45;color:#3A2D1B;text-wrap:pretty}
+.ticks{display:grid;gap:14px;margin-top:34px}
+.ticks li{display:flex;gap:14px;font:500 18px/1.3 var(--display);letter-spacing:-.01em}
+.ticks li::before{
+  content:"";flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;
+  background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.6 6.4l2.3 2.3 4.5-5.2' fill='none' stroke='%23E8B94A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+}
+.ticket{position:relative;background:var(--paper);border-radius:14px;box-shadow:0 34px 60px -34px rgba(70,45,0,.6),0 1px 0 rgba(27,21,18,.1)}
+.ticket__pick{display:grid;gap:24px;padding:32px 36px 30px}
+.ticket fieldset{border:0;padding:0;min-width:0}
+.ticket legend{padding:0;margin-bottom:11px;font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
+.seg label{position:relative;display:block}
+.seg input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.seg span{
+  display:flex;align-items:center;justify-content:center;height:48px;padding:0 10px;
+  border:1.5px solid var(--rule);border-radius:999px;font:600 15.5px/1 var(--display);white-space:nowrap;
+  transition:background-color .18s,border-color .18s,color .18s;
+}
+.seg label:hover span{border-color:var(--ink)}
+.seg input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--bone)}
+.seg input:focus-visible + span{outline:2px solid var(--cobalt);outline-offset:2px}
+.ticket__tear{position:relative;margin:0 18px;border-top:2px dashed rgba(27,21,18,.24)}
+.ticket__tear::before,.ticket__tear::after{content:"";position:absolute;top:-15px;width:28px;height:28px;border-radius:50%;background:var(--straw)}
+.ticket__tear::before{left:-32px}
+.ticket__tear::after{right:-32px}
+.ticket__sum{display:grid;grid-template-columns:1fr auto;gap:6px 24px;align-items:end;padding:28px 36px 30px}
+.sum__price{font:800 68px/.86 var(--display);letter-spacing:-.05em}
+.sum__per{margin-top:10px;font:400 12.5px/1.3 var(--mono);color:var(--ink-soft)}
+.sum__detail{font:400 12.5px/1.75 var(--mono);text-align:right;color:var(--ink-soft)}
+.sum__detail b{font-weight:500;color:var(--ink)}
+.ticket__sum .btn{grid-column:1/-1;margin-top:20px;width:100%}
+.ticket__fine{grid-column:1/-1;margin-top:8px;font:400 12px/1.3 var(--mono);text-align:center;color:var(--ink-soft)}
+
+/* ───────── visit ───────── */
+.visit__grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:88px;align-items:center}
+.visit blockquote{margin-top:30px;font:italic 400 54px/1.08 var(--serif);letter-spacing:-.022em;text-wrap:balance}
+.sig{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;margin-top:28px;font:600 18px/1 var(--display)}
+.sig span{font:400 12.5px/1 var(--mono);color:var(--ink-soft)}
+.details{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin-top:52px;border-top:1px solid var(--rule)}
+.details > div{padding:22px 0 24px;border-bottom:1px solid var(--rule)}
+.details dt{font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.details dd{margin-top:10px;font-size:18px;line-height:1.42;text-wrap:pretty}
+.details a{color:var(--cobalt);text-decoration-thickness:1.5px;text-underline-offset:3px}
+.details a:focus-visible{outline-color:var(--cobalt)}
+
+.map{position:relative;aspect-ratio:520/600;border-radius:14px;overflow:hidden;background:var(--cobalt);color:var(--bone)}
+.map svg{width:100%;height:100%}
+.map .topo ellipse{fill:none;stroke:rgba(242,237,226,.4);stroke-width:1.3;vector-effect:non-scaling-stroke}
+.map text{font:400 11px var(--mono);fill:rgba(242,237,226,.72);letter-spacing:.6px}
+.map .lake{font:italic 400 19px var(--serif);letter-spacing:0;fill:rgba(242,237,226,.6)}
+.map__card{position:absolute;left:24px;bottom:24px;display:flex;gap:12px;align-items:flex-start;max-width:calc(100% - 48px);padding:14px 18px 15px 14px;border-radius:8px;background:var(--paper);color:var(--ink);box-shadow:0 14px 28px rgba(6,12,60,.35)}
+.map__card i{flex:none;width:12px;height:12px;margin-top:4px;border-radius:50%;background:var(--straw);box-shadow:0 0 0 3px var(--ink)}
+.map__card b{display:block;font:700 17px/1.15 var(--display);letter-spacing:-.015em}
+.map__card span{display:block;margin-top:5px;font:400 12px/1.4 var(--mono);color:var(--ink-soft)}
+
+/* ───────── footer ───────── */
+.footer{
+  padding:96px 0 28px;overflow:hidden;color:var(--bone);
+  background-color:var(--cobalt);background-image:var(--speck-a),var(--speck-b);background-size:480px 480px,620px 540px;
+}
+.footer__top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:112px}
+.footer h3{font:700 40px/1 var(--display);letter-spacing:-.035em}
+.footer__note p{margin-top:16px;max-width:24em;font-size:18px;color:rgba(242,237,226,.82)}
+.signup{display:flex;gap:10px;margin-top:28px}
+.signup input{flex:1;min-width:0;height:56px;padding:0 24px;border:1.5px solid var(--cream-25);border-radius:999px;background:rgba(10,20,90,.25);font-size:18px;transition:border-color .2s}
+.signup input::placeholder{color:rgba(242,237,226,.55)}
+.signup input:hover,.signup input:focus{border-color:var(--bone);outline:0}
+.footer__links{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.footer h4{margin-bottom:18px;font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cream-70)}
+.footer__links a{display:inline-block;padding:6px 0;font:500 17px/1.2 var(--display);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 3px)/0 1.5px no-repeat;transition:background-size .25s}
+.footer__links a:hover{background-size:100% 1.5px}
+.footer__legal{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:88px;padding-top:22px;border-top:1px solid var(--cream-25);font:400 12.5px/1.4 var(--mono);color:var(--cream-70)}
+.footer__mark{margin-top:44px;font:800 300px/.8 var(--display);letter-spacing:-.06em;white-space:nowrap;user-select:none}
+.footer__mark .line{display:block;width:max-content}
+
+/* ───────── smaller screens ───────── */
+@media (max-width:1180px){
+  .wrap{width:min(1280px,100% - 64px)}
+  .nav__links{gap:24px}
+  .hero__main{grid-template-columns:minmax(0,1fr);gap:8px;padding-top:28px}
+  .hero__art{justify-self:center;width:min(560px,100%);margin-top:16px}
+  .stock-card{left:0}
+  .head,.roasting__grid,.sub__grid,.visit__grid,.footer__top{grid-template-columns:minmax(0,1fr);gap:48px}
+  .head{align-items:start}
+  .coffees{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .map{max-width:520px}
+}
+@media (max-width:760px){
+  .wrap{width:calc(100% - 40px)}
+  body{font-size:17px}
+  .section{padding:80px 0}
+  h2{font-size:40px}
+  .announce__aside,.nav__links,.nav__aside a{display:none}
+  .nav{grid-template-columns:1fr auto}
+  .hero__lede{font-size:19px}
+  .hero__art{height:440px}
+  .bag--front{width:290px}.bag--back{width:220px}
+  .stock-card{bottom:24px;width:200px}
+  .week{grid-template-columns:1fr 1fr}
+  .coffees,.details,.footer__links{grid-template-columns:minmax(0,1fr)}
+  .decaf,.decaf__when{flex-direction:column;align-items:flex-start}
+  .seg{grid-auto-flow:row}
+  .ticket__pick,.ticket__sum{padding-inline:22px}
+  .ticket__sum{grid-template-columns:1fr}
+  .sum__detail{text-align:left}
+  .visit blockquote{font-size:36px}
+  .log{padding:18px}
+  .log__stats{grid-template-columns:1fr 1fr;row-gap:16px}
+  .log__stats > div:nth-child(3){padding-left:0;border-left:0}
+  .signup{flex-direction:column}
+  .footer h3{font-size:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#coffees">Skip to this week’s coffees</a>
+
+<div class="announce">
+  <div class="wrap">
+    <p id="announce"><span class="live"></span><b>Roasting today</b><span><span data-date="roast">Tue 10 Nov</span> — orders in by midnight ship tomorrow</span></p>
+    <p class="announce__aside">Free shipping over $40 · US &amp; Canada</p>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#" aria-label="Drumlin Coffee Roasters, home">
+        <svg viewBox="0 0 36 24" aria-hidden="true">
+          <path d="M1 22C2.6 11 7.5 2.5 14.5 2.5 23.5 2.5 30 13 35 22Z" fill="currentColor"/>
+          <path d="M8 22c1.4-6.6 3.8-11.5 7.4-11.5 4.6 0 8.300 5.400 11.6 11.500" fill="none" stroke="#2341C7" stroke-width="2"/>
+        </svg>
+        Drumlin
+      </a>
+      <ul class="nav__links">
+        <li><a href="#coffees">This week’s coffees</a></li>
+        <li><a href="#roasting">How we roast</a></li>
+        <li><a href="#subscribe">Subscription</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <div class="nav__aside">
+        <a href="#visit">Wholesale</a>
+        <button class="bag-btn" type="button" aria-label="Your bag">Bag <span id="bag-count" aria-live="polite">0</span></button>
+      </div>
+    </nav>
+
+    <div class="hero__main">
+      <div class="hero__copy">
+        <p class="chip"><span class="live"></span>Batches № 214–225 · roasted <span data-date="roast">Tue 10 Nov</span></p>
+        <h1 data-fit data-fit-min="52" data-fit-max="118">
+          <span class="line">Roasted Tuesday.</span>
+          <span class="line">Yours by Friday.</span>
+        </h1>
+        <p class="hero__lede">Drumlin is two people and one five-kilo drum roaster in Geneva, New York. We roast twelve batches every Tuesday and post them on Wednesday. When the week’s 204 bags are gone, that’s it until next week.</p>
+        <div class="hero__cta">
+          <a class="btn btn--straw" href="#coffees">Shop this week’s roast <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#subscribe">Start a subscription</a>
+        </div>
+      </div>
+
+      <div class="hero__art">
+        <!-- back bag -->
+        <svg class="bag bag--back" viewBox="0 0 380 540" role="img" aria-label="A bag of Kii AA, Kenya">
+          <path class="bag__body" d="M40 92C33 230 26 380 24 500Q24 524 48 524L332 524Q356 524 356 500C354 380 347 230 340 92Z"/>
+          <path fill="url(#bagShade)" d="M40 92C33 230 26 380 24 500Q24 524 48 524L332 524Q356 524 356 500C354 380 347 230 340 92Z"/>
+          <path class="bag__body" d="M44 42H336Q342 42 342 48V98H38V48Q38 42 44 42Z"/>
+          <path fill="#000" fill-opacity=".07" d="M44 42H336Q342 42 342 48V98H38V48Q38 42 44 42Z"/>
+          <path fill="url(#bagShade)" d="M44 42H336Q342 42 342 48V98H38V48Q38 42 44 42Z"/>
+          <rect x="39" y="98" width="302" height="14" fill="url(#foldShadow)"/>
+          <rect class="bag__tie" x="24" y="60" width="332" height="18" rx="3"/>
+          <rect x="24" y="60" width="30" height="18" rx="3" fill="#fff" fill-opacity=".16"/>
+          <rect x="326" y="60" width="30" height="18" rx="3" fill="#fff" fill-opacity=".16"/>
+          <circle cx="190" cy="142" r="13" fill="#000" fill-opacity=".05" stroke="#000" stroke-opacity=".16"/>
+          <circle cx="190" cy="142" r="4" fill="#000" fill-opacity=".22"/>
+          <g transform="translate(62 180)">
+            <rect class="bag__label" width="256" height="316"/>
+            <text class="l-brand" x="20" y="34">DRUMLIN</text>
+            <text class="l-mono" x="236" y="34" text-anchor="end">№ 217</text>
+            <path d="M20 48H236" stroke="#1B1512" stroke-width="1.5"/>
+            <text class="l-name" x="17" y="112">Kii</text>
+            <text class="l-name" x="17" y="166">AA</text>
+            <text class="l-mono" x="20" y="198">KENYA · KIRINYAGA</text>
+            <text class="l-notes" x="20" y="226">blackcurrant, grapefruit</text>
+            <path d="M20 242H236" stroke="#1B1512" stroke-width="1.5"/>
+            <text class="l-mono" x="20" y="264">WASHED · 1,750 M</text>
+          </g>
+        </svg>
+
+        <!-- front bag -->
+        <svg class="bag bag--front" viewBox="0 0 380 540" role="img" aria-label="A bag of Halo Beriti, Ethiopia, batch 214">
+          <defs>
+            <linearGradient id="bagShade" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#000" stop-opacity=".2"/>
+              <stop offset=".1" stop-color="#000" stop-opacity=".05"/>
+              <stop offset=".4" stop-color="#fff" stop-opacity=".24"/>
+              <stop offset=".72" stop-color="#000" stop-opacity="0"/>
+              <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+            </linearGradient>
+            <linearGradient id="foldShadow" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#000" stop-opacity=".2"/>
+              <stop offset="1" stop-color="#000" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="bag__body" d="M40 92C33 230 26 380 24 500Q24 524 48 524L332 524Q356 524 356 500C354 380 347 230 340 92Z"/>
+          <path fill="url(#bagShade)" d="M40 92C33 230 26 380 24 500Q24 524 48 524L332 524Q356 524 356 500C354 380 347 230 340 92Z"/>
+          <path class="bag__body" d="M44 42H336Q342 42 342 48V98H38V48Q38 42 44 42Z"/>
+          <path fill="#000" fill-opacity=".07" d="M44 42H336Q342 42 342 48V98H38V48Q38 42 44 42Z"/>
+          <path fill="url(#bagShade)" d="M44 42H336Q342 42 342 48V98H38V48Q38 42 44 42Z"/>
+          <rect x="39" y="98" width="302" height="14" fill="url(#foldShadow)"/>
+          <rect class="bag__tie" x="24" y="60" width="332" height="18" rx="3"/>
+          <rect x="24" y="60" width="30" height="18" rx="3" fill="#fff" fill-opacity=".16"/>
+          <rect x="326" y="60" width="30" height="18" rx="3" fill="#fff" fill-opacity=".16"/>
+          <circle cx="190" cy="142" r="13" fill="#000" fill-opacity=".05" stroke="#000" stroke-opacity=".16"/>
+          <circle cx="190" cy="142" r="4" fill="#000" fill-opacity=".22"/>
+          <g transform="translate(62 180)">
+            <rect class="bag__label" width="256" height="316"/>
+            <text class="l-brand" x="20" y="34">DRUMLIN</text>
+            <text class="l-mono" x="236" y="34" text-anchor="end">№ 214</text>
+            <path d="M20 48H236" stroke="#1B1512" stroke-width="1.5"/>
+            <text class="l-name" x="17" y="112">Halo</text>
+            <text class="l-name" x="17" y="166">Beriti</text>
+            <text class="l-mono" x="20" y="198">ETHIOPIA · YIRGACHEFFE</text>
+            <text class="l-notes" x="20" y="226">apricot, jasmine, lemon curd</text>
+            <path d="M20 242H236" stroke="#1B1512" stroke-width="1.5"/>
+            <text class="l-mono" x="20" y="264">WASHED · 2,100 M</text>
+            <text class="l-mono" x="236" y="264" text-anchor="end">250 G</text>
+            <g transform="translate(92 277) rotate(-4)">
+              <rect width="152" height="27" rx="3" fill="none" stroke="#2341C7" stroke-width="1.8"/>
+              <text class="l-stamp" x="76" y="18" text-anchor="middle">ROASTED <tspan data-date="roast" data-caps>TUE 10 NOV</tspan></text>
+            </g>
+          </g>
+        </svg>
+
+        <aside class="stock-card" aria-label="Stock this week">
+          <p class="stock-card__k">This week’s drum</p>
+          <p class="stock-card__n"><span id="total-left">120</span><small>of 204 bags left</small></p>
+          <div class="stock-card__bar"><i id="total-bar"></i></div>
+          <p class="stock-card__note">Last week: gone by Thursday, 4 pm</p>
+        </aside>
+      </div>
+    </div>
+
+    <ol class="week" id="week" aria-label="How a week goes">
+      <li><span class="week__day">Mon</span><span class="week__what">Green coffee weighed out</span></li>
+      <li class="is-today"><span class="week__day">Tue</span><span class="week__what">Twelve batches, one drum</span></li>
+      <li><span class="week__day">Wed</span><span class="week__what">Rested, bagged, posted</span></li>
+      <li class="is-quiet"><span class="week__day">Thu</span><span class="week__what">In the post</span></li>
+      <li><span class="week__day">Fri</span><span class="week__what">At your door, 3 days old</span></li>
+    </ol>
+  </div>
+</header>
+
+<main>
+
+<!-- ───────── coffees ───────── -->
+<section class="section" id="coffees">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">This week’s drum · batches № 214–225</p>
+        <h2>Four coffees and a decaf. 204 bags, then we’re out.</h2>
+      </div>
+      <p>Every bag below was roasted on <span data-date="roast">Tue 10 Nov</span>. Whatever hasn’t sold by Sunday goes to the café down the road. It never comes back to this page.</p>
+    </div>
+
+    <div class="coffees">
+
+      <article class="coffee" style="--c:var(--straw)" data-left="31" data-total="51">
+        <div class="coffee__label">
+          <p class="coffee__meta"><span>№ 214–216</span><span>3 batches</span></p>
+          <div>
+            <h3 class="coffee__name">Halo<br>Beriti</h3>
+            <p class="coffee__origin">Ethiopia · Yirgacheffe</p>
+          </div>
+        </div>
+        <div class="coffee__body">
+          <p class="coffee__notes">Apricot, jasmine, lemon curd</p>
+          <dl class="spec">
+            <div><dt>Process</dt><dd>Washed</dd></div>
+            <div><dt>Variety</dt><dd>Heirloom landraces</dd></div>
+            <div><dt>Altitude</dt><dd>2,100 m</dd></div>
+            <div><dt>Best as</dt><dd>Filter</dd></div>
+          </dl>
+          <div class="roast"><span>Roast</span><div class="roast__track" style="--at:12%"><i></i></div><b>Light</b></div>
+          <div class="stock">
+            <p class="stock__text"><span class="stock__n">31 of 51 bags left</span></p>
+            <div class="stock__bar"><i style="width:60.8%"></i></div>
+          </div>
+          <div class="coffee__buy">
+            <p class="price">$21<small>/ 250 g</small></p>
+            <button class="add" type="button">Add to bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="coffee" style="--c:var(--cherry)" data-left="6" data-total="34">
+        <div class="coffee__label">
+          <p class="coffee__meta"><span>№ 217–218</span><span>2 batches</span></p>
+          <div>
+            <h3 class="coffee__name">Kii<br>AA</h3>
+            <p class="coffee__origin">Kenya · Kirinyaga</p>
+          </div>
+        </div>
+        <div class="coffee__body">
+          <p class="coffee__notes">Blackcurrant, pink grapefruit, brown sugar</p>
+          <dl class="spec">
+            <div><dt>Process</dt><dd>Washed</dd></div>
+            <div><dt>Variety</dt><dd>SL28 &amp; SL34</dd></div>
+            <div><dt>Altitude</dt><dd>1,750 m</dd></div>
+            <div><dt>Best as</dt><dd>Filter</dd></div>
+          </dl>
+          <div class="roast"><span>Roast</span><div class="roast__track" style="--at:18%"><i></i></div><b>Light</b></div>
+          <div class="stock is-low">
+            <p class="stock__text"><span class="stock__n">Last 6 of 34 bags</span></p>
+            <div class="stock__bar"><i style="width:17.6%"></i></div>
+          </div>
+          <div class="coffee__buy">
+            <p class="price">$23<small>/ 250 g</small></p>
+            <button class="add" type="button">Add to bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="coffee" style="--c:var(--sage)" data-left="44" data-total="51">
+        <div class="coffee__label">
+          <p class="coffee__meta"><span>№ 219–221</span><span>3 batches</span></p>
+          <div>
+            <h3 class="coffee__name">El<br>Mirador</h3>
+            <p class="coffee__origin">Colombia · Huila</p>
+          </div>
+        </div>
+        <div class="coffee__body">
+          <p class="coffee__notes">Red plum, panela, milk chocolate</p>
+          <dl class="spec">
+            <div><dt>Process</dt><dd>Honey</dd></div>
+            <div><dt>Variety</dt><dd>Pink Bourbon</dd></div>
+            <div><dt>Altitude</dt><dd>1,850 m</dd></div>
+            <div><dt>Best as</dt><dd>Filter &amp; espresso</dd></div>
+          </dl>
+          <div class="roast"><span>Roast</span><div class="roast__track" style="--at:36%"><i></i></div><b>Medium-light</b></div>
+          <div class="stock">
+            <p class="stock__text"><span class="stock__n">44 of 51 bags left</span></p>
+            <div class="stock__bar"><i style="width:86.3%"></i></div>
+          </div>
+          <div class="coffee__buy">
+            <p class="price">$20<small>/ 250 g</small></p>
+            <button class="add" type="button">Add to bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="coffee" style="--c:var(--ink);--on:var(--bone)" data-left="39" data-total="51">
+        <div class="coffee__label">
+          <p class="coffee__meta"><span>№ 222–224</span><span>House espresso</span></p>
+          <div>
+            <h3 class="coffee__name">Pilot<br>Light</h3>
+            <p class="coffee__origin">Brazil + Guatemala</p>
+          </div>
+        </div>
+        <div class="coffee__body">
+          <p class="coffee__notes">Dark chocolate, hazelnut, dried cherry</p>
+          <dl class="spec">
+            <div><dt>Process</dt><dd>Natural + washed</dd></div>
+            <div><dt>Variety</dt><dd>Catuaí, Caturra</dd></div>
+            <div><dt>Altitude</dt><dd>1,100–1,700 m</dd></div>
+            <div><dt>Best as</dt><dd>Espresso, moka pot</dd></div>
+          </dl>
+          <div class="roast"><span>Roast</span><div class="roast__track" style="--at:56%"><i></i></div><b>Medium</b></div>
+          <div class="stock">
+            <p class="stock__text"><span class="stock__n">39 of 51 bags left</span></p>
+            <div class="stock__bar"><i style="width:76.5%"></i></div>
+          </div>
+          <div class="coffee__buy">
+            <p class="price">$18<small>/ 250 g</small></p>
+            <button class="add" type="button">Add to bag</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="decaf">
+      <p class="decaf__what">
+        <span class="tag">Sold out</span>
+        <strong>Night Shift decaf</strong>
+        <span>Colombia, sugarcane process. Batch № 225 was one batch of seventeen bags, and they went before nine.</span>
+      </p>
+      <p class="decaf__when">
+        <span>Back <span data-date="next">Tue 17 Nov</span></span>
+        <button class="btn btn--line" type="button" data-once="We’ll email you">Tell me when</button>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── how we roast ───────── -->
+<section class="section roasting" id="roasting">
+  <div class="wrap roasting__grid">
+    <div class="roasting__copy">
+      <p class="eyebrow">How we roast</p>
+      <h2>Eleven minutes, watched the whole way.</h2>
+      <p>A five-kilo drum is small enough to steer by smell and sound, so that’s how we steer it. We roast light enough that you can taste where a coffee grew, and long enough past first crack that it’s still sweet in a moka pot.</p>
+      <dl class="facts">
+        <div><dt>5 kg</dt><dd>in the drum at a time. About seventeen bags, plus a cupful we taste before anything ships.</dd></div>
+        <div><dt>5 days</dt><dd>is the oldest a bag gets before it leaves the shop.</dd></div>
+        <div><dt>1 lot</dt><dd>per farm, per harvest. When it’s finished, it’s finished until next year.</dd></div>
+      </dl>
+    </div>
+
+    <figure class="log">
+      <div class="log__head"><span>Roast log · batch № 214</span><span>Halo Beriti · <span data-date="roast">Tue 10 Nov</span> · 07:42</span></div>
+      <figcaption>
+        <p class="log__title">Bean temperature, °C</p>
+        <p class="log__sub">Probe in the bean mass, from charge to drop. Hover the curve to read it.</p>
+      </figcaption>
+      <div class="chart" id="chart">
+        <svg viewBox="0 0 720 388" role="img" aria-label="Line chart of bean temperature over a 10 minute 40 second roast. It falls from 205 degrees at charge to 92 at the turning point, then climbs to 155 at dry end, 198 at first crack and 207 at drop.">
+          <defs>
+            <linearGradient id="beans" gradientUnits="userSpaceOnUse" x1="56" x2="676.6" y1="0" y2="0">
+              <stop offset="0" stop-color="#9DAA7F"/>
+              <stop offset=".28" stop-color="#B8B273"/>
+              <stop offset=".44" stop-color="#DDB95C"/>
+              <stop offset=".64" stop-color="#C38C46"/>
+              <stop offset=".83" stop-color="#9A5C30"/>
+              <stop offset="1" stop-color="#6E3D22"/>
+            </linearGradient>
+            <linearGradient id="under" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#E8B94A" stop-opacity=".2"/>
+              <stop offset="1" stop-color="#E8B94A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <g stroke="#F2EDE2" stroke-opacity=".1">
+            <path d="M56 258.9H696M56 212.400H696M56 166H696M56 119.600H696M56 73.200H696"/>
+          </g>
+          <path d="M56 296H696" stroke="#F2EDE2" stroke-opacity=".32"/>
+          <path d="M327.500 36V296M569.900 36V296" stroke="#F2EDE2" stroke-opacity=".24" stroke-dasharray="3 5"/>
+
+          <g class="ax" text-anchor="end">
+            <text x="46" y="263">100°</text><text x="46" y="216.500">125°</text><text x="46" y="170">150°</text><text x="46" y="123.700">175°</text><text x="46" y="77.300">200°</text>
+          </g>
+          <g class="ax" text-anchor="middle">
+            <text x="56" y="317">0:00</text><text x="172.400" y="317">2:00</text><text x="288.700" y="317">4:00</text><text x="405.100" y="317">6:00</text><text x="521.400" y="317">8:00</text><text x="637.800" y="317">10:00</text>
+          </g>
+
+          <path id="bt-area" fill="url(#under)" d="M56 63.900L85.100 184.600 114.200 258.900 133.600 273.700 172.400 251.400 230.500 210.600 288.700 175.300 327.500 156.700 405.100 125.200 463.300 104.700 521.400 88 569.900 76.900 608.700 69.400 676.600 60.200V296H56Z"/>
+          <path id="bt" fill="none" stroke="#E8B94A" stroke-width="2.500" stroke-linecap="round" stroke-linejoin="round" d="M56 63.900L85.100 184.600 114.200 258.900 133.600 273.700 172.400 251.400 230.500 210.600 288.700 175.300 327.500 156.700 405.100 125.200 463.300 104.700 521.400 88 569.900 76.900 608.700 69.400 676.600 60.200"/>
+
+          <g fill="#F2EDE2" stroke="#241D19" stroke-width="2">
+            <circle cx="56" cy="63.900" r="4.500"/><circle cx="133.600" cy="273.700" r="4.500"/><circle cx="327.500" cy="156.700" r="4.500"/><circle cx="569.900" cy="76.900" r="4.500"/><circle cx="676.600" cy="60.200" r="4.500"/>
+          </g>
+          <g class="ev">
+            <text x="68" y="58">Charge · 205°</text>
+            <text x="150" y="289">Turning point · 1:20 · 92°</text>
+            <text x="340" y="183">Dry end · 4:40 · 155°</text>
+            <text x="575" y="123" text-anchor="middle">First crack · 8:50 · 198°</text>
+            <text x="690" y="43" text-anchor="end">Drop · 10:40 · 207°</text>
+          </g>
+
+          <g fill="url(#beans)">
+            <rect x="56" y="336" width="269.500" height="14" rx="3"/>
+            <rect x="329.500" y="336" width="238.400" height="14" rx="3"/>
+            <rect x="571.900" y="336" width="104.700" height="14" rx="3"/>
+          </g>
+          <g class="ph" text-anchor="middle">
+            <text x="190.800" y="372">Drying · 44%</text>
+            <text x="448.700" y="372">Maillard · 39%</text>
+            <text x="624.200" y="372">Development · 17%</text>
+          </g>
+
+          <g id="hover" visibility="hidden">
+            <path id="hover-x" d="M0 36V296" stroke="#F2EDE2" stroke-opacity=".5"/>
+            <circle id="hover-dot" r="6" fill="#E8B94A" stroke="#241D19" stroke-width="2"/>
+          </g>
+          <rect id="hit" x="40" y="30" width="660" height="274" fill="transparent" pointer-events="all"/>
+        </svg>
+        <div class="tip" id="tip" hidden><b></b><span></span><em></em></div>
+      </div>
+
+      <table class="sr-only">
+        <caption>Batch 214 roast events</caption>
+        <tr><th>Event</th><th>Time</th><th>Bean temperature</th></tr>
+        <tr><td>Charge</td><td>0:00</td><td>205 °C</td></tr>
+        <tr><td>Turning point</td><td>1:20</td><td>92 °C</td></tr>
+        <tr><td>Dry end</td><td>4:40</td><td>155 °C</td></tr>
+        <tr><td>First crack</td><td>8:50</td><td>198 °C</td></tr>
+        <tr><td>Drop</td><td>10:40</td><td>207 °C</td></tr>
+      </table>
+
+      <dl class="log__stats">
+        <div><dt>Green in</dt><dd>5.00<small>kg</small></dd></div>
+        <div><dt>Roasted out</dt><dd>4.35<small>kg</small></dd></div>
+        <div><dt>Weight loss</dt><dd>13<small>%</small></dd></div>
+        <div><dt>After first crack</dt><dd>1:50<small>min</small></dd></div>
+      </dl>
+    </figure>
+  </div>
+</section>
+
+<!-- ───────── subscription ───────── -->
+<section class="section sub" id="subscribe">
+  <div class="wrap sub__grid">
+    <div class="sub__copy">
+      <p class="eyebrow">Subscription</p>
+      <h2>The Tuesday roast, on repeat.</h2>
+      <p>Tell us how fast you get through a bag. We set yours aside before the week’s roast goes on sale, so subscribers never meet the words “sold out”.</p>
+      <ul class="ticks">
+        <li>10% off every bag, postage included</li>
+        <li>Your bag is held before the shop opens</li>
+        <li>Skip a week, pause or cancel in two taps</li>
+      </ul>
+    </div>
+
+    <form class="ticket" id="sub-form" aria-label="Build a subscription">
+      <div class="ticket__pick">
+        <fieldset>
+          <legend>How often</legend>
+          <div class="seg">
+            <label><input type="radio" name="freq" value="1"><span>Every week</span></label>
+            <label><input type="radio" name="freq" value="2" checked><span>Every 2 weeks</span></label>
+            <label><input type="radio" name="freq" value="4"><span>Every 4 weeks</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>How much</legend>
+          <div class="seg">
+            <label><input type="radio" name="size" value="250" checked><span>250 g</span></label>
+            <label><input type="radio" name="size" value="500"><span>500 g</span></label>
+            <label><input type="radio" name="size" value="1000"><span>1 kg</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Which coffee</legend>
+          <div class="seg">
+            <label><input type="radio" name="kind" value="Roaster’s pick" checked><span>Roaster’s pick</span></label>
+            <label><input type="radio" name="kind" value="Filter roasts"><span>Filter</span></label>
+            <label><input type="radio" name="kind" value="Espresso roasts"><span>Espresso</span></label>
+            <label><input type="radio" name="kind" value="Decaf only"><span>Decaf</span></label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="ticket__tear" aria-hidden="true"></div>
+      <div class="ticket__sum" aria-live="polite">
+        <div>
+          <p class="sum__price" id="sum-price">$17.10</p>
+          <p class="sum__per">per delivery · about <span id="sum-month">$37</span> a month</p>
+        </div>
+        <p class="sum__detail">
+          <b id="sum-plan">250 g · every 2 weeks</b><br>
+          <span id="sum-kind">Roaster’s pick</span><br>
+          <span id="sum-cups">≈ 16 cups · $1.07 a cup</span>
+        </p>
+        <button class="btn btn--ink" type="submit" data-once="You’re in. Check your inbox">Start with the next roast <span class="arr" aria-hidden="true">→</span></button>
+        <p class="ticket__fine">First bag ships <span data-date="ship">Wed 11 Nov</span>. No contract, no minimum.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ───────── visit ───────── -->
+<section class="section visit" id="visit">
+  <div class="wrap visit__grid">
+    <div>
+      <p class="eyebrow">The roastery</p>
+      <blockquote>“We’d rather sell out on a Thursday than sell you last week’s coffee on a Monday.”</blockquote>
+      <p class="sig">Maya &amp; Jonas <span>roasters, packers, the whole company</span></p>
+      <dl class="details">
+        <div><dt>Find us</dt><dd>Unit 4, The Old Creamery<br>212 Exchange Street, Geneva, NY</dd></div>
+        <div><dt>Open door</dt><dd>Saturdays, 9 to 1. We pull shots and you take home whatever’s left.</dd></div>
+        <div><dt>Wholesale</dt><dd>Nine cafés and one bakery so far. There’s room in the drum for two more.</dd></div>
+        <div><dt>Say hello</dt><dd><a href="mailto:hello@drumlin.coffee">hello@drumlin.coffee</a><br>We answer between batches.</dd></div>
+      </dl>
+    </div>
+
+    <div class="map">
+      <svg viewBox="0 0 520 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Stylised map: drumlin hills west of Seneca Lake, with the roastery marked near the shore">
+        <path d="M452 0C436 80 470 160 448 250 430 330 462 420 444 510 438 550 448 580 442 600H520V0Z" fill="#1B33A3"/>
+        <path d="M452 0C436 80 470 160 448 250 430 330 462 420 444 510 438 550 448 580 442 600" fill="none" stroke="#F2EDE2" stroke-opacity=".45" stroke-width="1.300"/>
+        <text class="lake" transform="translate(482 244) rotate(90)">Seneca Lake</text>
+
+        <g class="topo">
+          <g transform="translate(96 132) rotate(-10)"><ellipse rx="30" ry="84"/><ellipse cy="-6" rx="21" ry="62"/><ellipse cy="-12" rx="12.500" ry="40"/><ellipse cy="-18" rx="5" ry="16"/></g>
+          <g transform="translate(226 104) rotate(-12) scale(.72)"><ellipse rx="30" ry="84"/><ellipse cy="-6" rx="21" ry="62"/><ellipse cy="-12" rx="12.500" ry="40"/><ellipse cy="-18" rx="5" ry="16"/></g>
+          <g transform="translate(308 176) rotate(-8) scale(.9)"><ellipse rx="30" ry="84"/><ellipse cy="-6" rx="21" ry="62"/><ellipse cy="-12" rx="12.500" ry="40"/><ellipse cy="-18" rx="5" ry="16"/></g>
+          <g transform="translate(150 292) rotate(-11) scale(1.1)"><ellipse rx="30" ry="84"/><ellipse cy="-6" rx="21" ry="62"/><ellipse cy="-12" rx="12.500" ry="40"/><ellipse cy="-18" rx="5" ry="16"/></g>
+          <g transform="translate(384 462) rotate(-12) scale(.78)"><ellipse rx="30" ry="84"/><ellipse cy="-6" rx="21" ry="62"/><ellipse cy="-12" rx="12.500" ry="40"/><ellipse cy="-18" rx="5" ry="16"/></g>
+          <g transform="translate(40 330) rotate(-9) scale(.6)"><ellipse rx="30" ry="84"/><ellipse cy="-6" rx="21" ry="62"/><ellipse cy="-12" rx="12.500" ry="40"/><ellipse cy="-18" rx="5" ry="16"/></g>
+        </g>
+
+        <path d="M-10 424C90 404 170 440 250 400S356 300 376 200 384 60 396-10" fill="none" stroke="#F2EDE2" stroke-opacity=".9" stroke-width="2.500"/>
+        <path d="M250 400C296 440 330 500 344 610" fill="none" stroke="#F2EDE2" stroke-opacity=".55" stroke-width="1.600" stroke-dasharray="5 6"/>
+
+        <circle cx="252" cy="399" r="22" fill="#E8B94A" fill-opacity=".25"/>
+        <circle cx="252" cy="399" r="8.500" fill="#E8B94A" stroke="#1B1512" stroke-width="3"/>
+
+        <path d="M34 54V26M34 26l-6 9M34 26l6 9" fill="none" stroke="#F2EDE2" stroke-opacity=".8" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="50" y="38">N</text>
+        <text x="50" y="54">42.868° N · 76.985° W</text>
+      </svg>
+      <div class="map__card"><i></i><p><b>Drumlin Coffee Roasters</b><span>Unit 4, The Old Creamery · open Sat 9–1</span></p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ───────── footer ───────── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__note">
+        <h3>The Tuesday note</h3>
+        <p>One email on roast day: what’s in the drum, how many bags there are, and how we’d brew it. Nothing else, ever.</p>
+        <form class="signup" id="signup">
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn--straw" type="submit" data-once="See you Tuesday">Send it to me</button>
+        </form>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#coffees">This week’s coffees</a></li>
+            <li><a href="#subscribe">Subscription</a></li>
+            <li><a href="#subscribe">Gift a month</a></li>
+            <li><a href="#coffees">Filters &amp; gear</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Roastery</h4>
+          <ul>
+            <li><a href="#roasting">How we roast</a></li>
+            <li><a href="#visit">Saturday open door</a></li>
+            <li><a href="#visit">Wholesale</a></li>
+            <li><a href="#roasting">Sourcing notes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#visit">Shipping &amp; returns</a></li>
+            <li><a href="#roasting">Brew guides</a></li>
+            <li><a href="mailto:hello@drumlin.coffee">Contact</a></li>
+            <li><a href="#visit">Instagram</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__legal">
+      <span>© 2026 Drumlin Coffee Roasters · Geneva, New York</span>
+      <span>Roasted Tuesdays. Closed Sundays.</span>
+    </div>
+    <div class="footer__mark" data-fit data-fit-min="80" data-fit-max="460" aria-hidden="true"><span class="line">Drumlin</span></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ── fit display lines to their column, whatever the font metrics turn out to be ── */
+  function fit() {
+    $$('[data-fit]').forEach(function (el) {
+      var box = el.clientWidth;
+      if (!box) return;
+      el.style.fontSize = '100px';
+      var widest = 0;
+      $$('.line', el).forEach(function (l) { widest = Math.max(widest, l.getBoundingClientRect().width); });
+      if (!widest) return;
+      var size = 100 * box / widest * 0.995;
+      size = Math.max(+el.dataset.fitMin || 40, Math.min(+el.dataset.fitMax || 400, size));
+      el.style.fontSize = Math.floor(size * 10) / 10 + 'px';
+    });
+  }
+  fit();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fit);
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', fit);
+  }
+  window.addEventListener('load', fit);
+  window.addEventListener('resize', fit);
+
+  /* ── dates: we roast on Tuesdays, so work everything out from the most recent one ── */
+  var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var today = new Date(); today.setHours(12, 0, 0, 0);
+  var sinceRoast = (today.getDay() + 5) % 7;
+  function shift(n) { var d = new Date(today); d.setDate(d.getDate() + n); return d; }
+  function fmt(d) { return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()]; }
+  var dates = {
+    roast: fmt(shift(-sinceRoast)),
+    next: fmt(shift(7 - sinceRoast)),
+    ship: fmt(sinceRoast === 0 ? shift(1) : shift(8 - sinceRoast))
+  };
+  $$('[data-date]').forEach(function (el) {
+    var v = dates[el.getAttribute('data-date')];
+    if (v) el.textContent = el.hasAttribute('data-caps') ? v.toUpperCase() : v;
+  });
+  if (sinceRoast !== 0) {
+    $('#announce').innerHTML = '<span class="live"></span><b>Roasted ' + dates.roast + '</b>' +
+      '<span>still shipping daily while bags last — next roast ' + dates.next + '</span>';
+  }
+  var weekItems = $$('#week li');
+  weekItems.forEach(function (li) { li.classList.remove('is-today'); });
+  var wi = today.getDay() - 1;
+  if (wi >= 0 && wi <= 4) weekItems[wi].classList.add('is-today');
+
+  /* ── add to bag: the bag fills, the stock goes down ── */
+  var bagCount = 0, totalLeft = 120, TOTAL = 204;
+  var bagEl = $('#bag-count'), totalEl = $('#total-left'), totalBar = $('#total-bar');
+  $$('.coffee').forEach(function (card) {
+    var left = +card.dataset.left, total = +card.dataset.total;
+    var btn = $('.add', card), n = $('.stock__n', card), bar = $('.stock__bar i', card), stock = $('.stock', card);
+    var timer;
+    btn.addEventListener('click', function () {
+      if (left <= 0) return;
+      left--; totalLeft--; bagCount++;
+      n.textContent = left === 0 ? 'Sold out until ' + dates.next
+        : left <= 8 ? 'Last ' + left + ' of ' + total + ' bags'
+        : left + ' of ' + total + ' bags left';
+      stock.classList.toggle('is-low', left <= 8);
+      bar.style.width = (left / total * 100).toFixed(1) + '%';
+      totalEl.textContent = totalLeft;
+      totalBar.style.width = (totalLeft / TOTAL * 100).toFixed(1) + '%';
+      bagEl.textContent = bagCount;
+      bagEl.classList.remove('bump'); void bagEl.offsetWidth; bagEl.classList.add('bump');
+      btn.textContent = 'Added ✓';
+      clearTimeout(timer);
+      if (left === 0) { btn.textContent = 'Sold out'; btn.disabled = true; }
+      else timer = setTimeout(function () { btn.textContent = 'Add to bag'; }, 1300);
+    });
+  });
+
+  /* ── one-shot confirmations for the small forms ── */
+  function confirmOnce(btn) {
+    if (!btn || btn.dataset.done) return;
+    btn.dataset.done = '1';
+    btn.textContent = btn.getAttribute('data-once') + ' ✓';
+  }
+  $$('button[data-once][type="button"]').forEach(function (b) {
+    b.addEventListener('click', function () { confirmOnce(b); });
+  });
+  $$('form').forEach(function (f) {
+    f.addEventListener('submit', function (e) { e.preventDefault(); confirmOnce($('button[data-once]', f)); });
+  });
+
+  /* ── subscription ticket ── */
+  var PLAN = { '250': { price: 19, cups: 16, label: '250 g' }, '500': { price: 36, cups: 33, label: '500 g' }, '1000': { price: 64, cups: 66, label: '1 kg' } };
+  var EVERY = { '1': 'every week', '2': 'every 2 weeks', '4': 'every 4 weeks' };
+  var subForm = $('#sub-form');
+  function money(v) { return '$' + v.toFixed(2); }
+  function updateSub() {
+    var freq = subForm.elements.freq.value, size = subForm.elements.size.value, kind = subForm.elements.kind.value;
+    var plan = PLAN[size], price = plan.price * 0.9;
+    $('#sum-price').textContent = money(price);
+    $('#sum-month').textContent = '$' + Math.round(price * 52 / 12 / +freq);
+    $('#sum-plan').textContent = plan.label + ' · ' + EVERY[freq];
+    $('#sum-kind').textContent = kind;
+    $('#sum-cups').textContent = '≈ ' + plan.cups + ' cups · ' + money(price / plan.cups) + ' a cup';
+  }
+  subForm.addEventListener('change', updateSub);
+  updateSub();
+
+  /* ── roast curve: smooth the logged points, then make it readable on hover ── */
+  var LOG = [[0, 205], [0.5, 140], [1, 100], [1.333, 92], [2, 104], [3, 126], [4, 145], [4.667, 155], [6, 172], [7, 183], [8, 192], [8.833, 198], [9.5, 202], [10.667, 207]];
+  var X0 = 56, XS = 640 / 11, Y0 = 296, YS = 260 / 140;
+  var pts = LOG.map(function (p) { return [X0 + p[0] * XS, Y0 - (p[1] - 80) * YS]; });
+  var f1 = function (v) { return v.toFixed(1); };
+  var d = 'M' + f1(pts[0][0]) + ' ' + f1(pts[0][1]);
+  for (var i = 0; i < pts.length - 1; i++) {
+    var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    d += 'C' + f1(p1[0] + (p2[0] - p0[0]) / 6) + ' ' + f1(p1[1] + (p2[1] - p0[1]) / 6) + ' ' +
+      f1(p2[0] - (p3[0] - p1[0]) / 6) + ' ' + f1(p2[1] - (p3[1] - p1[1]) / 6) + ' ' + f1(p2[0]) + ' ' + f1(p2[1]);
+  }
+  var line = $('#bt'), xEnd = pts[pts.length - 1][0];
+  line.setAttribute('d', d);
+  $('#bt-area').setAttribute('d', d + 'V' + Y0 + 'H' + X0 + 'Z');
+
+  var chart = $('#chart'), svg = $('svg', chart), hit = $('#hit'), hover = $('#hover');
+  var hx = $('#hover-x'), hd = $('#hover-dot'), tip = $('#tip');
+  var tipT = $('b', tip), tipV = $('span', tip), tipP = $('em', tip);
+  var total = line.getTotalLength();
+  function read(e) {
+    var r = svg.getBoundingClientRect();
+    var x = Math.max(X0, Math.min(xEnd, (e.clientX - r.left) * 720 / r.width));
+    var lo = 0, hi = total, pt;
+    for (var k = 0; k < 22; k++) {
+      var mid = (lo + hi) / 2; pt = line.getPointAtLength(mid);
+      if (pt.x < x) lo = mid; else hi = mid;
+    }
+    var t = (pt.x - X0) / XS, temp = 80 + (Y0 - pt.y) / YS;
+    var secs = Math.round(t * 60), m = Math.floor(secs / 60), s = secs % 60;
+    hx.setAttribute('transform', 'translate(' + f1(pt.x) + ' 0)');
+    hd.setAttribute('cx', f1(pt.x)); hd.setAttribute('cy', f1(pt.y));
+    hover.setAttribute('visibility', 'visible');
+    tipT.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    tipV.textContent = Math.round(temp) + ' °C';
+    tipP.textContent = t < 4.667 ? 'Drying' : t < 8.833 ? 'Maillard' : 'Development';
+    tip.style.left = (pt.x / 720 * 100) + '%';
+    tip.style.top = (pt.y / 388 * 100) + '%';
+    tip.classList.toggle('is-flipped', pt.x > 470);
+    tip.hidden = false;
+  }
+  function leave() { hover.setAttribute('visibility', 'hidden'); tip.hidden = true; }
+  hit.addEventListener('pointermove', read);
+  hit.addEventListener('pointerdown', read);
+  hit.addEventListener('pointerleave', leave);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Glōssa — Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&text=%E6%9C%A8%E6%BC%8F%E3%82%8C%E6%97%A5%E6%9C%AC%E8%AA%9E&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sans:'Instrument Sans',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+    --serif:'Fraunces','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+    --jp:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif;
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  *{margin:0}
+  html,body{height:100%}
+  body{
+    background:#09090b;overflow:hidden;color:#fff;
+    font-family:var(--sans);font-size:16px;line-height:1.45;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    -webkit-tap-highlight-color:transparent;
+  }
+  button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer}
+  ul{list-style:none;padding:0}
+
+  /* ───────── stage ───────── */
+  .app{
+    position:absolute;left:50%;top:50%;width:402px;height:874px;margin:-437px 0 0 -201px;
+    overflow:hidden;isolation:isolate;background:rgb(var(--deep));
+    --accent:#e4f08a;--on-accent:#10301f;--deep:8,38,28;
+    transition:background-color .9s ease;
+    user-select:none;-webkit-user-select:none;
+  }
+  .app.framed{border-radius:48px;box-shadow:0 0 0 10px #18181b,0 0 0 11px #2c2c31,0 50px 90px rgba(0,0,0,.55)}
+  .app[data-theme="ja"]{--accent:#e4f08a;--on-accent:#10301f;--deep:8,38,28}
+  .app[data-theme="sv"]{--accent:#f4ecc6;--on-accent:#101a40;--deep:6,11,32}
+  .app[data-theme="de"]{--accent:#ffcba6;--on-accent:#2b163c;--deep:27,19,50}
+  .app[data-theme="es"]{--accent:#ffd68f;--on-accent:#48190a;--deep:58,19,8}
+  .app[data-theme="fr"]{--accent:#ffc8d0;--on-accent:#3f0f20;--deep:38,8,22}
+  .app[data-theme="pt"]{--accent:#b0efe1;--on-accent:#07323a;--deep:4,34,42}
+
+  /* ───────── scenes ───────── */
+  .scenes,.scene,.scrim,.spots{position:absolute;inset:0}
+  .scenes{z-index:0}
+  .scene{opacity:0;transition:opacity 1.3s ease;overflow:hidden}
+  .scene.on{opacity:1}
+  .scene:not(.on) *{animation-play-state:paused !important}
+  .scrim{
+    background:
+      linear-gradient(180deg,rgba(var(--s),var(--st,.5)) 0,rgba(var(--s),0) 42%),
+      linear-gradient(0deg,rgba(var(--s),.94) 0,rgba(var(--s),.8) 20%,rgba(var(--s),0) 46%);
+  }
+  .spot{
+    position:absolute;border-radius:50%;mix-blend-mode:screen;opacity:var(--o);
+    background:radial-gradient(closest-side,rgba(var(--c1),.95) 0,rgba(var(--c2),.72) 46%,rgba(var(--c2),0) 100%);
+    transform:rotate(var(--r));
+    animation:dapple 6s ease-in-out infinite;
+  }
+  @keyframes dapple{
+    0%,100%{transform:translate(0,0) rotate(var(--r)) scale(1);opacity:var(--o)}
+    50%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(var(--sc));opacity:calc(var(--o)*.4)}
+  }
+  .grain{
+    position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.2;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1.7 0 0 0 -.35 1.7 0 0 0 -.35 1.7 0 0 0 -.35 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* komorebi — sunlight through leaves */
+  .scene-ja{--s:6,30,21;--st:.55;background:linear-gradient(180deg,#0a2f21 0%,#114830 32%,#1c6340 52%,#134a30 70%,#082519 100%)}
+  .scene-ja .pool{position:absolute;left:10px;top:310px;width:460px;height:330px;transform:rotate(-20deg);
+    background:radial-gradient(closest-side,rgba(226,243,132,.32),rgba(226,243,132,.11) 55%,rgba(226,243,132,0))}
+  .scene-ja .rays{position:absolute;inset:-12%;mix-blend-mode:screen;
+    background:repeating-linear-gradient(114deg,rgba(240,250,180,0) 0 34px,rgba(240,250,180,.085) 50px 66px,rgba(240,250,180,0) 92px 128px);
+    -webkit-mask-image:radial-gradient(ellipse 58% 40% at 60% 52%,#000 0,transparent 78%);
+            mask-image:radial-gradient(ellipse 58% 40% at 60% 52%,#000 0,transparent 78%);
+    animation:rays 11s ease-in-out infinite alternate}
+  @keyframes rays{from{transform:translateX(-14px);opacity:.7}to{transform:translateX(14px);opacity:1}}
+  .scene-ja .spots{--c1:253,255,220;--c2:226,243,128}
+  .leaves{position:absolute;overflow:visible;will-change:transform;filter:blur(2.4px);animation:sway 8s ease-in-out infinite alternate}
+  .leaves.l1{top:-18px;right:-30px;width:260px;height:340px;transform-origin:100% 0}
+  .leaves.l2{top:-34px;left:-46px;width:220px;height:230px;transform-origin:0 0;filter:blur(5px);animation-duration:10.5s;animation-direction:alternate-reverse}
+  @keyframes sway{from{transform:rotate(-1.8deg)}to{transform:rotate(2.2deg)}}
+
+  /* mångata — the moon's road on water */
+  .scene-sv{--s:5,9,28;--st:.35;background:linear-gradient(180deg,#060b24 0%,#0b1640 30%,#162760 50%,#22397c 53.8%)}
+  .scene-sv .halo{position:absolute;left:66px;top:178px;width:440px;height:440px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(190,205,255,.34),rgba(120,150,240,.13) 46%,rgba(120,150,240,0))}
+  .scene-sv .moon{position:absolute;left:248px;top:360px;width:76px;height:76px;border-radius:50%;
+    background:radial-gradient(circle at 36% 34%,#fffdf0 0,#f6edc8 52%,#dcd0a2 100%);
+    box-shadow:0 0 34px 6px rgba(246,237,200,.42),0 0 110px 34px rgba(170,190,255,.2);
+    animation:moon 7s ease-in-out infinite alternate}
+  @keyframes moon{to{box-shadow:0 0 44px 10px rgba(246,237,200,.5),0 0 130px 44px rgba(170,190,255,.26)}}
+  .scene-sv .stars i{position:absolute;border-radius:50%;background:#fff;opacity:var(--o)}
+  .scene-sv .stars i.tw{animation:twinkle 3.4s ease-in-out infinite}
+  @keyframes twinkle{50%{opacity:calc(var(--o)*.25)}}
+  .scene-sv .sea{position:absolute;left:0;right:0;top:470px;bottom:0;
+    background:linear-gradient(180deg,#1a2d6c 0,#0f1b4b 10%,#0a1235 34%,#050920 100%)}
+  .scene-sv .sea::before{content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(180deg,rgba(190,205,255,.06) 0 1px,transparent 1px 6px);
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,transparent 62%);mask-image:linear-gradient(180deg,transparent 0,#000 12%,transparent 62%)}
+  .scene-sv .sea::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;
+    background:linear-gradient(90deg,rgba(200,214,255,0),rgba(214,224,255,.5) 62%,rgba(255,246,214,.95) 71%,rgba(214,224,255,.5) 80%,rgba(200,214,255,0));filter:blur(.6px)}
+  .scene-sv .road{position:absolute;left:186px;top:470px;width:200px;height:300px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 40%,transparent 92%);mask-image:linear-gradient(180deg,#000 0,#000 40%,transparent 92%)}
+  .scene-sv .road::before{content:"";position:absolute;inset:0;
+    background:conic-gradient(from 165deg at 50% -7%,rgba(246,236,190,0) 0deg,rgba(246,236,190,.3) 9deg,rgba(246,236,190,.3) 21deg,rgba(246,236,190,0) 30deg)}
+  .scene-sv .road i{position:absolute;border-radius:50%;background:#fbf3cf;opacity:var(--o);
+    animation:shimmer 2.6s ease-in-out infinite}
+  @keyframes shimmer{
+    0%,100%{transform:translateX(0) scaleX(1);opacity:var(--o)}
+    50%{transform:translateX(var(--dx)) scaleX(.55);opacity:calc(var(--o)*.35)}
+  }
+
+  /* Fernweh — an ache for far-off places */
+  .scene-de{--s:24,17,46;--st:.42;background:linear-gradient(180deg,#141136 0%,#291b54 17%,#532868 31%,#95446f 41%,#de7867 48.5%,#ffb78a 52.5%,#ffd9a8 56%)}
+  .scene-de .sun{position:absolute;left:236px;top:418px;width:68px;height:68px;border-radius:50%;
+    background:radial-gradient(circle,#fffaf0 0,#fff0cb 60%,#ffe2ad 100%);
+    box-shadow:0 0 50px 16px rgba(255,226,170,.7),0 0 160px 70px rgba(255,170,120,.42);
+    animation:sun 8s ease-in-out infinite alternate}
+  @keyframes sun{to{box-shadow:0 0 62px 22px rgba(255,226,170,.78),0 0 190px 88px rgba(255,170,120,.5)}}
+  .scene-de .ridges{position:absolute;inset:0;width:100%;height:100%}
+  .scene-de .mist{position:absolute;left:-60px;width:520px;border-radius:50%;filter:blur(14px);
+    background:radial-gradient(closest-side,rgba(255,214,190,.5),rgba(255,214,190,0));
+    animation:mist 22s ease-in-out infinite alternate}
+  .scene-de .mist.m1{top:500px;height:54px}
+  .scene-de .mist.m2{top:574px;height:60px;opacity:.55;animation-direction:alternate-reverse;animation-duration:28s}
+  @keyframes mist{from{transform:translateX(-34px)}to{transform:translateX(34px)}}
+  .scene-de .birds{position:absolute;left:96px;top:398px;width:70px;height:34px;overflow:visible;
+    animation:birds 34s linear infinite alternate}
+  @keyframes birds{to{transform:translate(64px,-22px)}}
+
+  /* saudade — a light far out at sea */
+  .scene-pt{--s:4,30,38;--st:.4;background:linear-gradient(180deg,#04212a 0%,#083d49 28%,#16686f 45%,#58a9a2 52%,#a9e3d2 53.9%,#0f5a64 54%,#083c47 68%,#04222b 100%)}
+  .scene-pt .glow{position:absolute;left:-60px;top:372px;width:520px;height:200px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(190,244,226,.38),rgba(190,244,226,0))}
+  .scene-pt .waves{position:absolute;left:0;right:0;top:474px;height:260px;
+    background:repeating-linear-gradient(180deg,rgba(200,246,232,.09) 0 1px,transparent 1px 7px);
+    -webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
+  .scene-pt .ship{position:absolute;left:284px;top:466px;width:5px;height:5px;border-radius:50%;background:#fff6d8;
+    box-shadow:0 0 10px 3px rgba(255,240,200,.9),0 0 34px 12px rgba(255,226,170,.45);animation:twinkle 4.6s ease-in-out infinite;--o:1}
+  .scene-pt .ship::after{content:"";position:absolute;left:1px;top:8px;width:3px;height:64px;border-radius:2px;
+    background:linear-gradient(180deg,rgba(255,240,200,.75),rgba(255,240,200,0))}
+
+  /* sobremesa — lamplight over a table */
+  .scene-es{--s:52,17,7;--st:.45;background:radial-gradient(120% 56% at 50% 52%,#d2702b 0%,#a5461b 36%,#6a2610 68%,#3a1307 100%)}
+  .scene-es .lamp{position:absolute;left:21px;top:300px;width:360px;height:360px;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(255,224,160,.8),rgba(255,176,90,.3) 52%,rgba(255,176,90,0));
+    animation:lamp 6s ease-in-out infinite alternate}
+  @keyframes lamp{to{transform:scale(1.06);opacity:.86}}
+  .scene-es .spots{--c1:255,244,214;--c2:255,196,110}
+
+  /* flâner — street lights at dusk */
+  .scene-fr{--s:34,7,20;--st:.45;background:linear-gradient(180deg,#210718 0%,#47102e 32%,#7b2848 52%,#4a1230 70%,#220716 100%)}
+  .scene-fr .spots{--c1:255,226,214;--c2:255,150,170}
+  .scene-fr .spot:nth-child(3n){--c1:255,240,210;--c2:255,190,110}
+
+  /* frosted veil for the form steps */
+  .veil{position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;
+    background:rgba(var(--deep),.66);
+    -webkit-backdrop-filter:blur(30px) saturate(1.25);backdrop-filter:blur(30px) saturate(1.25);
+    transition:opacity .6s ease,background-color .9s ease}
+  .app[data-step="lang"] .veil,.app[data-step="pace"] .veil{opacity:1}
+
+  /* ───────── device chrome ───────── */
+  .statusbar{position:absolute;inset:0 0 auto 0;height:54px;z-index:5;pointer-events:none}
+  .statusbar .time{position:absolute;left:0;width:138px;top:18px;text-align:center;font-weight:600;font-size:17px;line-height:22px;letter-spacing:-.01em}
+  .statusbar .island{position:absolute;left:138px;top:11px;width:126px;height:37px;border-radius:19px;background:#000}
+  .statusbar .sys{position:absolute;right:0;width:138px;top:18px;height:22px;display:flex;align-items:center;justify-content:center;gap:7px}
+  .statusbar svg{display:block}
+  .home{position:absolute;left:134px;bottom:8px;width:134px;height:5px;border-radius:3px;background:rgba(255,255,255,.9);z-index:5;pointer-events:none}
+
+  /* ───────── screens ───────── */
+  .screen{position:absolute;inset:0;z-index:2;opacity:0;visibility:hidden;transform:translateX(26px);
+    transition:opacity .26s ease,transform .5s var(--ease),visibility 0s linear .5s}
+  .screen.is-before{transform:translateX(-26px)}
+  .screen.is-active{opacity:1;visibility:visible;transform:none;
+    transition:opacity .45s ease .14s,transform .62s var(--ease) .1s,visibility 0s}
+
+  .nav{position:absolute;top:62px;left:24px;right:24px;height:40px;display:flex;align-items:center;justify-content:space-between}
+  .wordmark{font:500 25px/1 var(--serif);font-variation-settings:'opsz' 36,'SOFT' 100,'WONK' 1;letter-spacing:-.02em}
+  .ghost{height:38px;padding:0 17px;border-radius:19px;font-weight:600;font-size:15px;
+    background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background-color .2s}
+  .ghost:hover{background:rgba(255,255,255,.22)}
+  .ghost:active{background:rgba(255,255,255,.28)}
+
+  /* dictionary entry */
+  .entries{position:absolute;top:134px;left:24px;right:24px}
+  .entry{position:absolute;top:0;left:0;right:0;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s}
+  .entry.on{opacity:1;visibility:visible;transition:opacity .3s ease,visibility 0s}
+  .entry.on.anim>*{animation:rise .8s var(--ease) backwards}
+  .entry.on.anim>:nth-child(2){animation-delay:.07s}
+  .entry.on.anim>:nth-child(3){animation-delay:.16s}
+  .entry.on.anim>:nth-child(4){animation-delay:.24s}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+  .entry-meta{display:flex;align-items:center;gap:9px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+  .entry-meta i{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.7}
+  .entry-word{margin-top:10px;margin-left:-3px;height:78px;font:400 76px/78px var(--serif);font-variation-settings:'opsz' 144,'SOFT' 100,'WONK' 1;
+    letter-spacing:-.04em;text-shadow:0 2px 30px rgba(0,0,0,.28);white-space:nowrap}
+  .entry-pron{margin-top:10px;display:flex;align-items:center;gap:11px;height:36px}
+  .entry-script{font:500 21px/1 var(--jp);letter-spacing:.04em}
+  .entry-say{font:italic 400 20px/1 var(--serif);font-variation-settings:'opsz' 24,'SOFT' 100,'WONK' 0;color:rgba(255,255,255,.88);letter-spacing:.005em}
+  .say{position:relative;flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(255,255,255,.15);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background-color .2s,transform .2s var(--ease)}
+  .say::before{content:"";position:absolute;inset:-6px}
+  .say::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 1.5px var(--accent);opacity:0}
+  .say:hover{background:rgba(255,255,255,.24)}
+  .say:active{transform:scale(.92)}
+  .say.ping::after{animation:ping .9s ease-out}
+  @keyframes ping{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.9)}}
+  .entry-def{margin-top:14px;max-width:336px;font:350 22.5px/1.28 var(--serif);font-variation-settings:'opsz' 30,'SOFT' 100,'WONK' 0;
+    letter-spacing:-.008em;text-shadow:0 1px 18px rgba(0,0,0,.3);text-wrap:balance}
+
+  /* pitch */
+  .pitch{position:absolute;left:24px;right:24px;bottom:46px}
+  .pager{display:flex;margin:0 0 6px -4px}
+  .pager button{padding:14px 4px;border-radius:6px}
+  .pager .bar{display:block;width:30px;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+  .pager .bar i{display:block;width:100%;height:100%;background:#fff;border-radius:2px;transform:scaleX(0);transform-origin:0 50%}
+  .pager .done .bar i{transform:scaleX(1)}
+  .pager .on .bar i{animation:fill 6.5s linear forwards}
+  .app:not([data-step="welcome"]) .pager .on .bar i{animation-play-state:paused}
+  @keyframes fill{to{transform:scaleX(1)}}
+  .pitch h1,.pitch h2{font:400 37px/1.05 var(--serif);font-variation-settings:'opsz' 72,'SOFT' 100,'WONK' 0;letter-spacing:-.025em}
+  .pitch .lede{margin-top:12px;max-width:312px;font-size:16.5px;line-height:1.42;color:rgba(255,255,255,.82)}
+  .pitch .cta{margin-top:24px}
+
+  .cta{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:58px;border-radius:29px;
+    background:var(--accent);color:var(--on-accent);font-weight:600;font-size:17px;letter-spacing:-.005em;
+    box-shadow:0 10px 30px -10px rgba(0,0,0,.5);
+    transition:background-color .8s ease,color .8s ease,transform .25s var(--ease),opacity .3s ease,filter .2s}
+  .cta svg{flex:none;transition:transform .3s var(--ease)}
+  .cta:hover:not(:disabled){filter:brightness(1.05)}
+  .cta:hover:not(:disabled) svg.arrow{transform:translateX(3px)}
+  .cta:active:not(:disabled){transform:scale(.975)}
+  .cta:disabled{opacity:.38;cursor:default;box-shadow:none}
+
+  :focus{outline:none}
+  :focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+  /* ───────── form steps ───────── */
+  .stepbar{position:absolute;top:62px;left:24px;right:24px;height:40px;display:flex;align-items:center;justify-content:space-between}
+  .icon-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;position:relative;
+    background:rgba(255,255,255,.13);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);transition:background-color .2s,transform .2s var(--ease)}
+  .icon-btn::before{content:"";position:absolute;inset:-4px}
+  .icon-btn:hover{background:rgba(255,255,255,.22)}
+  .icon-btn:active{transform:scale(.93)}
+  .steps{display:flex;gap:6px}
+  .steps i{width:34px;height:4px;border-radius:2px;background:rgba(255,255,255,.24);transition:background-color .8s}
+  .steps i.on{background:var(--accent)}
+  .stepbar .count{width:40px}
+  .step-main{position:absolute;top:126px;left:24px;right:24px}
+  .step-head h2{font:400 35px/1.07 var(--serif);font-variation-settings:'opsz' 72,'SOFT' 100,'WONK' 0;letter-spacing:-.025em;text-wrap:balance}
+  .step-head p{margin-top:10px;font-size:16px;line-height:1.42;color:rgba(255,255,255,.78)}
+  .step-foot{position:absolute;left:24px;right:24px;bottom:46px}
+  .hint{margin-bottom:14px;text-align:center;font-size:14px;color:rgba(255,255,255,.66)}
+
+  /* language list */
+  .lang-list{margin-top:26px;display:grid;gap:8px}
+  .lang-row{position:relative;display:flex;align-items:center;gap:12px;height:64px;padding:0 16px 0 13px;border-radius:20px;cursor:pointer;
+    background:rgba(255,255,255,.085);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);
+    transition:background-color .45s ease,color .45s ease,box-shadow .45s ease,transform .25s var(--ease)}
+  .lang-row:hover{background:rgba(255,255,255,.14)}
+  .lang-row:active{transform:scale(.985)}
+  .lang-row input{position:absolute;opacity:0;pointer-events:none}
+  .lang-row:has(input:focus-visible){outline:2px solid #fff;outline-offset:2px}
+  .swatch{flex:none;width:38px;height:38px;border-radius:50%;
+    background:radial-gradient(circle at 66% 36%,var(--sw2) 0 15%,transparent 17%),linear-gradient(170deg,var(--sw1) 20%,var(--sw0) 100%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+  .lang-name{flex:1;min-width:0;display:flex;flex-direction:column;font-weight:600;font-size:17px;line-height:21px;letter-spacing:-.01em}
+  .lang-name small{font-weight:500;font-size:13px;line-height:17px;letter-spacing:0;color:rgba(255,255,255,.62);transition:color .45s}
+  .lang-name small[lang="ja"]{font-family:var(--jp);letter-spacing:.04em}
+  .lang-word{font:italic 400 19px/1 var(--serif);font-variation-settings:'opsz' 24,'SOFT' 100,'WONK' 0;color:rgba(255,255,255,.86);transition:color .45s}
+  .radio{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.42);transition:background-color .3s,box-shadow .3s}
+  .radio svg{opacity:0;transform:scale(.5);transition:opacity .2s,transform .35s var(--ease)}
+  .lang-row.sel{background:var(--accent);color:var(--on-accent);box-shadow:0 12px 28px -14px rgba(0,0,0,.6)}
+  .lang-row.sel small,.lang-row.sel .lang-word{color:var(--on-accent)}
+  .lang-row.sel small{opacity:.72}
+  .lang-row.sel .radio{background:var(--on-accent);box-shadow:none;color:var(--accent)}
+  .lang-row.sel .radio svg{opacity:1;transform:none}
+
+  /* pace */
+  .pace{margin-top:20px}
+  .pace-tag{display:inline-block;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);transition:color .8s}
+  .pace-read{display:flex;align-items:flex-end;gap:14px;margin-top:2px;height:124px}
+  .pace-num{font:350 136px/.92 var(--serif);font-variation-settings:'opsz' 144,'SOFT' 100,'WONK' 0;letter-spacing:-.05em;font-variant-numeric:lining-nums;margin-left:-5px}
+  .pace-num.pop{animation:pop .45s var(--ease)}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+  .pace-unit{padding-bottom:9px;font:italic 400 25px/1.08 var(--serif);font-variation-settings:'opsz' 36,'SOFT' 100,'WONK' 0;color:rgba(255,255,255,.9)}
+  .seg{margin-top:20px;display:flex;padding:4px;border-radius:28px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+  .seg button{flex:1;height:48px;border-radius:24px;font-weight:600;font-size:16px;color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums;
+    transition:background-color .3s ease,color .3s ease,transform .2s var(--ease)}
+  .seg button:hover{color:#fff}
+  .seg button:active{transform:scale(.96)}
+  .seg button[aria-checked="true"]{background:var(--accent);color:var(--on-accent);box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
+  .tiles{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .tile{padding:14px 16px 15px;border-radius:20px;background:rgba(255,255,255,.085);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13)}
+  .tile b{display:block;font:400 34px/1 var(--serif);font-variation-settings:'opsz' 48,'SOFT' 100,'WONK' 0;letter-spacing:-.03em;font-variant-numeric:lining-nums}
+  .tile span{display:block;margin-top:6px;font-size:14px;line-height:18px;color:rgba(255,255,255,.72)}
+  .remind{margin-top:8px;display:flex;align-items:center;justify-content:space-between;height:66px;padding:0 14px 0 16px;border-radius:20px;cursor:pointer;
+    background:rgba(255,255,255,.085);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13)}
+  .remind b{display:block;font-weight:600;font-size:16px;line-height:20px}
+  .remind small{display:block;font-size:14px;line-height:18px;color:rgba(255,255,255,.68)}
+  .switch{appearance:none;-webkit-appearance:none;flex:none;position:relative;width:52px;height:32px;border-radius:16px;margin:0;cursor:pointer;
+    background:rgba(255,255,255,.24);transition:background-color .3s ease}
+  .switch::before{content:"";position:absolute;left:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#fff;
+    box-shadow:0 2px 6px rgba(0,0,0,.3);transition:transform .35s var(--ease),background-color .3s}
+  .switch:checked{background:var(--accent)}
+  .switch:checked::before{transform:translateX(20px);background:var(--on-accent)}
+
+  /* ready */
+  .eyebrow{height:32px;padding:0 13px;border-radius:16px;display:inline-flex;align-items:center;gap:7px;
+    font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);
+    background:rgba(var(--deep),.42);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .summary{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+  .summary li{height:32px;padding:0 13px;border-radius:16px;display:flex;align-items:center;font-size:14px;font-weight:500;
+    background:rgba(255,255,255,.13);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+  .cta .spin{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(1turn)}}
+
+  @media (prefers-reduced-motion:reduce){
+    .scene *,.entry.on.anim>*,.pace-num.pop{animation:none !important}
+    .pager .on .bar i{animation:none;transform:scaleX(1)}
+    .screen,.screen.is-active{transition-duration:.01s;transition-delay:0s;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<main class="app" id="app" data-theme="ja" data-step="welcome">
+
+  <!-- living backdrops: one per language -->
+  <div class="scenes" aria-hidden="true">
+    <div class="scene scene-ja on" data-scene="ja">
+      <div class="pool"></div>
+      <div class="rays"></div>
+      <div class="spots" id="spotsJa"></div>
+      <svg class="leaves l1" viewBox="0 0 260 340" id="leaves1"></svg>
+      <svg class="leaves l2" viewBox="0 0 220 230" id="leaves2"></svg>
+      <div class="scrim"></div>
+    </div>
+
+    <div class="scene scene-sv" data-scene="sv">
+      <div class="halo"></div>
+      <div class="stars" id="stars"></div>
+      <div class="moon"></div>
+      <div class="sea"></div>
+      <div class="road" id="road"></div>
+      <div class="scrim"></div>
+    </div>
+
+    <div class="scene scene-de" data-scene="de">
+      <div class="sun"></div>
+      <svg class="ridges" viewBox="0 0 402 874" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="fw1" gradientUnits="userSpaceOnUse" x1="0" y1="446" x2="0" y2="540"><stop offset="0" stop-color="#d98572"/><stop offset="1" stop-color="#f0a685"/></linearGradient>
+          <linearGradient id="fw2" gradientUnits="userSpaceOnUse" x1="0" y1="498" x2="0" y2="590"><stop offset="0" stop-color="#ae5c78"/><stop offset="1" stop-color="#d18580"/></linearGradient>
+          <linearGradient id="fw3" gradientUnits="userSpaceOnUse" x1="0" y1="548" x2="0" y2="660"><stop offset="0" stop-color="#743d70"/><stop offset="1" stop-color="#9c5c80"/></linearGradient>
+          <linearGradient id="fw4" gradientUnits="userSpaceOnUse" x1="0" y1="604" x2="0" y2="720"><stop offset="0" stop-color="#472a5b"/><stop offset="1" stop-color="#5f3a6c"/></linearGradient>
+          <linearGradient id="fw5" gradientUnits="userSpaceOnUse" x1="0" y1="668" x2="0" y2="874"><stop offset="0" stop-color="#271b44"/><stop offset="1" stop-color="#181230"/></linearGradient>
+        </defs>
+        <path fill="url(#fw1)" d="M0 500C30 488 50 470 78 476S120 452 150 462 196 486 226 474 270 444 300 456 360 484 402 470V874H0Z"/>
+        <path fill="url(#fw2)" d="M0 540C40 520 70 512 104 524S150 500 190 512 250 548 290 528 350 498 402 516V874H0Z"/>
+        <path fill="url(#fw3)" d="M0 574C36 580 64 552 100 560S160 598 204 580 262 548 310 566 372 596 402 580V874H0Z"/>
+        <path fill="url(#fw4)" d="M0 640C50 616 90 606 136 622S210 660 262 640 340 600 402 624V874H0Z"/>
+        <path fill="url(#fw5)" d="M0 700C60 690 110 664 170 680S270 724 330 704 380 690 402 696V874H0Z"/>
+      </svg>
+      <div class="mist m1"></div>
+      <div class="mist m2"></div>
+      <svg class="birds" viewBox="0 0 70 34" fill="none" stroke="#2a1946" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".8">
+        <path d="M2 18q5-6 9-1 4-6 9-1"/><path d="M30 8q4-5 7-1 3-5 7-1"/><path d="M46 26q3.500-4 6-1 2.500-4 6-1"/>
+      </svg>
+      <div class="scrim"></div>
+    </div>
+
+    <div class="scene scene-es" data-scene="es">
+      <div class="lamp"></div>
+      <div class="spots" id="spotsEs"></div>
+      <div class="scrim"></div>
+    </div>
+
+    <div class="scene scene-fr" data-scene="fr">
+      <div class="spots" id="spotsFr"></div>
+      <div class="scrim"></div>
+    </div>
+
+    <div class="scene scene-pt" data-scene="pt">
+      <div class="glow"></div>
+      <div class="waves"></div>
+      <div class="ship"></div>
+      <div class="scrim"></div>
+    </div>
+
+    <div class="grain"></div>
+  </div>
+  <div class="veil" aria-hidden="true"></div>
+
+  <!-- status bar -->
+  <div class="statusbar" aria-hidden="true">
+    <span class="time">9:41</span>
+    <span class="island"></span>
+    <span class="sys">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect y="8" width="3" height="4" rx="1"/><rect x="5" y="5.500" width="3" height="6.500" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" width="3" height="12" rx="1"/></svg>
+      <svg width="17" height="12" viewBox="0 0 18 13" fill="none" stroke="#fff" stroke-width="1.900" stroke-linecap="round"><path d="M1.500 4.600a10.600 10.600 0 0 1 15 0"/><path d="M4.300 7.600a6.600 6.600 0 0 1 9.400 0"/><circle cx="9" cy="10.800" r="1.300" fill="#fff" stroke="none"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.800" fill="none" stroke="#fff" stroke-opacity=".45"/><rect x="2" y="2" width="20" height="9" rx="2.400" fill="#fff"/><path d="M25 4.500v4c.9-.3 1.500-1 1.500-2s-.6-1.700-1.500-2Z" fill="#fff" fill-opacity=".5"/></svg>
+    </span>
+  </div>
+
+  <!-- 1 · welcome -->
+  <section class="screen is-active" data-screen="welcome" aria-label="Welcome">
+    <header class="nav">
+      <span class="wordmark" role="img" aria-label="Glossa">glōssa</span>
+      <button class="ghost" type="button">Log in</button>
+    </header>
+
+    <div class="entries" id="welcomeEntries"></div>
+
+    <div class="pitch">
+      <div class="pager" id="pager" role="group" aria-label="Featured words"></div>
+      <h1>Some words<br>don’t translate.</h1>
+      <p class="lede">Learn a language through the words only it can say.</p>
+      <button class="cta" type="button" data-go="lang">
+        <span>Choose your language</span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- 2 · language -->
+  <section class="screen" data-screen="lang" aria-label="Choose a language">
+    <header class="stepbar">
+      <button class="icon-btn" type="button" data-go="welcome" aria-label="Back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.500 4.500 7 10l5.500 5.500"/></svg>
+      </button>
+      <div class="steps" role="img" aria-label="Step 1 of 2"><i class="on"></i><i></i></div>
+      <span class="count" aria-hidden="true"></span>
+    </header>
+    <div class="step-main">
+      <div class="step-head">
+        <h2>Which language is calling you?</h2>
+        <p>Each opens with a word English lacks.</p>
+      </div>
+      <div class="lang-list" id="langList" role="radiogroup" aria-label="Language"></div>
+    </div>
+    <footer class="step-foot">
+      <p class="hint">You can add more languages later.</p>
+      <button class="cta" type="button" id="langNext" data-go="pace" disabled>
+        <span>Continue</span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+      </button>
+    </footer>
+  </section>
+
+  <!-- 3 · pace -->
+  <section class="screen" data-screen="pace" aria-label="Choose a daily pace">
+    <header class="stepbar">
+      <button class="icon-btn" type="button" data-go="lang" aria-label="Back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.500 4.500 7 10l5.500 5.500"/></svg>
+      </button>
+      <div class="steps" role="img" aria-label="Step 2 of 2"><i class="on"></i><i class="on"></i></div>
+      <span class="count" aria-hidden="true"></span>
+    </header>
+    <div class="step-main">
+    <div class="step-head">
+      <h2>How much time can you give it?</h2>
+      <p>A little every day beats a lot now and then.</p>
+    </div>
+    <div class="pace">
+      <span class="pace-tag" id="paceTag">Steady</span>
+      <div class="pace-read" aria-live="polite">
+        <span class="pace-num" id="paceNum">10</span>
+        <span class="pace-unit">minutes<br>a day</span>
+      </div>
+      <div class="seg" id="seg" role="radiogroup" aria-label="Minutes a day">
+        <button type="button" role="radio" aria-checked="false" data-min="5">5</button>
+        <button type="button" role="radio" aria-checked="true" data-min="10">10</button>
+        <button type="button" role="radio" aria-checked="false" data-min="15">15</button>
+        <button type="button" role="radio" aria-checked="false" data-min="20">20</button>
+      </div>
+      <div class="tiles">
+        <div class="tile"><b id="perDay">≈ 4</b><span>new words a day</span></div>
+        <div class="tile"><b id="perMonth">120</b><span>words by <span id="byDate">next month</span></span></div>
+      </div>
+      <label class="remind">
+        <span><b>Daily reminder</b><small id="remindSub">8:00 PM, one quiet nudge</small></span>
+        <input class="switch" id="remind" type="checkbox" role="switch" checked aria-label="Daily reminder at 8:00 PM">
+      </label>
+    </div>
+    </div>
+    <footer class="step-foot">
+      <p class="hint">You can change this anytime.</p>
+      <button class="cta" type="button" data-go="ready">
+        <span>Continue</span>
+        <svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
+      </button>
+    </footer>
+  </section>
+
+  <!-- 4 · ready -->
+  <section class="screen" data-screen="ready" aria-label="Ready">
+    <header class="nav">
+      <button class="icon-btn" type="button" data-go="pace" aria-label="Back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.500 4.500 7 10l5.500 5.500"/></svg>
+      </button>
+      <span class="eyebrow">Your first word</span>
+    </header>
+    <div class="entries" id="readyEntry"></div>
+    <div class="pitch">
+      <h2>Your first word<br>is waiting.</h2>
+      <ul class="summary" id="summary"></ul>
+      <button class="cta" type="button" id="begin"><span>Begin</span></button>
+    </div>
+  </section>
+
+  <div class="home" aria-hidden="true"></div>
+</main>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const app = $('#app');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── content ── */
+  const L = {
+    fr: { name:'French',     native:'Français',  code:'fr', word:'flâner',    pos:'verb', pron:'flah·NAY',        def:'To wander a city with no aim but to see it.',              voice:'fr', sw:['#8a2c50','#2a0a1c','#ffc8d0'] },
+    de: { name:'German',     native:'Deutsch',   code:'de', word:'Fernweh',   pos:'noun', pron:'FEHRN·vay',       def:'An ache for far-off places you have never been.',          voice:'de', sw:['#b9567a','#2a1c55','#ffd9a8'] },
+    ja: { name:'Japanese',   native:'日本語',     code:'ja', word:'komorebi',  pos:'noun', pron:'ko·mo·reh·bee',   def:'Sunlight filtering through the leaves of trees.',          voice:'ja', script:'木漏れ日', sw:['#1f6b45','#0a2f21','#e4f08a'] },
+    pt: { name:'Portuguese', native:'Português', code:'pt', word:'saudade',   pos:'noun', pron:'sow·DAH·jee',     def:'A tender longing for someone or something now gone.',      voice:'pt', sw:['#1b7a80','#04222b','#b0efe1'] },
+    es: { name:'Spanish',    native:'Español',   code:'es', word:'sobremesa', pos:'noun', pron:'so·breh·MEH·sa',  def:'The unhurried talk at the table once the meal is over.',   voice:'es', sw:['#cf6c2a','#4a180a','#ffe2a8'] },
+    sv: { name:'Swedish',    native:'Svenska',   code:'sv', word:'mångata',   pos:'noun', pron:'MOHN·gah·ta',     def:'The road of light the moon lays across the water.',        voice:'sv', sw:['#1c2f70','#060b24','#f4ecc6'] }
+  };
+  const SLIDES = ['ja', 'sv', 'de'];
+  const PACE = { 5:['Light', 2], 10:['Steady', 4], 15:['Serious', 6], 20:['All in', 8] };
+  const STEPS = ['welcome', 'lang', 'pace', 'ready'];
+  const state = { step:'welcome', slide:0, lang:null, pace:10, remind:true };
+
+  const SPEAKER = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.800 7v4h2.700L9 14V4L5.500 7H2.800Z" fill="currentColor" stroke-width="1.2"/><path d="M11.800 6.600a3.400 3.400 0 0 1 0 4.800M13.900 4.500a6.300 6.300 0 0 1 0 9"/></svg>';
+  const CHECK = '<svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.500 10.500 8 14l7.500-8"/></svg>';
+
+  const entryHTML = id => {
+    const l = L[id];
+    return `<article class="entry" data-lang="${id}">
+      <p class="entry-meta"><span>${l.name}</span><i></i><span>${l.pos}</span></p>
+      <p class="entry-word" lang="${l.code}"><span>${l.word}</span></p>
+      <div class="entry-pron">${l.script ? `<span class="entry-script" lang="${l.code}">${l.script}</span>` : ''}<span class="entry-say">${l.pron}</span><button class="say" type="button" data-say="${id}" aria-label="Hear ${l.word} pronounced">${SPEAKER}</button></div>
+      <p class="entry-def">${l.def}</p>
+    </article>`;
+  };
+
+  // keep the longest headwords inside the 354px column
+  function fitWords() {
+    $$('.entry-word').forEach(p => {
+      p.style.fontSize = '';
+      const w = p.firstElementChild.offsetWidth;
+      if (w > 350) p.style.fontSize = Math.floor(76 * 350 / w) + 'px';
+    });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWords);
+
+  /* ── scenery (seeded, so it never reshuffles) ── */
+  const rng = seed => () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const f = n => n.toFixed(1);
+
+  function spots(el, n, seed, place) {
+    const r = rng(seed); let h = '';
+    for (let i = 0; i < n; i++) {
+      const p = place(r, i);
+      h += `<i class="spot" style="left:${f(p.x)}px;top:${f(p.y)}px;width:${f(p.w)}px;height:${f(p.h)}px;--o:${p.o.toFixed(2)};--r:${f(r() * 180)}deg;--dx:${f((r() - .5) * 16)}px;--dy:${f((r() - .5) * 10)}px;--sc:${(.72 + r() * .5).toFixed(2)};animation-duration:${f(3.6 + r() * 5)}s;animation-delay:-${f(r() * 8)}s"></i>`;
+    }
+    el.innerHTML = h;
+  }
+  // komorebi: dapples gather in a slanting shaft through the middle of the screen
+  spots($('#spotsJa'), 44, 11, r => {
+    const g = (r() + r() + r()) / 3, y = 478 + (g - .5) * 640, w = 18 + r() * r() * 84;
+    const zone = y < 384 ? .2 : y > 610 ? .34 : 1;      // stay dim behind the text
+    return { x: -36 + r() * 440 + (470 - y) * .22, y, w, h: w * (.72 + r() * .28), o: (.5 + r() * .5) * zone };
+  });
+  spots($('#spotsEs'), 12, 5, r => { const w = 8 + r() * 26; return { x: 40 + r() * 320, y: 400 + r() * 190, w, h: w, o: .35 + r() * .5 }; });
+  spots($('#spotsFr'), 20, 23, r => { const w = 26 + r() * 74; return { x: -30 + r() * 420, y: 372 + r() * 220, w, h: w, o: .22 + r() * .42 }; });
+
+  function leaves(svg, seed, P0, P1, P2, n, size) {
+    const r = rng(seed); let h = '';
+    for (let i = 0; i < n; i++) {
+      const t = (i + .6) / n, u = 1 - t;
+      const x = u * u * P0[0] + 2 * u * t * P1[0] + t * t * P2[0], y = u * u * P0[1] + 2 * u * t * P1[1] + t * t * P2[1];
+      const tx = 2 * u * (P1[0] - P0[0]) + 2 * t * (P2[0] - P1[0]), ty = 2 * u * (P1[1] - P0[1]) + 2 * t * (P2[1] - P1[1]);
+      const a = Math.atan2(ty, tx) * 180 / Math.PI + (i % 2 ? 1 : -1) * (34 + r() * 34);
+      const s = size * (.75 + r() * .7) * (1 - .25 * t);
+      const lit = r() > .7;
+      h += `<path d="M0 0C12-16 40-18 58 0 40 18 12 16 0 0Z" transform="translate(${f(x)} ${f(y)}) rotate(${f(a)}) scale(${s.toFixed(2)})" fill="${lit ? '#2f7a45' : '#041810'}" opacity="${lit ? .62 : .9}"/>`;
+    }
+    svg.innerHTML = `<g><path d="M${P0} Q${P1} ${P2}" stroke="#041810" stroke-width="3" fill="none"/>${h}</g>`;
+  }
+  leaves($('#leaves1'), 3, [268, -6], [196, 58], [128, 164], 13, 1.05);
+  leaves($('#leaves2'), 9, [-6, 16], [70, 44], [122, 116], 7, 1.1);
+
+  { // mångata: stars, and glints that widen as the road comes toward you
+    const r = rng(42); let h = '';
+    for (let i = 0; i < 58; i++) {
+      const x = r() * 402, y = 58 + r() * 396, s = .9 + r() * r() * 1.7;
+      if (Math.hypot(x - 286, y - 398) < 74) continue;
+      h += `<i class="${r() > .62 ? 'tw' : ''}" style="left:${f(x)}px;top:${f(y)}px;width:${f(s)}px;height:${f(s)}px;--o:${(.28 + r() * .62).toFixed(2)};animation-delay:-${f(r() * 4)}s"></i>`;
+    }
+    $('#stars').innerHTML = h;
+    const q = rng(7); h = '';
+    for (let i = 0; i < 27; i++) {
+      const y = 3 + Math.pow(i, 1.42) * 2.3, w = 8 + i * 3.6 + q() * 10, t = 1.7 + i * .15;
+      const x = 100 - w / 2 + (q() - .5) * (3 + i * 1.7);
+      h += `<i style="left:${f(x)}px;top:${f(y)}px;width:${f(w)}px;height:${f(t)}px;--o:${Math.max(.3, .98 - i * .024).toFixed(2)};--dx:${f((q() - .5) * (6 + i * .9))}px;animation-duration:${f(1.7 + q() * 2.4)}s;animation-delay:-${f(q() * 4)}s"></i>`;
+    }
+    $('#road').innerHTML = h;
+  }
+
+  /* ── build UI ── */
+  const welcome = $('#welcomeEntries'), pager = $('#pager');
+  welcome.innerHTML = SLIDES.map(entryHTML).join('');
+  pager.innerHTML = SLIDES.map((id, i) => `<button type="button" data-slide="${i}" aria-label="${L[id].word}, ${L[id].name}"><span class="bar"><i></i></span></button>`).join('');
+  const entries = $$('.entry', welcome), segs = $$('button', pager);
+
+  $('#langList').innerHTML = Object.keys(L).map(id => {
+    const l = L[id];
+    return `<label class="lang-row" style="--sw1:${l.sw[0]};--sw0:${l.sw[1]};--sw2:${l.sw[2]}">
+      <input type="radio" name="lang" value="${id}">
+      <span class="swatch"></span>
+      <span class="lang-name">${l.name}<small lang="${l.code}">${l.native}</small></span>
+      <span class="lang-word" lang="${l.code}">${l.word}</span>
+      <span class="radio">${CHECK}</span>
+    </label>`;
+  }).join('');
+
+  /* ── painting ── */
+  const scenes = $$('.scene'), screens = $$('.screen');
+  function paint() {
+    const id = state.step === 'welcome' ? SLIDES[state.slide] : (state.lang || SLIDES[state.slide]);
+    scenes.forEach(s => s.classList.toggle('on', s.dataset.scene === id));
+    app.dataset.theme = id;
+  }
+
+  function slide(i, animate = true) {
+    state.slide = (i + SLIDES.length) % SLIDES.length;
+    entries.forEach((e, k) => { e.classList.toggle('anim', animate); e.classList.toggle('on', k === state.slide); });
+    segs.forEach((b, k) => {
+      b.classList.remove('on'); b.classList.toggle('done', k < state.slide);
+      b.setAttribute('aria-current', k === state.slide ? 'true' : 'false');
+    });
+    void pager.offsetWidth;                       // restart the progress bar
+    segs[state.slide].classList.add('on');
+    paint();
+  }
+  pager.addEventListener('animationend', e => { if (e.animationName === 'fill' && state.step === 'welcome' && !calm) slide(state.slide + 1); });
+  pager.addEventListener('click', e => { const b = e.target.closest('button'); if (b) slide(+b.dataset.slide); });
+
+  // swipe / arrow keys through the featured words
+  let sx = null;
+  const ws = $('[data-screen="welcome"]');
+  ws.addEventListener('pointerdown', e => { sx = e.target.closest('button') ? null : e.clientX; });
+  ws.addEventListener('pointerup', e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 36) slide(state.slide + (dx < 0 ? 1 : -1)); });
+  addEventListener('keydown', e => {
+    if (state.step !== 'welcome' || e.target.closest('.pager') === null && e.target !== document.body) return;
+    if (e.key === 'ArrowRight') slide(state.slide + 1);
+    if (e.key === 'ArrowLeft') slide(state.slide - 1);
+  });
+
+  function go(step) {
+    state.step = step;
+    const at = STEPS.indexOf(step);
+    screens.forEach(s => {
+      const i = STEPS.indexOf(s.dataset.screen);
+      s.classList.toggle('is-active', i === at);
+      s.classList.toggle('is-before', i < at);
+      s.inert = i !== at;
+    });
+    app.dataset.step = step;
+    if (step === 'ready') ready();
+    if (step === 'welcome') slide(state.slide);
+    paint();
+  }
+  app.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b && !b.disabled) go(b.dataset.go); });
+
+  /* ── step: language ── */
+  const langNext = $('#langNext');
+  $('#langList').addEventListener('change', e => {
+    state.lang = e.target.value;
+    $$('.lang-row').forEach(r => r.classList.toggle('sel', $('input', r).checked));
+    langNext.disabled = false;
+    $('span', langNext).textContent = 'Continue with ' + L[state.lang].name;
+    paint();
+  });
+
+  /* ── step: pace ── */
+  const month = new Date(Date.now() + 30 * 864e5).toLocaleDateString('en-US', { month:'short', day:'numeric' });
+  function pace(min, animate) {
+    state.pace = min;
+    const [tag, words] = PACE[min], num = $('#paceNum');
+    $$('#seg button').forEach(b => b.setAttribute('aria-checked', String(+b.dataset.min === min)));
+    num.textContent = min; $('#paceTag').textContent = tag;
+    $('#perDay').textContent = '≈ ' + words; $('#perMonth').textContent = words * 30; $('#byDate').textContent = month;
+    if (animate) { num.classList.remove('pop'); void num.offsetWidth; num.classList.add('pop'); }
+  }
+  $('#seg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) pace(+b.dataset.min, true); });
+  $('#seg').addEventListener('keydown', e => {
+    const d = { ArrowRight:1, ArrowDown:1, ArrowLeft:-1, ArrowUp:-1 }[e.key]; if (!d) return;
+    e.preventDefault();
+    const b = $$('#seg button'), i = (b.findIndex(x => x.getAttribute('aria-checked') === 'true') + d + b.length) % b.length;
+    b[i].focus(); pace(+b[i].dataset.min, true);
+  });
+  $('#remind').addEventListener('change', e => {
+    state.remind = e.target.checked;
+    $('#remindSub').textContent = state.remind ? '8:00 PM, one quiet nudge' : 'Off — you’ll remember';
+  });
+
+  /* ── step: ready ── */
+  const begin = $('#begin');
+  function ready() {
+    const id = state.lang || SLIDES[state.slide], l = L[id], box = $('#readyEntry');
+    box.innerHTML = entryHTML(id);
+    const e = $('.entry', box); e.classList.add('anim');
+    fitWords();
+    requestAnimationFrame(() => e.classList.add('on'));
+    begin.style.pointerEvents = '';
+    $('#summary').innerHTML = [l.name, state.pace + ' min a day', state.remind ? 'Reminder at 8:00 PM' : 'No reminders'].map(t => `<li>${t}</li>`).join('');
+    begin.disabled = false;
+    begin.innerHTML = `<span>Begin with ${l.word}</span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>`;
+  }
+  begin.addEventListener('click', () => {
+    begin.innerHTML = '<i class="spin"></i><span>Opening lesson one…</span>';
+    begin.style.pointerEvents = 'none';
+    setTimeout(() => {                             // prototype ends here: loop back to the start
+      begin.style.pointerEvents = '';
+      if (state.step !== 'ready') return;
+      state.lang = null; state.slide = 0;
+      $$('.lang-row').forEach(r => { r.classList.remove('sel'); $('input', r).checked = false; });
+      langNext.disabled = true; $('span', langNext).textContent = 'Continue';
+      go('welcome');
+    }, 1700);
+  });
+
+  /* ── pronunciation ── */
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  app.addEventListener('click', e => {
+    const b = e.target.closest('.say'); if (!b) return;
+    b.classList.remove('ping'); void b.offsetWidth; b.classList.add('ping');
+    const l = L[b.dataset.say];
+    try {
+      const v = speechSynthesis.getVoices().find(v => v.lang.toLowerCase().startsWith(l.voice));
+      if (!v) return;                              // no native voice on this device: stay silent rather than mispronounce
+      const u = new SpeechSynthesisUtterance(l.script || l.word);
+      u.voice = v; u.lang = v.lang; u.rate = .82;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    } catch (_) {}
+  });
+
+  /* ── fit the 402×874 stage to whatever it is shown in ── */
+  function fit() {
+    const w = innerWidth, h = innerHeight, phone = w <= 520;
+    const s = phone ? Math.min(w / 402, h / 874) : Math.min(1, (h - 48) / 874, (w - 48) / 402);
+    app.style.transform = Math.abs(s - 1) < .002 ? '' : `scale(${s})`;
+    app.classList.toggle('framed', !phone);
+  }
+  addEventListener('resize', fit); fit();
+
+  pace(10, false);
+  screens.forEach(s => { s.inert = s.dataset.screen !== 'welcome'; });
+  slide(0, false);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+An analytics dashboard for a solar farm.
+
+One self-contained index.html in this folder. No external files except Google Fonts. It will be viewed at 1440×900. Work only inside this folder.

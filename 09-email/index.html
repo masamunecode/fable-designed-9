@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Lope is out today. The easy-day shoe from Furlong.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --butter: #F4E19A;
+    --butter-soft: #FBF4D4;
+    --cobalt: #2444D6;
+    --cobalt-deep: #1730A6;
+    --ink: #111A3B;
+    --muted: #4D5574;
+    --paper: #FFFDF7;
+    --stone: #E6E2D4;
+    --tomato: #EE5A33;
+    --rule: rgba(17, 26, 59, .14);
+    --surround: #E9E6DC;
+    --pad: 40px;
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--surround);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; border-radius: 3px; }
+  p, h1, h2, h3, ol, ul, dl, dd, figure { margin: 0; }
+  ol, ul { padding: 0; list-style: none; }
+  svg { display: block; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* Shoe colorways. Every drawing of the shoe reads these. */
+  .cw-cobalt {
+    --u: #2444D6; --u2: #1730A6; --u3: #4C68EC;
+    --m: #FFFFFF; --m2: #E2E6F1; --o: #111A3B;
+    --arc: #FFFFFF; --lace: #FFFFFF; --tab: #EE5A33;
+    --sh: rgba(17, 26, 59, .16);
+  }
+  .cw-chalk {
+    --u: #F6F2E6; --u2: #DAD4C0; --u3: #FFFFFF;
+    --m: #FFFFFF; --m2: #E3E0D6; --o: #111A3B;
+    --arc: #2444D6; --lace: #FFFFFF; --tab: #EE5A33;
+    --sh: rgba(6, 12, 48, .36);
+  }
+  .cw-night {
+    --u: #1A2452; --u2: #0D1433; --u3: #2D3A76;
+    --m: #FFFFFF; --m2: #DDE1EC; --o: #0D1433;
+    --arc: #F4E19A; --lace: #FFFFFF; --tab: #F4E19A;
+    --sh: rgba(17, 26, 59, .16);
+  }
+  .cw-line {
+    --u: #FFFDF7; --u2: #CBD4F8; --u3: #FFFDF7;
+    --m: #F4E19A; --m2: #EBD27C; --o: #111A3B;
+    --arc: #2444D6; --lace: #111A3B; --lacew: 4; --tab: #111A3B;
+    --ln: #111A3B; --lnw: 1.5; --mesh: .3;
+    --sh: transparent;
+  }
+
+  /* Page */
+  .shell { width: 100%; max-width: 700px; margin: 0 auto; padding-bottom: 72px; }
+
+  .preheader {
+    display: flex; justify-content: space-between; gap: 24px;
+    padding: 16px 2px 12px;
+    font-size: 12px; line-height: 1.4; color: var(--muted);
+  }
+  .preheader a { flex: none; text-underline-offset: 3px; }
+
+  .email { background: var(--paper); }
+
+  /* Masthead */
+  .masthead {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding: 18px var(--pad);
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none;
+    font-weight: 800; font-stretch: 125%; font-size: 17px; letter-spacing: .05em;
+    text-transform: uppercase; line-height: 1;
+  }
+  .brand svg { width: 28px; height: 28px; flex: none; }
+  .nav { display: flex; gap: 24px; font-size: 13.5px; font-weight: 500; }
+  .nav a { text-decoration: none; padding: 4px 0; border-bottom: 1.5px solid transparent; }
+  .nav a:hover { border-bottom-color: currentColor; }
+
+  /* Hero */
+  .hero { background: var(--butter); padding: 20px 0 46px; }
+  .hero-meta {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 0 var(--pad) 6px;
+  }
+  .tag {
+    font-size: 12px; font-weight: 600; font-stretch: 110%;
+    letter-spacing: .07em; text-transform: uppercase; line-height: 1.4;
+  }
+  .tag b { font-weight: 600; color: var(--cobalt-deep); }
+  .hero-art { width: 100%; height: auto; }
+  .wm {
+    font-family: var(--sans); font-weight: 800; font-stretch: 125%;
+    font-size: 200px; fill: var(--ink);
+  }
+  .hero-copy {
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px;
+    align-items: start;
+    padding: 28px var(--pad) 0;
+  }
+  .hero-line {
+    font-weight: 700; font-stretch: 112%;
+    font-size: 34px; line-height: 1.08; letter-spacing: -.015em;
+    text-wrap: balance;
+  }
+  .hero-sub { font-size: 16.5px; line-height: 1.5; text-wrap: pretty; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 22px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    min-height: 52px; padding: 0 26px;
+    border-radius: 999px;
+    background: var(--cobalt); color: #fff;
+    font-weight: 700; font-stretch: 108%; font-size: 16px; line-height: 1;
+    text-decoration: none; white-space: nowrap;
+    transition: background-color .16s ease, color .16s ease;
+  }
+  .btn:hover { background: var(--ink); }
+  .btn:active { transform: translateY(1px); }
+  .btn span { transition: transform .16s ease; }
+  .btn:hover span { transform: translateX(3px); }
+  .btn-light { background: #fff; color: var(--cobalt-deep); }
+  .btn-light:hover { background: var(--butter); color: var(--ink); }
+  .btn:focus-visible { outline-offset: 4px; border-radius: 999px; }
+  .run .btn:focus-visible, .foot a:focus-visible { outline-color: #fff; }
+
+  .more {
+    font-size: 14.5px; font-weight: 600;
+    text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px;
+  }
+  .more:hover { color: var(--cobalt-deep); }
+
+  /* Shared section type */
+  .sec { padding: 60px var(--pad); }
+  .sec h2 {
+    font-weight: 700; font-stretch: 112%;
+    font-size: 30px; line-height: 1.1; letter-spacing: -.015em;
+    text-wrap: balance;
+  }
+  .sec .lede { margin-top: 12px; max-width: 520px; color: var(--muted); text-wrap: pretty; }
+
+  /* Letter */
+  .letter { padding-bottom: 20px; }
+  .letter p {
+    max-width: 560px;
+    font-family: var(--serif); font-size: 22px; line-height: 1.45;
+    text-wrap: pretty;
+  }
+  .letter p + p { margin-top: 18px; }
+  .letter .sign { font-style: italic; color: var(--muted); font-size: 19px; margin-top: 22px; }
+
+  /* Anatomy */
+  .diagram {
+    width: calc(100% + 2 * var(--pad)); height: auto;
+    margin: 20px calc(-1 * var(--pad)) 0;
+  }
+  .d-num { font-family: var(--sans); font-weight: 700; font-stretch: 108%; font-size: 17px; fill: var(--ink); }
+  .d-cap { font-family: var(--sans); font-weight: 500; font-size: 12.5px; fill: var(--muted); }
+  .d-key { font-family: var(--sans); font-weight: 700; font-size: 12.5px; fill: #fff; }
+
+  .key {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 26px 36px;
+    margin-top: 30px;
+  }
+  .key li { display: grid; grid-template-columns: 24px 1fr; gap: 12px; }
+  .key .n {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--cobalt); color: #fff;
+    font-size: 12.5px; font-weight: 700; line-height: 24px; text-align: center;
+  }
+  .key h3 { font-size: 16px; font-weight: 700; font-stretch: 106%; line-height: 1.5; }
+  .key p { margin-top: 3px; font-size: 15px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+
+  .going-wrap { margin-top: 48px; padding-top: 30px; border-top: 1px solid var(--rule); }
+  .going-wrap h3 { font-size: 19px; font-weight: 700; font-stretch: 110%; letter-spacing: -.005em; line-height: 1.25; }
+  .going-wrap > p { margin-top: 6px; max-width: 500px; font-size: 15px; color: var(--muted); text-wrap: pretty; }
+  .going { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 22px; }
+  .going li {
+    border-top: 6px solid var(--rule);
+    padding-top: 10px;
+    font-size: 13px; line-height: 1.35; color: var(--muted);
+  }
+  .going li.is { border-top-color: var(--cobalt); color: var(--ink); font-weight: 700; }
+  .going li small { display: block; margin-top: 2px; font-size: 12px; font-weight: 500; color: var(--muted); }
+
+  .specs { margin-top: 44px; border-bottom: 1px solid var(--rule); }
+  .specs div {
+    display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+    padding: 13px 0; border-top: 1px solid var(--rule);
+    font-size: 15px; line-height: 1.5;
+  }
+  .specs dt { color: var(--muted); }
+  .specs dd { font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  /* Week */
+  .week { background: var(--butter-soft); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 28px; font-size: 13px; }
+  .legend li { display: inline-flex; align-items: center; gap: 8px; }
+  .sw { width: 13px; height: 13px; border-radius: 3px; flex: none; }
+  .sw.easy, .bar { background: var(--cobalt); }
+  .sw.hard, .bar.hard {
+    background: repeating-linear-gradient(-45deg, var(--ink) 0 2px, transparent 2px 6px);
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+  }
+  .chart { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 10px; text-align: center; }
+  .chart .plot {
+    height: 170px;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .chart .val { margin-bottom: 6px; font-size: 13px; font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .bar { width: 44%; min-width: 26px; max-width: 42px; height: calc(var(--mi) * 13px); border-radius: 4px 4px 0 0; }
+  .chart .day { margin-top: 10px; font-size: 13px; font-weight: 700; line-height: 1.3; }
+  .chart .kind { font-size: 12px; line-height: 1.3; color: var(--muted); }
+  .week .note { margin-top: 22px; font-size: 13px; color: var(--muted); }
+
+  /* Colors */
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+  .tile-art { background: var(--tile); padding: 34px 12px 26px; }
+  .tile-art svg { width: 100%; height: auto; }
+  .tile-name { margin-top: 12px; font-weight: 700; font-stretch: 108%; font-size: 16px; line-height: 1.3; }
+  .tile-note { font-size: 13.5px; color: var(--muted); }
+  .colors .more { display: inline-block; margin-top: 28px; }
+
+  /* Launch run */
+  .run { background: var(--cobalt); color: #fff; }
+  .run-grid { display: grid; grid-template-columns: 210px 1fr; gap: 40px; align-items: start; }
+  .when { border-top: 3px solid #fff; padding-top: 14px; line-height: 1.1; }
+  .when .dow, .when .time { font-size: 15px; font-weight: 600; font-stretch: 108%; }
+  .when .date {
+    display: block; margin: 8px 0 10px;
+    font-size: 50px; font-weight: 800; font-stretch: 118%; letter-spacing: -.02em; line-height: .95;
+  }
+  .run .tag { color: var(--butter); margin-bottom: 26px; }
+  .run p.body { margin-top: 14px; font-size: 16.5px; line-height: 1.5; color: rgba(255, 255, 255, .9); text-wrap: pretty; }
+  .run .actions { margin-top: 24px; }
+
+  /* Close */
+  .close p.body { margin-top: 12px; max-width: 470px; font-size: 16.5px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+  .close .actions { margin-top: 26px; }
+  .close .fine { font-size: 13.5px; color: var(--muted); }
+
+  /* Footer */
+  .foot { background: var(--ink); color: rgba(255, 255, 255, .74); padding: 40px var(--pad) 44px; font-size: 13px; line-height: 1.6; }
+  .foot .brand { color: #fff; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 24px 0; padding: 18px 0; border-top: 1px solid rgba(255, 255, 255, .18); border-bottom: 1px solid rgba(255, 255, 255, .18); font-size: 14px; font-weight: 500; color: #fff; }
+  .foot-links a { text-decoration: none; }
+  .foot-links a:hover, .foot p a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .foot p { max-width: 520px; }
+  .foot p + p { margin-top: 10px; }
+  .foot p a { color: #fff; text-underline-offset: 3px; }
+
+  @media (max-width: 620px) {
+    :root { --pad: 22px; }
+    .nav { display: none; }
+    .hero-copy, .run-grid, .key { grid-template-columns: 1fr; gap: 22px; }
+    .hero-line { font-size: 30px; }
+    .sec { padding-top: 46px; padding-bottom: 46px; }
+    .letter { padding-bottom: 10px; }
+    .letter p { font-size: 20px; }
+    .tiles { grid-template-columns: 1fr; }
+    .specs div { grid-template-columns: 96px 1fr; }
+    .chart .val, .chart .day { font-size: 12px; }
+    .chart .kind { font-size: 10.5px; }
+    .going li { font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Shoe artwork, defined once and reused in every colorway -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="p-upper" d="M46 204C36 172 40 132 56 102C60 94 56 84 50 76C47 71 52 66 59 68C78 73 96 96 118 107C140 118 166 120 188 110C206 102 218 88 228 72C231 67 236 66 242 69C300 94 366 121 428 140C498 160 566 160 602 188C610 194 614 201 613 209L613 218L46 218Z"/>
+    <path id="p-mid" d="M42 190C36 206 46 228 66 243C82 255 100 266 128 266L404 266C480 266 560 254 612 226C620 221 622 211 612 207C584 213 534 215 484 214C410 212 330 208 252 203C170 198 100 190 42 190Z"/>
+    <clipPath id="c-upper"><use href="#p-upper"/></clipPath>
+    <clipPath id="c-mid"><use href="#p-mid"/></clipPath>
+    <pattern id="mesh" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="2.2" cy="2.2" r="1.15" fill="#0B1230"/>
+      <circle cx="6.7" cy="6.7" r="1.15" fill="#0B1230"/>
+    </pattern>
+
+    <g id="shoe">
+      <ellipse cx="330" cy="273" rx="288" ry="6.5" style="fill:var(--sh)"/>
+      <!-- heel pull tab -->
+      <path d="M58 106C38 96 34 66 54 59C64 56 70 64 64 72" style="fill:none;stroke:var(--tab);stroke-width:5;stroke-linecap:round"/>
+      <!-- tongue -->
+      <path d="M200 112C210 86 224 56 246 46C258 41 270 48 268 60C266 72 262 82 258 96Z" style="fill:var(--u3);stroke:var(--ln,none);stroke-width:var(--lnw,0);stroke-linejoin:round"/>
+      <!-- upper -->
+      <use href="#p-upper" style="fill:var(--u)"/>
+      <rect x="140" y="60" width="490" height="160" fill="url(#mesh)" clip-path="url(#c-upper)" style="opacity:var(--mesh,.22)"/>
+      <path d="M424 160C444 176 460 196 468 216" style="fill:none;stroke:var(--ln,var(--u2));stroke-width:1.5"/>
+      <g clip-path="url(#c-upper)" style="fill:var(--u2);stroke:var(--ln,none);stroke-width:var(--lnw,0);stroke-linejoin:round">
+        <path d="M30 214L30 118L46 119C84 124 122 160 140 214Z"/>
+        <path d="M224 86C291 114 359 142 422 161L432 134L428 110L240 46L214 68Z"/>
+        <path d="M584 160C576 188 570 204 562 220L640 220L640 160Z"/>
+      </g>
+      <!-- stride arc -->
+      <path d="M150 206C190 120 300 118 446 214" style="fill:none;stroke:var(--arc);stroke-width:10;stroke-linecap:round"/>
+      <!-- collar -->
+      <path d="M59 68C78 73 96 96 118 107C140 118 166 120 188 110C206 102 218 88 228 72" style="fill:none;stroke:var(--u2);stroke-width:7;stroke-linecap:round"/>
+      <use href="#p-upper" style="fill:none;stroke:var(--ln,none);stroke-width:var(--lnw,0);stroke-linejoin:round"/>
+      <!-- laces -->
+      <g style="fill:none;stroke:var(--lace);stroke-width:var(--lacew,7);stroke-linecap:round">
+        <path d="M251 87L259 71"/>
+        <path d="M282 100L290 84"/>
+        <path d="M313.4 112.8L321.4 96.8"/>
+        <path d="M343.6 124.5L351.6 108.5"/>
+        <path d="M374 135.7L382 119.7"/>
+        <path d="M404.3 146.1L412.3 130.1"/>
+      </g>
+      <!-- midsole -->
+      <use href="#p-mid" style="fill:var(--m)"/>
+      <path d="M30 216C110 240 220 247 330 241C420 236 520 240 630 226L630 284L30 284Z" clip-path="url(#c-mid)" style="fill:var(--m2)"/>
+      <use href="#p-mid" style="fill:none;stroke:var(--ln,none);stroke-width:var(--lnw,0);stroke-linejoin:round"/>
+      <!-- outsole -->
+      <path d="M66 243C82 255 100 266 128 266L404 266C480 266 560 254 612 226" style="fill:none;stroke:var(--o);stroke-width:9;stroke-dasharray:118 6 150 6 122 6 400"/>
+    </g>
+
+    <g id="eighth">
+      <circle cx="14" cy="14" r="14" fill="currentColor"/>
+      <g style="fill:var(--mark-ink,#fff);font-family:var(--sans);font-weight:800;font-size:11px">
+        <text x="9.4" y="13.6" text-anchor="middle">1</text>
+        <text x="18.8" y="22.2" text-anchor="middle">8</text>
+      </g>
+      <path d="M17.6 6.6L10.6 21.6" style="stroke:var(--mark-ink,#fff);stroke-width:1.5;stroke-linecap:round"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="shell">
+
+  <p class="preheader">
+    <span>Lope is out today: a shoe for the miles that are supposed to feel easy.</span>
+    <a href="#">View in browser</a>
+  </p>
+
+  <main class="email">
+
+    <header class="masthead">
+      <a class="brand" href="#" aria-label="Furlong">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#eighth"/></svg>
+        Furlong
+      </a>
+      <nav class="nav" aria-label="In this email">
+        <a href="#anatomy">The shoe</a>
+        <a href="#colors">Colors</a>
+        <a href="#run">Launch run</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="sr-only">Lope, the easy-day running shoe from Furlong</h1>
+      <div class="hero-meta">
+        <span class="tag"><b>New</b> &nbsp;·&nbsp; Out today</span>
+        <span class="tag">Road &nbsp;·&nbsp; Daily trainer</span>
+      </div>
+
+      <svg class="hero-art cw-cobalt" viewBox="0 0 700 372" role="img" aria-label="The Lope running shoe in cobalt blue, seen from the side, standing in front of its name">
+        <text class="wm" x="40" y="160" textLength="620" lengthAdjust="spacingAndGlyphs" aria-hidden="true">LOPE</text>
+        <use href="#shoe" transform="translate(2 65) scale(1.06)"/>
+      </svg>
+
+      <div class="hero-copy">
+        <p class="hero-line">Four out of five miles should feel easy.</p>
+        <div>
+          <p class="hero-sub">We made a shoe for those. Soft underfoot, steady at the heel, and in no hurry at all.</p>
+          <div class="actions">
+            <a class="btn" href="#">Shop Lope, $150 <span aria-hidden="true">→</span></a>
+            <a class="more" href="#anatomy">What’s in it</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec letter">
+      <p>Most running shoes are sold on how fast they’ll make you. This one won’t make you faster. Not directly.</p>
+      <p>Lope is for the runs in between: the Tuesday five, the Sunday long one, the slow jog that shakes out yesterday’s workout. It’s soft where the road is hard and steady where tired legs get sloppy, and by the second mile you’ll have stopped thinking about your feet.</p>
+      <p>Go easy on the easy days. The fast ones tend to look after themselves.</p>
+      <p class="sign">Everyone at Furlong</p>
+    </section>
+
+    <section class="sec anatomy" id="anatomy" aria-labelledby="anatomy-title">
+      <h2 id="anatomy-title">Built to take it easy</h2>
+      <p class="lede">A lot of foam, a wide base, and nothing on it that asks you to speed up.</p>
+
+      <svg class="diagram cw-line" viewBox="0 0 700 356" role="img" aria-label="Side view of Lope with its measurements: 38 millimetres of stack at the heel, 30 at the forefoot, an 8 millimetre drop. Four numbered points are explained below.">
+        <line x1="28" y1="302" x2="672" y2="302" stroke="#111A3B" stroke-opacity=".3"/>
+        <use href="#shoe" transform="translate(20 30)"/>
+
+        <!-- stack heights -->
+        <g fill="none" stroke="#2444D6" stroke-width="2">
+          <path d="M113 225H127M120 225V302M113 302H127"/>
+          <path d="M469 241H483M476 241V302M469 302H483"/>
+        </g>
+        <g stroke="#111A3B" stroke-opacity=".35" stroke-dasharray="3 4">
+          <line x1="160" y1="321" x2="256" y2="321"/>
+          <line x1="340" y1="321" x2="436" y2="321"/>
+        </g>
+        <g text-anchor="middle">
+          <text class="d-num" x="120" y="327">38 mm</text>
+          <text class="d-cap" x="120" y="345">Heel</text>
+          <text class="d-num" x="298" y="327">8 mm</text>
+          <text class="d-cap" x="298" y="345">Drop</text>
+          <text class="d-num" x="476" y="327">30 mm</text>
+          <text class="d-cap" x="476" y="345">Forefoot</text>
+        </g>
+
+        <!-- numbered points -->
+        <g stroke="#2444D6" stroke-width="1.5" fill="#2444D6">
+          <line x1="146" y1="70" x2="146" y2="136"/><circle cx="146" cy="138" r="3" stroke="none"/>
+          <line x1="556" y1="136" x2="556" y2="192"/><circle cx="556" cy="194" r="3" stroke="none"/>
+          <line x1="657" y1="253" x2="627" y2="262"/><circle cx="625" cy="262.5" r="3" stroke="none"/>
+        </g>
+        <g fill="#2444D6">
+          <circle cx="306" cy="262" r="12"/>
+          <circle cx="668" cy="250" r="12"/>
+          <circle cx="556" cy="124" r="12"/>
+          <circle cx="146" cy="58" r="12"/>
+        </g>
+        <g class="d-key" text-anchor="middle" aria-hidden="true">
+          <text x="306" y="266.5">1</text>
+          <text x="668" y="254.5">2</text>
+          <text x="556" y="128.5">3</text>
+          <text x="146" y="62.5">4</text>
+        </g>
+      </svg>
+
+      <ol class="key">
+        <li>
+          <span class="n" aria-hidden="true">1</span>
+          <div>
+            <h3>Good-to-Soft foam</h3>
+            <p>38 mm of nitrogen-infused foam under the heel, tuned to soak up the road instead of firing you down it.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">2</span>
+          <div>
+            <h3>A late rocker</h3>
+            <p>The curve starts under your toes, so the shoe rolls you forward without hurrying you along.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">3</span>
+          <div>
+            <h3>Room up front</h3>
+            <p>One-piece mesh and a wide toe box, for feet that swell somewhere around mile nine.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">4</span>
+          <div>
+            <h3>A padded collar</h3>
+            <p>Thick at the heel and the tongue, the way shoes used to be. There’s nothing to break in.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="going-wrap">
+        <h3>How soft is Good-to-Soft?</h3>
+        <p>Racecourses grade the ground from firm to heavy. We tuned Lope to the going most legs like best.</p>
+        <ol class="going" aria-label="Cushioning scale, firmest to softest">
+          <li>Firm</li>
+          <li>Good</li>
+          <li class="is">Good to soft <small>Lope sits here</small></li>
+          <li>Soft</li>
+          <li>Heavy</li>
+        </ol>
+      </div>
+
+      <dl class="specs">
+        <div><dt>Weight</dt><dd>9.3 oz / 264 g in a men’s 9<br>7.8 oz / 221 g in a women’s 8</dd></div>
+        <div><dt>Stack</dt><dd>38 mm heel, 30 mm forefoot</dd></div>
+        <div><dt>Drop</dt><dd>8 mm</dd></div>
+        <div><dt>Fit</dt><dd>True to size, in regular and wide</dd></div>
+        <div><dt>Sizes</dt><dd>Men’s 6–14, women’s 5–12</dd></div>
+        <div><dt>Price</dt><dd>$150</dd></div>
+      </dl>
+    </section>
+
+    <section class="sec week" aria-labelledby="week-title">
+      <h2 id="week-title">A 30-mile week. 24 of them in Lope.</h2>
+      <p class="lede">Coaches call it 80/20: most of your running easy, a little of it hard. Five runs, and four are Lope days.</p>
+
+      <ul class="legend" aria-hidden="true">
+        <li><span class="sw easy"></span>Easy miles, in Lope</li>
+        <li><span class="sw hard"></span>Hard miles, in something faster</li>
+      </ul>
+
+      <ol class="chart" aria-label="Miles per day across an example week">
+        <li>
+          <div class="plot"></div>
+          <p class="day">Mon</p><p class="kind">Rest</p>
+        </li>
+        <li>
+          <div class="plot"><span class="val">5 mi</span><span class="bar" style="--mi:5"></span></div>
+          <p class="day">Tue</p><p class="kind">Easy</p>
+        </li>
+        <li>
+          <div class="plot"><span class="val">6 mi</span><span class="bar hard" style="--mi:6"></span></div>
+          <p class="day">Wed</p><p class="kind">Intervals</p>
+        </li>
+        <li>
+          <div class="plot"><span class="val">4 mi</span><span class="bar" style="--mi:4"></span></div>
+          <p class="day">Thu</p><p class="kind">Easy</p>
+        </li>
+        <li>
+          <div class="plot"></div>
+          <p class="day">Fri</p><p class="kind">Rest</p>
+        </li>
+        <li>
+          <div class="plot"><span class="val">5 mi</span><span class="bar" style="--mi:5"></span></div>
+          <p class="day">Sat</p><p class="kind">Easy</p>
+        </li>
+        <li>
+          <div class="plot"><span class="val">10 mi</span><span class="bar" style="--mi:10"></span></div>
+          <p class="day">Sun</p><p class="kind">Long run</p>
+        </li>
+      </ol>
+      <p class="note">An example week. Yours will look different, and the ratio still holds.</p>
+    </section>
+
+    <section class="sec colors" id="colors" aria-labelledby="colors-title">
+      <h2 id="colors-title">Three colors at launch</h2>
+      <ul class="tiles">
+        <li class="cw-cobalt" style="--tile:var(--butter)">
+          <div class="tile-art"><svg viewBox="22 30 612 256" role="img" aria-label="Lope in Cobalt"><use href="#shoe"/></svg></div>
+          <p class="tile-name">Cobalt</p>
+          <p class="tile-note">Blue, white, a red heel loop</p>
+        </li>
+        <li class="cw-chalk" style="--tile:var(--cobalt)">
+          <div class="tile-art"><svg viewBox="22 30 612 256" role="img" aria-label="Lope in Chalk"><use href="#shoe"/></svg></div>
+          <p class="tile-name">Chalk</p>
+          <p class="tile-note">Off-white with a blue arc</p>
+        </li>
+        <li class="cw-night" style="--tile:var(--stone)">
+          <div class="tile-art"><svg viewBox="22 30 612 256" role="img" aria-label="Lope in Night"><use href="#shoe"/></svg></div>
+          <p class="tile-name">Night</p>
+          <p class="tile-note">Deep navy with a butter arc</p>
+        </li>
+      </ul>
+      <a class="more" href="#">Pick a color and size</a>
+    </section>
+
+    <section class="sec run" id="run" aria-labelledby="run-title">
+      <p class="tag">Launch run</p>
+      <div class="run-grid">
+        <p class="when">
+          <span class="dow">Saturday</span>
+          <span class="date">Nov 14</span>
+          <span class="time">8:00 am, every Furlong shop</span>
+        </p>
+        <div>
+          <h2 id="run-title">Try it at talking pace</h2>
+          <p class="body">Five easy miles in a demo pair, with coffee after. We’ll have every size, and nobody gets dropped.</p>
+          <div class="actions">
+            <a class="btn btn-light" href="#">Save a spot <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec close" aria-labelledby="close-title">
+      <h2 id="close-title">Run in them for 90 days</h2>
+      <p class="body">If Lope isn’t your easy-day shoe, send it back. Muddy is fine, and shipping is free both ways.</p>
+      <div class="actions">
+        <a class="btn" href="#">Shop Lope, $150 <span aria-hidden="true">→</span></a>
+        <span class="fine">Ships today in all three colors</span>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <a class="brand" href="#" aria-label="Furlong" style="--mark-ink:var(--ink)">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><use href="#eighth"/></svg>
+        Furlong
+      </a>
+      <nav class="foot-links" aria-label="Furlong">
+        <a href="#">Shoes</a>
+        <a href="#">Find a shop</a>
+        <a href="#">Returns</a>
+        <a href="#">Instagram</a>
+        <a href="#">Strava club</a>
+      </nav>
+      <p>You’re getting this because you signed up for Furlong news. <a href="#">Unsubscribe</a> or <a href="#">choose what we send you</a>.</p>
+      <p>Furlong Running Co., 201 Rail Street, Portland, OR 97209<br>© 2026 Furlong Running Co.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // Placeholder links stay put instead of jumping to the top of the email.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#"]');
+    if (a) e.preventDefault();
+  });
+</script>
+</body>
+</html>

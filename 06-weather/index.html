@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0e1436">
+<title>Copenhagen · 6° Partly cloudy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c0d1f;
+  --text:#f5efe8;
+  --muted:rgba(245,239,232,.62);
+  --soft:rgba(245,239,232,.5);
+  --line:rgba(245,239,232,.09);
+  --rain:#93b1ff;
+  --warm:#ffc184;
+  --sans:"Geist",-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:#05060d;color:var(--text);
+  font-family:var(--sans);font-size:15px;line-height:1.35;
+  font-feature-settings:"tnum" 1;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--warm);outline-offset:3px;border-radius:8px}
+ol,ul{list-style:none}
+
+.ic{width:26px;height:26px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.w{stroke:var(--warm)}
+.r{stroke:var(--rain)}
+
+/* ───────── device frame ───────── */
+.screen{position:relative;width:100%;max-width:440px;height:100vh;height:100dvh;margin:0 auto;overflow:hidden;background:var(--ink)}
+.scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain}
+.scroll::-webkit-scrollbar{display:none}
+
+.statusbar{
+  position:absolute;inset:0 0 auto 0;height:54px;z-index:20;pointer-events:none;
+  display:flex;align-items:center;justify-content:space-between;padding:15px 30px 0 50px;
+  font-weight:600;font-size:17px;letter-spacing:-.01em;
+}
+.statusbar .sys{display:flex;align-items:center;gap:6px}
+.statusbar svg{display:block;fill:currentColor}
+
+.topbar{
+  position:absolute;inset:0 0 auto 0;height:100px;padding-top:52px;z-index:15;pointer-events:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  background:rgba(12,13,31,.74);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
+  border-bottom:1px solid var(--line);
+  opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease;
+}
+.topbar.on{opacity:1;transform:none}
+.topbar b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.topbar span{font-size:12.5px;color:var(--muted)}
+
+/* ───────── sky ───────── */
+.sky{
+  position:relative;height:412px;overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(220px 140px at 322px 388px,rgba(255,196,128,.95) 0%,rgba(255,150,98,.74) 18%,rgba(236,108,106,.38) 44%,rgba(188,84,122,.14) 72%,transparent 100%),
+    linear-gradient(to top,rgba(255,158,112,.34) 0,rgba(226,108,112,.1) 56px,transparent 120px),
+    linear-gradient(180deg,#0e1436 0%,#181b4a 26%,#2b2861 50%,#463370 70%,#684175 86%,#8a4d78 100%);
+}
+.sun{
+  position:absolute;left:293px;top:355px;width:58px;height:58px;border-radius:50%;z-index:0;
+  background:radial-gradient(circle at 50% 42%,#fff7dc 0,#ffdc9f 55%,#ffbb74 100%);
+  box-shadow:0 0 22px 6px rgba(255,208,146,.8),0 0 90px 34px rgba(255,150,98,.42);
+}
+.clouds,.grain,.skyline{position:absolute;left:0;width:100%;pointer-events:none}
+.clouds{top:0;height:100%;z-index:1}
+.grain{
+  inset:0;height:auto;z-index:2;opacity:.2;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.skyline{bottom:-1px;height:64px;z-index:3;display:block}
+.skyline .mass{fill:var(--ink)}
+.skyline .wire{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round}
+.skyline .lit{fill:#ffd08f}
+.drift-a{animation:drift 56s ease-in-out infinite alternate}
+.drift-b{animation:drift 80s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-14px)}}
+.spin{animation:spin 5.5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lit rect{animation:glim 5s ease-in-out infinite alternate}
+.lit rect:nth-child(3n){animation-duration:7s;animation-delay:-2s}
+.lit rect:nth-child(4n+1){animation-duration:9s;animation-delay:-5s}
+@keyframes glim{from{opacity:.95}to{opacity:.45}}
+
+.hero{position:relative;z-index:4;padding:62px 24px 0;text-shadow:0 1px 22px rgba(14,18,52,.35)}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between}
+.place{display:flex;align-items:center;gap:7px;font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:24px;text-shadow:inherit}
+.place .pin{width:13px;height:13px;fill:currentColor;margin-top:1px}
+.place .chev{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.6;margin-left:-2px}
+.date{font-size:13.5px;color:rgba(245,239,232,.74);margin-top:1px}
+.round{
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;margin-top:2px;
+  background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+.round svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.temp{
+  font-family:var(--serif);font-weight:400;font-size:208px;line-height:.78;letter-spacing:-.03em;
+  margin:18px 0 0 -7px;white-space:nowrap;font-feature-settings:normal;
+}
+.temp .deg{display:inline-block;margin-left:-.02em}
+.cond{font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:28px;margin-top:8px}
+.feels{font-size:15px;line-height:20px;color:rgba(245,239,232,.9);margin-top:1px}
+.feels i{font-style:normal;opacity:.5;margin:0 5px}
+
+/* ───────── ground ───────── */
+.ground{position:relative;padding:0 20px 150px;background:var(--ink)}
+section{padding-top:26px}
+.eyebrow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-height:16px}
+.eyebrow h2{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.eyebrow span{font-size:12.5px;color:var(--muted);white-space:nowrap}
+
+/* next hour */
+.now{padding-top:18px}
+.headline{font-family:var(--serif);font-size:33px;line-height:36px;letter-spacing:-.01em;margin-top:7px;font-feature-settings:normal}
+.headline em{font-style:italic}
+.sub{font-size:14px;line-height:20px;color:var(--muted);margin-top:3px}
+.bars{position:relative;display:flex;align-items:flex-end;height:52px;margin-top:16px;touch-action:pan-y;cursor:crosshair}
+.guide{position:absolute;left:0;right:0;border-top:1px dashed rgba(245,239,232,.16);pointer-events:none}
+.guide span{position:absolute;left:0;bottom:3px;font-size:10px;letter-spacing:.02em;color:var(--soft)}
+.bar{position:relative;flex:1;height:100%}
+.bar::after{
+  content:"";position:absolute;left:50%;bottom:0;width:3.5px;margin-left:-1.75px;height:var(--h);
+  border-radius:1.75px 1.75px 0 0;background:var(--rain);transition:opacity .12s;
+}
+.bar.dry::after{height:2px;border-radius:1px;background:rgba(245,239,232,.24)}
+.bars.scrub .bar::after{opacity:.38}
+.bars.scrub .bar.on::after{opacity:1}
+.bars.scrub .bar.dry.on::after{background:var(--text)}
+.bar.on::before{content:"";position:absolute;left:50%;top:-6px;bottom:0;width:1px;margin-left:-.5px;background:rgba(245,239,232,.28)}
+.ticks{position:relative;height:16px;margin-top:7px;font-size:11px;color:var(--soft)}
+.ticks span{position:absolute;top:0;transform:translateX(-50%)}
+.ticks span:first-child{transform:none;color:var(--text);font-weight:500}
+
+/* hourly */
+.hours{display:flex;gap:2px;margin:10px -20px 0;padding:0 20px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;scroll-padding-left:20px}
+.hours::-webkit-scrollbar{display:none}
+.hr{flex:0 0 54px;display:flex;flex-direction:column;align-items:center;padding:10px 0 8px;border-radius:20px;scroll-snap-align:start}
+.hr.is-now{background:rgba(255,255,255,.075);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.hr-t{font-size:12.5px;line-height:16px;color:var(--muted)}
+.hr.is-now .hr-t{color:var(--text);font-weight:600}
+.hr .ic{margin:9px 0 7px}
+.hr-c{font-size:17px;font-weight:500;line-height:22px;letter-spacing:-.01em;padding-left:.28em}
+.hr-s{font-size:12px;font-weight:500;line-height:22px}
+.pop{display:inline-flex;align-items:center;gap:3px;height:15px;font-size:11px;color:var(--muted)}
+.pop svg{width:6px;height:8px;fill:var(--rain)}
+.hr .pop{margin-top:1px}
+
+/* 7-day */
+.days{margin-top:6px}
+.day{display:grid;grid-template-columns:62px 28px 46px 30px 1fr 30px;column-gap:6px;align-items:center;height:50px;border-top:1px solid var(--line)}
+.day:first-child{border-top:0}
+.day-n{font-size:16px;font-weight:500;letter-spacing:-.01em}
+.day .ic{width:24px;height:24px}
+.day-lo,.day-hi{font-size:16px;text-align:right}
+.day-lo{color:var(--muted)}
+.day-hi{font-weight:500}
+.range{position:relative;height:5px;border-radius:3px;background:rgba(245,239,232,.1);margin-left:6px}
+.range i{position:absolute;inset:0;border-radius:3px;background:linear-gradient(90deg,#86a8ff 0%,#cfcbd8 50%,#ffc184 100%)}
+.range b{position:absolute;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--text);box-shadow:0 0 0 2px var(--ink)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tile{position:relative;padding:15px 16px 16px;border-radius:22px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);min-height:132px}
+.tile.wide{grid-column:1/-1;min-height:0}
+.tile h3{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.val{font-family:var(--serif);font-size:44px;line-height:46px;margin-top:10px;font-feature-settings:normal}
+.val small{font-family:var(--sans);font-size:14px;color:var(--muted);margin-left:5px;letter-spacing:0}
+.note{font-size:13px;line-height:18px;color:var(--muted);margin-top:4px}
+.compass{position:absolute;top:14px;right:14px;width:48px;height:48px;fill:none;stroke:var(--text);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.meter{height:4px;border-radius:2px;background:rgba(245,239,232,.1);margin-top:10px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:2px;background:var(--rain)}
+.arc{display:block;width:100%;height:auto;margin-top:6px}
+.sun-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:6px}
+.sun-row div{font-size:12px;color:var(--muted)}
+.sun-row div b{display:block;font-size:17px;font-weight:500;color:var(--text);letter-spacing:-.01em}
+.sun-row div:nth-child(2){text-align:center}
+.sun-row div:last-child{text-align:right}
+.foot{text-align:center;font-size:12px;color:var(--soft);margin-top:26px}
+
+/* ───────── bottom chrome ───────── */
+.fade{position:absolute;inset:auto 0 0 0;height:112px;z-index:9;pointer-events:none;
+  background:linear-gradient(to top,var(--ink) 0,rgba(12,13,31,.94) 38%,rgba(12,13,31,0) 100%)}
+.tabs{
+  position:absolute;left:20px;right:20px;bottom:26px;height:62px;z-index:10;
+  display:flex;padding:5px;border-radius:31px;
+  background:rgba(30,31,62,.72);-webkit-backdrop-filter:blur(24px) saturate(1.6);backdrop-filter:blur(24px) saturate(1.6);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),0 12px 32px rgba(3,4,14,.55);
+}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:26px;font-size:10.5px;font-weight:500;letter-spacing:.01em;color:var(--muted);transition:background .2s,color .2s}
+.tab .ic{width:23px;height:23px;stroke-width:1.6}
+.tab.is-active{background:rgba(255,255,255,.1);color:var(--text)}
+.homebar{position:absolute;left:50%;bottom:8px;width:138px;height:5px;margin-left:-69px;border-radius:3px;background:rgba(245,239,232,.9);z-index:21;pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <mask id="m-behind-cloud" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <rect width="24" height="24" fill="#fff"/>
+      <path d="M6.5 20H14a3.3 3.3 0 0 0 .5-6.56 4.5 4.5 0 0 0-8.6-1A3.8 3.8 0 0 0 6.5 20z" fill="#000" stroke="#000" stroke-width="3.6" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <symbol id="i-cloud" viewBox="0 0 24 24">
+    <path d="M7.5 18.5H17a4 4 0 0 0 .7-7.94 5.5 5.5 0 0 0-10.5-1.2A4.6 4.6 0 0 0 7.5 18.5z"/>
+  </symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24">
+    <path d="M7.5 15.5H17a4 4 0 0 0 .7-7.94 5.5 5.5 0 0 0-10.5-1.2A4.6 4.6 0 0 0 7.5 15.5z"/>
+    <path class="r" d="M8.2 18.6 7 21.6M12.6 18.6l-1.2 3M17 18.6l-1.2 3"/>
+  </symbol>
+  <symbol id="i-drizzle" viewBox="0 0 24 24">
+    <path d="M7.5 15.5H17a4 4 0 0 0 .7-7.94 5.5 5.5 0 0 0-10.5-1.2A4.6 4.6 0 0 0 7.5 15.5z"/>
+    <path class="r" d="M10 18.8l-.8 2.2M14.8 18.8 14 21"/>
+  </symbol>
+  <symbol id="i-partly-day" viewBox="0 0 24 24">
+    <g class="w" mask="url(#m-behind-cloud)">
+      <circle cx="16.2" cy="8.2" r="3.4"/>
+      <path d="M16.2 1.7v1.4M22.7 8.2h-1.4M20.8 3.6l-1 1M11.6 3.6l1 1M20.8 12.8l-1-1"/>
+    </g>
+    <path d="M6.5 20H14a3.3 3.3 0 0 0 .5-6.56 4.5 4.5 0 0 0-8.6-1A3.8 3.8 0 0 0 6.5 20z"/>
+  </symbol>
+  <symbol id="i-partly-night" viewBox="0 0 24 24">
+    <g class="w" mask="url(#m-behind-cloud)">
+      <path transform="translate(9.6 .4) scale(.52)" stroke-width="2.9" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </g>
+    <path d="M6.5 20H14a3.3 3.3 0 0 0 .5-6.56 4.5 4.5 0 0 0-8.6-1A3.8 3.8 0 0 0 6.5 20z"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24">
+    <path class="w" transform="translate(2.4 2.4) scale(.8)" stroke-width="1.9" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24">
+    <g class="w"><circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/></g>
+  </symbol>
+  <symbol id="i-sunset" viewBox="0 0 24 24">
+    <path d="M3 19.5h18"/>
+    <path class="w" d="M7 19.5a5 5 0 0 1 10 0M12 4.5v6M9.4 8.1l2.6 2.6 2.6-2.6"/>
+  </symbol>
+  <symbol id="i-sunrise" viewBox="0 0 24 24">
+    <path d="M3 19.5h18"/>
+    <path class="w" d="M7 19.5a5 5 0 0 1 10 0M12 10.7v-6M9.4 7.1 12 4.5l2.6 2.6"/>
+  </symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.3"/><path d="M12 12l6.1-6.1"/><circle cx="12" cy="12" r=".6" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24">
+    <path d="M12 21.2s-6.6-5.7-6.6-11.1a6.6 6.6 0 0 1 13.2 0c0 5.4-6.6 11.1-6.6 11.1z"/><circle cx="12" cy="10.1" r="2.4"/>
+  </symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24">
+    <path d="M6.6 16.6v-5.4a5.4 5.4 0 0 1 10.8 0v5.4l1.5 2H5.1z"/><path d="M10.2 21a2 2 0 0 0 3.6 0"/>
+  </symbol>
+  <symbol id="i-drop" viewBox="0 0 6 8">
+    <path d="M3 0s3 3.1 3 5.1a3 3 0 0 1-6 0C0 3.1 3 0 3 0z"/>
+  </symbol>
+</svg>
+
+<div class="screen">
+
+  <!-- system status bar -->
+  <div class="statusbar" aria-hidden="true">
+    <span>15:48</span>
+    <span class="sys">
+      <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="17" height="12" viewBox="0 0 17 12"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M1.3 4.4a10.3 10.3 0 0 1 14.4 0"/><path d="M4 7.1a6.5 6.5 0 0 1 9 0"/></g><path d="M8.5 11.8 6.3 9.6a3.1 3.1 0 0 1 4.4 0z"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22.5" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="15.5" height="9" rx="2.3"/><path d="M24.5 4.3c.9.3 1.5 1.2 1.5 2.2s-.6 1.9-1.5 2.2z" opacity=".45"/></svg>
+    </span>
+  </div>
+
+  <!-- compact header, appears once the sky has scrolled away -->
+  <div class="topbar" id="topbar" aria-hidden="true">
+    <b>Copenhagen</b>
+    <span>6° · Partly cloudy</span>
+  </div>
+
+  <main class="scroll" id="scroll">
+
+    <!-- SKY -->
+    <header class="sky">
+      <div class="sun"></div>
+
+      <svg class="clouds" viewBox="0 0 402 412" preserveAspectRatio="xMinYMin slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="g-bank" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1b1d49"/><stop offset=".6" stop-color="#3a2c62"/><stop offset="1" stop-color="#7c4a7b"/>
+          </linearGradient>
+          <linearGradient id="g-lit" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#6b4379"/><stop offset="1" stop-color="#ff9f84"/>
+          </linearGradient>
+          <filter id="f-soft" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+          <filter id="f-wisp" x="-10%" y="-80%" width="120%" height="260%"><feGaussianBlur stdDeviation="1.1"/></filter>
+          <pattern id="p-shaft" width="7" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(16)">
+            <line x1="1" y1="0" x2="1" y2="10" stroke="#d5dcff" stroke-width=".7"/>
+          </pattern>
+          <radialGradient id="g-shaft" cx=".52" cy="0" r=".62">
+            <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <mask id="m-shaft" maskUnits="userSpaceOnUse" x="250" y="170" width="190" height="170">
+            <rect x="250" y="170" width="190" height="170" fill="url(#g-shaft)"/>
+          </mask>
+        </defs>
+
+        <!-- rain shafts under the incoming bank -->
+        <g class="drift-a"><rect x="250" y="170" width="190" height="170" fill="url(#p-shaft)" mask="url(#m-shaft)"/></g>
+
+        <!-- incoming cloud bank -->
+        <g class="drift-a" fill="url(#g-bank)" filter="url(#f-soft)" opacity=".96">
+          <rect x="296" y="130" width="160" height="22" rx="11"/>
+          <rect x="244" y="146" width="220" height="28" rx="14"/>
+          <rect x="266" y="168" width="190" height="22" rx="11"/>
+          <rect x="304" y="186" width="130" height="13" rx="6.5"/>
+        </g>
+
+        <!-- lit mid cloud -->
+        <g class="drift-b" fill="url(#g-lit)" filter="url(#f-wisp)" opacity=".5">
+          <rect x="322" y="272" width="120" height="10" rx="5"/>
+          <rect x="298" y="281" width="88" height="7" rx="3.5"/>
+        </g>
+
+        <!-- low streaks across the sun -->
+        <g class="drift-b" fill="#54305f" filter="url(#f-wisp)" opacity=".86">
+          <rect x="240" y="366" width="200" height="6" rx="3"/>
+          <rect x="356" y="375" width="90" height="4" rx="2"/>
+          <rect x="204" y="358" width="70" height="4" rx="2"/>
+        </g>
+        <g class="drift-a" fill="#ffb49a" filter="url(#f-wisp)" opacity=".34">
+          <rect x="-30" y="354" width="150" height="6" rx="3"/>
+          <rect x="34" y="362" width="92" height="4" rx="2"/>
+        </g>
+      </svg>
+
+      <div class="grain"></div>
+
+      <!-- the city is the top edge of the forecast sheet -->
+      <svg class="skyline" viewBox="0 0 480 64" preserveAspectRatio="xMinYMax slice" aria-hidden="true">
+        <g class="mass">
+          <!-- offshore turbines -->
+          <path d="M21.1 52 21.6 24h.8l.5 28zM47.2 52l.4-23h.8l.4 23zM69.3 52l.3-19h.8l.3 19z"/>
+          <g transform="translate(22 24)"><g class="spin"><path d="M0 0-.9-3 0-12 .9-3z"/><path d="M0 0-.9-3 0-12 .9-3z" transform="rotate(120)"/><path d="M0 0-.9-3 0-12 .9-3z" transform="rotate(240)"/><circle r="1.3"/></g></g>
+          <g transform="translate(48 29)"><g class="spin" style="animation-duration:6.3s;animation-delay:-2s"><path d="M0 0-.8-2.6 0-10 .8-2.6z"/><path d="M0 0-.8-2.6 0-10 .8-2.6z" transform="rotate(120)"/><path d="M0 0-.8-2.6 0-10 .8-2.6z" transform="rotate(240)"/><circle r="1.1"/></g></g>
+          <g transform="translate(70 33)"><g class="spin" style="animation-duration:7.2s;animation-delay:-4s"><path d="M0 0-.7-2.2 0-8 .7-2.2z"/><path d="M0 0-.7-2.2 0-8 .7-2.2z" transform="rotate(120)"/><path d="M0 0-.7-2.2 0-8 .7-2.2z" transform="rotate(240)"/><circle r="1"/></g></g>
+          <!-- rooftops, spires, the dome -->
+          <path d="M0 64V51h80v-6h8v-3h10v3h4v-6l6-3.5 6 3.5v5h6v-3h11v3h4l2-14h1.5L141 9l2.5 21H145l2 14h5v-4h4v-3h2v3h8v3h6v-5l6-4 6 4v4h6v-6h9V20h1v-4l3.5-10 3.5 10v4h1v16h12v6h6v-3h12v5h4v-4l5-4 5 4v3h6v-5h12v4h4v-5h2c0-9 4-15 8.5-15.7V17l1.5-4 1.5 4v4.3c4.5.7 8.5 6.7 8.5 15.7h2v5h8v-3h12v4h6v-9h3v-8h1.5L330 8l1.5 18H333v8h3v9h6v-3h5v-4h2v4h7v4h6v-6l6-4 6 4v4h6v-2h12v4h6v-7h12v4h6v4h8v-5l6-4 6 4v4h10v-3h12v4h8v-3h14v22z"/>
+          <circle cx="141" cy="8.5" r="1.3"/>
+        </g>
+        <!-- harbour crane -->
+        <path class="wire" d="M386 41V15M377 19.5h24M386 15l15 4.5M386 15l-9 4.5M399 19.5v5"/>
+        <!-- lit windows -->
+        <g class="lit">
+          <rect x="91" y="46.5" width="1.6" height="2.2"/><rect x="105" y="42" width="1.6" height="2.2"/><rect x="110" y="48" width="1.6" height="2.2"/>
+          <rect x="124" y="45" width="1.6" height="2.2"/><rect x="140.2" y="36" width="1.6" height="2.2"/><rect x="154" y="44" width="1.6" height="2.2"/>
+          <rect x="162" y="49" width="1.6" height="2.2"/><rect x="177" y="40" width="1.6" height="2.2"/><rect x="193" y="40" width="1.6" height="2.2"/>
+          <rect x="202.7" y="25" width="1.6" height="1.6" rx=".8"/><rect x="213" y="41" width="1.6" height="2.2"/><rect x="216" y="47" width="1.6" height="2.2"/>
+          <rect x="230" y="43" width="1.6" height="2.2"/><rect x="246" y="42" width="1.6" height="2.2"/><rect x="262" y="42" width="1.6" height="2.2"/>
+          <rect x="266" y="48" width="1.6" height="2.2"/><rect x="310" y="43" width="1.6" height="2.2"/><rect x="344" y="44" width="1.6" height="2.2"/>
+          <rect x="352" y="47" width="1.6" height="2.2"/><rect x="367" y="40" width="1.6" height="2.2"/><rect x="384" y="44" width="1.6" height="2.2"/>
+          <rect x="24" y="55" width="1.6" height="1.6"/><rect x="58" y="57" width="1.6" height="1.6"/>
+        </g>
+      </svg>
+
+      <div class="hero">
+        <div class="hero-top">
+          <div>
+            <button class="place" type="button" aria-label="Copenhagen, your current location. Change location">
+              <svg class="pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 3.5 10.3l6.9 2.8 2.8 6.9z"/></svg>
+              Copenhagen
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+            </button>
+            <p class="date">Tuesday 10 November</p>
+          </div>
+          <button class="round" type="button" aria-label="Search places">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.2 4.2"/></svg>
+          </button>
+        </div>
+
+        <h1 class="temp" aria-label="6 degrees Celsius">6<span class="deg">°</span></h1>
+        <p class="cond">Partly cloudy</p>
+        <p class="feels">Feels like 3°<i>·</i>H 8°<i>·</i>L 3°</p>
+      </div>
+    </header>
+
+    <!-- GROUND -->
+    <div class="ground">
+
+      <section class="now" aria-labelledby="h-now">
+        <div class="eyebrow"><h2 id="h-now">Next hour</h2><span id="readout" aria-live="off"></span></div>
+        <p class="headline">Rain in <em>27 minutes</em></p>
+        <p class="sub">Heaviest near 16:40, dry again by 21:00.</p>
+        <div class="bars" id="bars" role="img" aria-label="Rain intensity for the next 60 minutes: dry until 16:15, then building to about 2.6 millimetres per hour around 16:38.">
+          <div class="guide" id="guide"><span>Moderate rain</span></div>
+        </div>
+        <div class="ticks" id="ticks" aria-hidden="true"></div>
+      </section>
+
+      <section aria-labelledby="h-hours">
+        <div class="eyebrow"><h2 id="h-hours">Hourly</h2><span>Low 2° overnight</span></div>
+        <ol class="hours" id="hours"></ol>
+      </section>
+
+      <section aria-labelledby="h-days">
+        <div class="eyebrow"><h2 id="h-days">7-day forecast</h2><span>−1° to 8° this week</span></div>
+        <ol class="days" id="days"></ol>
+      </section>
+
+      <section aria-labelledby="h-cond">
+        <div class="eyebrow"><h2 id="h-cond">Right now</h2><span></span></div>
+        <div class="tiles">
+          <article class="tile wide">
+            <h3>Sun</h3>
+            <svg class="arc" viewBox="0 0 322 74" aria-hidden="true">
+              <path d="M20 64A141 52 0 0 1 302 64" fill="none" stroke="rgba(245,239,232,.16)" stroke-width="1.5" stroke-dasharray="2 5" stroke-linecap="round"/>
+              <path d="M20 64A141 52 0 0 1 300.9 57.4" fill="none" stroke="#ffc184" stroke-width="2" stroke-linecap="round"/>
+              <path d="M0 64h322" stroke="rgba(245,239,232,.14)"/>
+              <circle cx="300.9" cy="57.4" r="10" fill="rgba(255,193,132,.2)"/>
+              <circle cx="300.9" cy="57.4" r="5" fill="#ffd9a6" stroke="#0c0d1f" stroke-width="2"/>
+            </svg>
+            <div class="sun-row">
+              <div><b>07:32</b>Sunrise</div>
+              <div><b>8 h 37 min</b>of daylight</div>
+              <div><b>16:09</b>Sunset, in 21 min</div>
+            </div>
+          </article>
+
+          <article class="tile">
+            <h3>Wind</h3>
+            <p class="val">22<small>km/h</small></p>
+            <p class="note">From WSW · gusts 38</p>
+            <svg class="compass" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="21" stroke="rgba(245,239,232,.2)"/>
+              <path d="M24 3v3.5M45 24h-3.5M24 45v-3.5M3 24h3.5" stroke="rgba(245,239,232,.4)"/>
+              <g transform="rotate(67.5 24 24)"><path d="M24 35V13.5M19.3 18.5 24 13.2l4.7 5.3"/></g>
+            </svg>
+          </article>
+
+          <article class="tile">
+            <h3>Humidity</h3>
+            <p class="val">81<small>%</small></p>
+            <p class="note">Dew point 3°</p>
+            <div class="meter" aria-hidden="true"><i style="width:81%"></i></div>
+          </article>
+
+          <article class="tile">
+            <h3>Pressure</h3>
+            <p class="val">1004<small>hPa</small></p>
+            <p class="note">↘ Falling since noon</p>
+          </article>
+
+          <article class="tile">
+            <h3>UV index</h3>
+            <p class="val">0<small>Low</small></p>
+            <p class="note">Low for the rest of the day</p>
+          </article>
+        </div>
+        <p class="foot">Updated 15:46 · °C · km/h</p>
+      </section>
+    </div>
+  </main>
+
+  <div class="fade"></div>
+
+  <nav class="tabs" aria-label="Primary">
+    <button class="tab is-active" type="button" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-partly-day"/></svg>Today</button>
+    <button class="tab" type="button"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg>Radar</button>
+    <button class="tab" type="button"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Places</button>
+    <button class="tab" type="button"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg>Alerts</button>
+  </nav>
+  <div class="homebar" aria-hidden="true"></div>
+</div>
+
+<script>
+(() => {
+  const NOW = 15 * 60 + 48;
+  const clock = m => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  const deg = v => (v < 0 ? '−' : '') + Math.abs(v) + '°';
+  const icon = id => `<svg class="ic" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+  const pop = p => p >= 20 ? `<span class="pop"><svg viewBox="0 0 6 8" aria-hidden="true"><use href="#i-drop"/></svg>${p}%</span>` : '<span class="pop"></span>';
+
+  /* ── next hour: one bar per minute, mm/h ── */
+  const SCALE = 3.2, H = 52, MODERATE = 2.5;
+  const rain = Array.from({ length: 60 }, (_, i) => {
+    if (i < 27) return 0;
+    const t = (i - 27) / 23;
+    const shape = t <= 1 ? Math.pow(Math.sin(t * Math.PI / 2), 1.5) : 1 - (t - 1) * 0.55;
+    const wobble = 1 + 0.07 * Math.sin(i * 1.9) + 0.04 * Math.sin(i * 0.7);
+    return Math.max(0.12, 2.5 * shape * wobble);
+  });
+  const bars = document.getElementById('bars');
+  const readout = document.getElementById('readout');
+  document.getElementById('guide').style.bottom = (MODERATE / SCALE * H).toFixed(1) + 'px';
+  const els = rain.map(v => {
+    const b = document.createElement('i');
+    b.className = v ? 'bar' : 'bar dry';
+    if (v) b.style.setProperty('--h', Math.max(3, v / SCALE * H).toFixed(1) + 'px');
+    bars.appendChild(b);
+    return b;
+  });
+  const peak = rain.indexOf(Math.max(...rain));
+  const idle = `Peak ${rain[peak].toFixed(1)} mm/h at ${clock(NOW + peak)}`;
+  readout.textContent = idle;
+
+  let active = -1;
+  const scrub = e => {
+    const r = bars.getBoundingClientRect();
+    const i = Math.min(59, Math.max(0, Math.floor((e.clientX - r.left) / r.width * 60)));
+    if (i === active) return;
+    if (active >= 0) els[active].classList.remove('on');
+    active = i;
+    els[i].classList.add('on');
+    bars.classList.add('scrub');
+    readout.textContent = `${clock(NOW + i)} · ${rain[i] ? rain[i].toFixed(1) + ' mm/h' : 'Dry'}`;
+  };
+  const release = () => {
+    if (active >= 0) els[active].classList.remove('on');
+    active = -1;
+    bars.classList.remove('scrub');
+    readout.textContent = idle;
+  };
+  bars.addEventListener('pointerdown', scrub);
+  bars.addEventListener('pointermove', scrub);
+  bars.addEventListener('pointerleave', release);
+  bars.addEventListener('pointercancel', release);
+  bars.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') release(); });
+
+  document.getElementById('ticks').innerHTML = [[0, 'Now'], [12, '16:00'], [27, '16:15'], [42, '16:30'], [57, '16:45']]
+    .map(([m, label]) => `<span style="left:${m ? ((m + .5) / 60 * 100).toFixed(2) + '%' : '0'}">${label}</span>`).join('');
+
+  /* ── hourly ── */
+  const hours = [
+    { t: 'Now', i: 'partly-day', c: 6, p: 0, now: true },
+    { t: '16', i: 'drizzle', c: 6, p: 70 },
+    { t: '16:09', sun: 'set' },
+    { t: '17', i: 'rain', c: 5, p: 90 },
+    { t: '18', i: 'rain', c: 5, p: 75 },
+    { t: '19', i: 'drizzle', c: 5, p: 45 },
+    { t: '20', i: 'cloud', c: 4, p: 20 },
+    { t: '21', i: 'cloud', c: 4, p: 10 },
+    { t: '22', i: 'partly-night', c: 4, p: 0 },
+    { t: '23', i: 'moon', c: 3, p: 0 },
+    { t: 'Wed', i: 'moon', c: 3, p: 0 },
+    { t: '01', i: 'moon', c: 3, p: 0 },
+    { t: '02', i: 'partly-night', c: 2, p: 0 },
+    { t: '03', i: 'partly-night', c: 2, p: 0 },
+    { t: '04', i: 'cloud', c: 2, p: 0 },
+    { t: '05', i: 'cloud', c: 2, p: 10 },
+    { t: '06', i: 'cloud', c: 2, p: 10 },
+    { t: '07', i: 'cloud', c: 3, p: 10 },
+    { t: '07:34', sun: 'rise' },
+    { t: '08', i: 'cloud', c: 3, p: 20 },
+    { t: '09', i: 'drizzle', c: 4, p: 40 },
+    { t: '10', i: 'drizzle', c: 5, p: 55 },
+    { t: '11', i: 'rain', c: 6, p: 70 },
+    { t: '12', i: 'rain', c: 7, p: 85 },
+    { t: '13', i: 'rain', c: 7, p: 90 },
+    { t: '14', i: 'rain', c: 7, p: 85 },
+    { t: '15', i: 'rain', c: 6, p: 80 },
+  ];
+  document.getElementById('hours').innerHTML = hours.map(h => h.sun
+    ? `<li class="hr"><span class="hr-t">${h.t}</span>${icon('sun' + h.sun)}<span class="hr-s">Sun${h.sun}</span><span class="pop"></span></li>`
+    : `<li class="hr${h.now ? ' is-now' : ''}"><span class="hr-t">${h.t}</span>${icon(h.i)}<span class="hr-c">${deg(h.c)}</span>${pop(h.p)}</li>`
+  ).join('');
+
+  /* ── 7-day ── */
+  const days = [
+    { d: 'Today', i: 'drizzle', p: 80, lo: 3, hi: 8, at: 6 },
+    { d: 'Wed', i: 'rain', p: 90, lo: 2, hi: 7 },
+    { d: 'Thu', i: 'cloud', p: 30, lo: 3, hi: 6 },
+    { d: 'Fri', i: 'partly-day', p: 10, lo: 1, hi: 6 },
+    { d: 'Sat', i: 'sun', p: 0, lo: -1, hi: 5 },
+    { d: 'Sun', i: 'partly-day', p: 10, lo: 0, hi: 6 },
+    { d: 'Mon', i: 'rain', p: 70, lo: 3, hi: 8 },
+  ];
+  const min = Math.min(...days.map(d => d.lo)), max = Math.max(...days.map(d => d.hi)), span = max - min;
+  const pct = v => ((v - min) / span * 100).toFixed(1);
+  document.getElementById('days').innerHTML = days.map(d => `
+    <li class="day">
+      <span class="day-n">${d.d}</span>${icon(d.i)}${pop(d.p)}
+      <span class="day-lo">${deg(d.lo)}</span>
+      <span class="range" aria-hidden="true"><i style="clip-path:inset(0 ${100 - pct(d.hi)}% 0 ${pct(d.lo)}% round 3px)"></i>${d.at != null ? `<b style="left:${pct(d.at)}%"></b>` : ''}</span>
+      <span class="day-hi">${deg(d.hi)}</span>
+    </li>`).join('');
+
+  /* ── compact header once the sky is gone ── */
+  const scroller = document.getElementById('scroll'), topbar = document.getElementById('topbar');
+  scroller.addEventListener('scroll', () => topbar.classList.toggle('on', scroller.scrollTop > 250), { passive: true });
+})();
+</script>
+</body>
+</html>
